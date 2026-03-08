@@ -41,48 +41,47 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyAGJ8K-mk-sUqLXaNZke1s9IQRR3qvQk-I',
-    appId: '1:716518681573:web:f885ca70f3a5bc5e8a1d0c',
-    messagingSenderId: '716518681573',
-    projectId: 'supply-chain-app-f0e70',
-    authDomain: 'supply-chain-app-f0e70.firebaseapp.com',
-    storageBucket: 'supply-chain-app-f0e70.firebasestorage.app',
-    measurementId: 'G-LNKQT4ZY7R',
+    apiKey: 'AIzaSyBNtatDR4g--KMmwtNJcZXg0KntubM8DKI',
+    appId: '1:139821605349:web:23e7a043b077db9f420f0c',
+    messagingSenderId: '139821605349',
+    projectId: 'n-scrrpa',
+    authDomain: 'n-scrrpa.firebaseapp.com',
+    storageBucket: 'n-scrrpa.firebasestorage.app',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyD2vXJ1VLdVf1BIv_TzmQVOmsdC2wS8kWk',
-    appId: '1:716518681573:android:f67bab611480989f8a1d0c',
-    messagingSenderId: '716518681573',
-    projectId: 'supply-chain-app-f0e70',
-    storageBucket: 'supply-chain-app-f0e70.firebasestorage.app',
+    apiKey: 'AIzaSyBQzicWmZi--VAvm35ksUExAujbiemCbx8',
+    appId: '1:139821605349:android:adf94c4d6187c738420f0c',
+    messagingSenderId: '139821605349',
+    projectId: 'n-scrrpa',
+    storageBucket: 'n-scrrpa.firebasestorage.app',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyCmLuE5YFS0QDty4esFN81jsigw-lnG8Pk',
-    appId: '1:716518681573:ios:775c9d1d7284b0458a1d0c',
-    messagingSenderId: '716518681573',
-    projectId: 'supply-chain-app-f0e70',
-    storageBucket: 'supply-chain-app-f0e70.firebasestorage.app',
+    apiKey: 'AIzaSyDTeq8WDsG3Tzb7lx1d8I-4kPR3l9pEw3E',
+    appId: '1:139821605349:ios:fcbdcb8f500b83da420f0c',
+    messagingSenderId: '139821605349',
+    projectId: 'n-scrrpa',
+    storageBucket: 'n-scrrpa.firebasestorage.app',
     iosBundleId: 'com.example.scrrpaApp',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyCmLuE5YFS0QDty4esFN81jsigw-lnG8Pk',
-    appId: '1:716518681573:ios:775c9d1d7284b0458a1d0c',
-    messagingSenderId: '716518681573',
-    projectId: 'supply-chain-app-f0e70',
-    storageBucket: 'supply-chain-app-f0e70.firebasestorage.app',
+    apiKey: 'AIzaSyDTeq8WDsG3Tzb7lx1d8I-4kPR3l9pEw3E',
+    appId: '1:139821605349:ios:fcbdcb8f500b83da420f0c',
+    messagingSenderId: '139821605349',
+    projectId: 'n-scrrpa',
+    storageBucket: 'n-scrrpa.firebasestorage.app',
     iosBundleId: 'com.example.scrrpaApp',
   );
 
   static const FirebaseOptions windows = FirebaseOptions(
-    apiKey: 'AIzaSyAGJ8K-mk-sUqLXaNZke1s9IQRR3qvQk-I',
-    appId: '1:716518681573:web:d3bf2c49d2285ec88a1d0c',
-    messagingSenderId: '716518681573',
-    projectId: 'supply-chain-app-f0e70',
-    authDomain: 'supply-chain-app-f0e70.firebaseapp.com',
-    storageBucket: 'supply-chain-app-f0e70.firebasestorage.app',
-    measurementId: 'G-T3F1ZD44NZ',
+    apiKey: 'AIzaSyBNtatDR4g--KMmwtNJcZXg0KntubM8DKI',
+    appId: '1:139821605349:web:39cb642d63b78685420f0c',
+    messagingSenderId: '139821605349',
+    projectId: 'n-scrrpa',
+    authDomain: 'n-scrrpa.firebaseapp.com',
+    storageBucket: 'n-scrrpa.firebasestorage.app',
   );
+
 }

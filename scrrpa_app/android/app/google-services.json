@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "716518681573",
-    "project_id": "supply-chain-app-f0e70",
-    "storage_bucket": "supply-chain-app-f0e70.firebasestorage.app"
+    "project_number": "139821605349",
+    "project_id": "n-scrrpa",
+    "storage_bucket": "n-scrrpa.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:716518681573:android:f67bab611480989f8a1d0c",
+        "mobilesdk_app_id": "1:139821605349:android:adf94c4d6187c738420f0c",
         "android_client_info": {
           "package_name": "com.example.scrrpa_app"
         }
@@ -15,26 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyD2vXJ1VLdVf1BIv_TzmQVOmsdC2wS8kWk"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": []
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:716518681573:android:b55e65284caa01728a1d0c",
-        "android_client_info": {
-          "package_name": "com.example.supplychain"
-        }
-      },
-      "oauth_client": [],
-      "api_key": [
-        {
-          "current_key": "AIzaSyD2vXJ1VLdVf1BIv_TzmQVOmsdC2wS8kWk"
+          "current_key": "AIzaSyBQzicWmZi--VAvm35ksUExAujbiemCbx8"
         }
       ],
       "services": {
