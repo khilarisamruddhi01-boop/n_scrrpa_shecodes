@@ -1,0 +1,14 @@
+fastapi
+uvicorn
+firebase-admin
+sqlalchemy
+psycopg2-binary
+neo4j
+pydantic
+python-dotenv
+python-multipart
+requests
+python-jose[cryptography]
+passlib[bcrypt]
+google-cloud-storage
+networkx
