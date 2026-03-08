@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>N-SCRRA · Supply Chain Risk Analyzer</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+<style>
+:root {
+  --bg:#0d1117;--surface:#161b22;--surface2:#21262d;--border:#30363d;--border2:#3d4450;
+  --txt:#e6edf3;--muted:#8b949e;--dim:#484f58;
+  --green:#3fb950;--green-glow:rgba(63,185,80,.15);
+  --blue:#58a6ff;--blue-glow:rgba(88,166,255,.15);
+  --amber:#d29922;--amber-glow:rgba(210,153,34,.15);
+  --red:#f85149;--red-glow:rgba(248,81,73,.15);
+  --purple:#bc8cff;--purple-glow:rgba(188,140,255,.15);
+  --teal:#39d353;
+  --mono:'Space Mono',monospace;--sans:'DM Sans',sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;background:var(--bg);color:var(--txt);font-family:var(--sans);overflow:hidden}
+#shell{display:grid;height:100vh;grid-template-rows:52px 44px 1fr;grid-template-columns:230px 1fr 290px}
+/* HEADER */
+header{grid-column:1/-1;background:var(--surface);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 16px;gap:12px}
+.logo-dot{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 10px var(--green);animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.7)}}
+.logo{font-family:var(--mono);font-size:.75rem;font-weight:700;color:var(--green);letter-spacing:.15em}
+.title{font-size:.95rem;font-weight:700}
+.subtitle{font-family:var(--mono);font-size:.55rem;color:var(--muted);margin-top:1px}
+.hright{margin-left:auto;display:flex;align-items:center;gap:6px}
+.domain-btn{padding:4px 12px;border-radius:6px;border:1px solid var(--border2);background:transparent;color:var(--muted);cursor:pointer;font-family:var(--mono);font-size:.58rem;letter-spacing:.06em;text-transform:uppercase;transition:all .2s}
+.domain-btn:hover{border-color:var(--blue);color:var(--blue)}
+.domain-btn.active{background:var(--blue-glow);border-color:var(--blue);color:var(--blue)}
+.domain-btn.auto.active{background:var(--green-glow);border-color:var(--green);color:var(--green)}
+.domain-btn.pharma.active{background:var(--purple-glow);border-color:var(--purple);color:var(--purple)}
+.domain-btn.elec.active{background:var(--amber-glow);border-color:var(--amber);color:var(--amber)}
+.spof-toggle{padding:4px 12px;border-radius:6px;border:1px solid rgba(248,81,73,.4);background:var(--red-glow);color:var(--red);cursor:pointer;font-family:var(--mono);font-size:.58rem;transition:all .2s}
+.spof-toggle.active{background:rgba(248,81,73,.28);box-shadow:0 0 8px rgba(248,81,73,.3)}
+.spinner{width:16px;height:16px;border:2px solid var(--border2);border-top-color:var(--green);border-radius:50%;animation:spin 1s linear infinite;display:none}
+.spinner.on{display:block}
+@keyframes spin{to{transform:rotate(360deg)}}
+.sync-time{font-family:var(--mono);font-size:.55rem;color:var(--muted);text-align:right}
+/* TABBAR */
+#tabbar{grid-column:1/-1;background:var(--surface);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 16px;gap:2px}
+.tab{padding:0 16px;height:44px;display:flex;align-items:center;gap:7px;cursor:pointer;font-family:var(--mono);font-size:.62rem;letter-spacing:.06em;color:var(--muted);border-bottom:2px solid transparent;transition:all .15s;text-transform:uppercase;white-space:nowrap}
+.tab:hover{color:var(--txt)}.tab.active{color:var(--blue);border-bottom-color:var(--blue)}
+.tab-badge{background:var(--red);color:#fff;font-size:.48rem;padding:1px 5px;border-radius:10px;font-weight:700}
+/* LEFT PANEL */
+#left{background:var(--surface);border-right:1px solid var(--border);overflow-y:auto;display:flex;flex-direction:column}
+#left::-webkit-scrollbar{width:3px}#left::-webkit-scrollbar-thumb{background:var(--border2);border-radius:3px}
+.panel-hdr{font-family:var(--mono);font-size:.6rem;color:var(--muted);text-transform:uppercase;letter-spacing:.12em;padding:10px 14px 8px;border-bottom:1px solid var(--border);position:sticky;top:0;background:var(--surface);z-index:2;display:flex;align-items:center;justify-content:space-between}
+.tier-hdr{font-family:var(--mono);font-size:.55rem;color:var(--dim);padding:8px 14px 4px;text-transform:uppercase;letter-spacing:.1em;display:flex;align-items:center;gap:6px}
+.tier-hdr::after{content:'';flex:1;height:1px;background:var(--border)}
+.node-item{display:flex;align-items:center;gap:8px;padding:6px 12px;cursor:pointer;transition:all .12s;border-left:3px solid transparent}
+.node-item:hover{background:var(--surface2);border-left-color:var(--blue)}
+.node-item.selected{background:var(--blue-glow);border-left-color:var(--blue)}
+.node-item.is-spof{border-left-color:var(--red)!important;background:var(--red-glow)}
+.node-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.node-name{font-size:.72rem;color:var(--txt);flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.node-risk{font-family:var(--mono);font-size:.58rem;font-weight:700;padding:2px 5px;border-radius:4px;flex-shrink:0}
+/* CENTER */
+#center{position:relative;overflow:hidden;background:var(--bg)}
+.tab-view{position:absolute;inset:0;display:none}
+.tab-view.active{display:block}
+#graph-svg{width:100%;height:100%}
+#graph-controls{position:absolute;top:12px;left:50%;transform:translateX(-50%);display:flex;gap:4px;z-index:10;background:rgba(22,27,34,.92);border:1px solid var(--border);border-radius:8px;padding:4px}
+.ctrl-btn{padding:4px 10px;border-radius:5px;border:none;background:transparent;color:var(--muted);cursor:pointer;font-family:var(--mono);font-size:.58rem;letter-spacing:.05em;text-transform:uppercase;transition:all .15s}
+.ctrl-btn:hover{background:var(--surface2);color:var(--txt)}.ctrl-btn.active{background:var(--blue-glow);color:var(--blue)}
+#zoom-ctrls{position:absolute;bottom:80px;right:12px;display:flex;flex-direction:column;gap:3px;z-index:10}
+.zoom-btn{width:28px;height:28px;border-radius:6px;border:1px solid var(--border);background:var(--surface);color:var(--txt);cursor:pointer;font-family:var(--mono);font-size:.85rem;display:grid;place-items:center;transition:.15s}
+.zoom-btn:hover{background:var(--surface2);border-color:var(--blue)}
+#legend-box{position:absolute;bottom:12px;left:12px;z-index:10;background:rgba(22,27,34,.95);border:1px solid var(--border);border-radius:8px;padding:10px 12px}
+.leg-section{font-family:var(--mono);font-size:.52rem;color:var(--dim);text-transform:uppercase;letter-spacing:.1em;margin-bottom:5px}
+.leg-section:not(:first-child){margin-top:8px}
+.leg-row{display:flex;align-items:center;gap:6px;font-family:var(--mono);font-size:.58rem;color:var(--muted);margin-bottom:3px}
+.leg-dot{width:7px;height:7px;border-radius:50%}
+.leg-line{width:14px;height:3px;border-radius:2px}
+#stats-bar{position:absolute;bottom:12px;left:50%;transform:translateX(-50%);display:flex;gap:1px;z-index:10;background:var(--surface);border:1px solid var(--border);border-radius:8px;overflow:hidden}
+.stat-box{padding:6px 14px;text-align:center}
+.stat-val{font-family:var(--mono);font-size:.95rem;font-weight:700;line-height:1}
+.stat-lbl{font-family:var(--mono);font-size:.5rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-top:2px}
+/* RESILIENCE VIEW */
+#view-resilience{overflow-y:auto;padding:20px}
+#view-resilience::-webkit-scrollbar{width:4px}#view-resilience::-webkit-scrollbar-thumb{background:var(--border2);border-radius:2px}
+.res-top{display:flex;gap:20px;margin-bottom:16px;align-items:stretch}
+.res-score-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:24px;display:flex;flex-direction:column;align-items:center;justify-content:center;flex-shrink:0;width:170px}
+.res-number{font-family:var(--mono);font-size:2.8rem;font-weight:700;line-height:1}
+.res-denom{font-family:var(--mono);font-size:.7rem;color:var(--muted)}
+.res-grade-badge{margin-top:8px;font-family:var(--mono);font-size:1.1rem;font-weight:700;padding:2px 14px;border-radius:6px;border:2px solid}
+.res-kpi-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;flex:1}
+.res-kpi{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:12px 14px}
+.res-kpi-label{font-family:var(--mono);font-size:.55rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+.res-kpi-value{font-family:var(--mono);font-size:1.15rem;font-weight:700;margin-top:4px}
+.section-box{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:14px;margin-bottom:12px}
+.section-title{font-family:var(--mono);font-size:.58rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:10px;display:flex;align-items:center;gap:6px}
+.section-title::after{content:'';flex:1;height:1px;background:var(--border)}
+.interp-text{font-size:.88rem;font-weight:500}
+#trend-svg{width:100%;height:80px}
+.mc-big{font-family:var(--mono);font-size:2rem;font-weight:700;color:var(--amber)}
+.mc-sub{font-family:var(--mono);font-size:.6rem;color:var(--muted);margin-left:8px}
+.pred-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.pred-card{background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:10px 12px}
+.pred-id{font-family:var(--mono);font-size:.52rem;color:var(--muted);margin-bottom:4px}
+.pred-val{font-family:var(--mono);font-size:.9rem;font-weight:700}
+.pred-trend{font-family:var(--mono);font-size:.6rem;margin-top:3px}
+.action-btn{width:100%;padding:10px;border-radius:8px;border:1px solid var(--blue);background:var(--blue-glow);color:var(--blue);cursor:pointer;font-family:var(--mono);font-size:.6rem;text-transform:uppercase;letter-spacing:.08em;transition:all .2s;margin-top:4px}
+.action-btn:hover{background:rgba(88,166,255,.25)}
+/* DETECTIONS VIEW */
+#view-detect{overflow-y:auto;padding:14px}
+#view-detect::-webkit-scrollbar{width:4px}#view-detect::-webkit-scrollbar-thumb{background:var(--border2);border-radius:2px}
+.det-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.det-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:14px}
+.det-title{font-family:var(--mono);font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;margin-bottom:10px;display:flex;align-items:center;justify-content:space-between}
+.det-count{font-family:var(--mono);font-size:.55rem;padding:2px 7px;border-radius:10px;font-weight:700}
+.det-item{padding:7px 9px;border-radius:6px;margin-bottom:5px;border:1px solid}
+.det-item-name{font-size:.72rem;font-weight:600;color:var(--txt);margin-bottom:2px}
+.det-item-sub{font-family:var(--mono);font-size:.56rem;color:var(--muted)}
+.det-progress{height:3px;border-radius:2px;margin-top:5px;overflow:hidden;background:var(--surface2)}
+.det-progress-fill{height:100%;border-radius:2px}
+.empty-ok{font-family:var(--mono);font-size:.62rem;color:var(--dim);padding:10px 0;text-align:center}
+/* RIGHT PANEL */
+#right{background:var(--surface);border-left:1px solid var(--border);overflow-y:auto;display:flex;flex-direction:column}
+#right::-webkit-scrollbar{width:3px}#right::-webkit-scrollbar-thumb{background:var(--border2);border-radius:2px}
+#node-detail{border-bottom:1px solid var(--border);padding:14px;flex-shrink:0}
+.nd-empty{display:flex;flex-direction:column;align-items:center;justify-content:center;height:130px;gap:8px}
+.nd-empty-icon{font-size:1.6rem;opacity:.2}
+.nd-empty-hint{font-family:var(--mono);font-size:.6rem;color:var(--muted);text-align:center}
+.nd-id{font-family:var(--mono);font-size:.55rem;color:var(--muted);margin-bottom:3px}
+.nd-name{font-size:.95rem;font-weight:700;margin-bottom:8px}
+.spof-badge{display:inline-flex;align-items:center;gap:5px;margin-bottom:8px;padding:4px 9px;background:var(--red-glow);border:1px solid rgba(248,81,73,.4);border-radius:5px;font-family:var(--mono);font-size:.58rem;color:var(--red);animation:spof-glow 1.5s infinite}
+@keyframes spof-glow{0%,100%{box-shadow:0 0 0 0 rgba(248,81,73,.4)}70%{box-shadow:0 0 0 6px rgba(248,81,73,0)}}
+.risk-bar-row{margin-bottom:8px}
+.risk-bar-label{font-family:var(--mono);font-size:.55rem;color:var(--muted);margin-bottom:3px;display:flex;justify-content:space-between}
+.risk-bar-track{height:5px;background:var(--surface2);border-radius:3px;overflow:hidden}
+.risk-bar-fill{height:100%;border-radius:3px;transition:width .5s ease}
+.nd-data-grid{display:grid;grid-template-columns:1fr 1fr;gap:4px;margin-bottom:8px}
+.nd-cell{background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:6px 8px}
+.nd-cell-label{font-family:var(--mono);font-size:.52rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.nd-cell-value{font-family:var(--mono);font-size:.75rem;font-weight:700;margin-top:2px}
+.edges-title{font-family:var(--mono);font-size:.55rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:5px;padding-bottom:3px;border-bottom:1px solid var(--border)}
+.edge-item{display:flex;align-items:center;gap:5px;padding:4px 0;border-bottom:1px solid rgba(48,54,61,.5);font-family:var(--mono);font-size:.58rem}
+.edge-item:last-child{border-bottom:none}
+.edge-arr{color:var(--muted)}.edge-lbl{color:var(--txt);flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.edge-risk-badge{padding:1px 5px;border-radius:4px;font-size:.54rem;flex-shrink:0}
+/* Alerts */
+.alert-grp{border-bottom:1px solid var(--border)}
+.alert-grp-hdr{padding:9px 14px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;font-family:var(--mono);font-size:.58rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;transition:.15s;user-select:none}
+.alert-grp-hdr:hover{background:var(--surface2);color:var(--txt)}
+.alert-count{font-family:var(--mono);font-size:.55rem;padding:1px 7px;border-radius:10px;font-weight:700}
+.alert-body{padding:0 10px 8px}
+.alert-item{padding:6px 8px;border-radius:6px;margin-bottom:4px;border:1px solid transparent}
+.alert-item.crit{background:var(--red-glow);border-color:rgba(248,81,73,.2)}
+.alert-item.warn{background:var(--amber-glow);border-color:rgba(210,153,34,.2)}
+.alert-item.info{background:var(--blue-glow);border-color:rgba(88,166,255,.2)}
+.alert-item.ml-item{background:var(--purple-glow);border-color:rgba(188,140,255,.2)}
+.alert-name{font-size:.68rem;font-weight:600;color:var(--txt);margin-bottom:1px}
+.alert-sub{font-family:var(--mono);font-size:.56rem;color:var(--muted)}
+.mini-bar{height:3px;background:var(--surface2);border-radius:2px;margin-top:4px;overflow:hidden}
+.mini-bar-fill{height:100%;border-radius:2px}
+.refresh-btn{margin:10px 12px;padding:8px;border-radius:7px;border:1px solid var(--border2);background:transparent;color:var(--muted);cursor:pointer;font-family:var(--mono);font-size:.58rem;letter-spacing:.08em;transition:all .2s;text-transform:uppercase;flex-shrink:0}
+.refresh-btn:hover{background:var(--surface2);color:var(--txt)}
+/* LOADING */
+#loading{position:fixed;inset:0;background:var(--bg);z-index:9000;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px}
+#loading.hidden{display:none}
+.ld-logo{font-family:var(--mono);font-size:1.4rem;font-weight:700;color:var(--green);letter-spacing:.3em;animation:flicker 2.5s infinite}
+@keyframes flicker{0%,95%,100%{opacity:1}96%,98%{opacity:.3}}
+.ld-sub{font-family:var(--mono);font-size:.58rem;color:var(--muted);letter-spacing:.1em}
+.ld-bar{width:260px;height:2px;background:var(--border);border-radius:2px;overflow:hidden}
+.ld-progress{height:100%;background:linear-gradient(90deg,var(--green),var(--blue));animation:ldslide 1.6s ease-in-out infinite alternate}
+@keyframes ldslide{from{width:5%}to{width:92%}}
+/* TOOLTIP */
+#tooltip{position:fixed;z-index:500;pointer-events:none;opacity:0;transition:opacity .12s;background:var(--surface);border:1px solid var(--border2);border-radius:8px;padding:10px 14px;max-width:210px;box-shadow:0 8px 24px rgba(0,0,0,.5)}
+.tt-id{font-family:var(--mono);font-size:.54rem;color:var(--muted);margin-bottom:3px}
+.tt-name{font-size:.82rem;font-weight:700;color:var(--txt);margin-bottom:7px}
+.tt-row{display:flex;justify-content:space-between;gap:14px;font-family:var(--mono);font-size:.58rem;margin-bottom:2px}
+.tt-key{color:var(--muted)}
+</style>
+</head>
+<body>
+<div id="loading">
+  <div class="ld-logo">N-SCRRA</div>
+  <div class="ld-sub">Supply Chain Resilience &amp; Risk Analyzer · Parts 1–4</div>
+  <div class="ld-bar"><div class="ld-progress"></div></div>
+  <div id="ld-msg" style="font-family:var(--mono);font-size:.58rem;color:var(--dim);letter-spacing:.08em">Initializing modules…</div>
+</div>
+
+<div id="shell">
+<header>
+  <div class="logo-dot"></div>
+  <div class="logo">N-SCRRA</div>
+  <div style="margin-left:4px">
+    <div class="title">Supply Chain Risk Analyzer</div>
+    <div class="subtitle">Flask · SQLite · NetworkX · D3.js · IsolationForest · Monte Carlo</div>
+  </div>
+  <div class="hright">
+    <button class="domain-btn active" onclick="setDomain('all',this)">All</button>
+    <button class="domain-btn auto" onclick="setDomain('auto',this)">Auto</button>
+    <button class="domain-btn pharma" onclick="setDomain('pharma',this)">Pharma</button>
+    <button class="domain-btn elec" onclick="setDomain('electronics',this)">Electronics</button>
+    <button class="spof-toggle" id="spof-btn" onclick="this.classList.toggle('active')">⚠ SPOFs</button>
+    <div class="spinner" id="spinner"></div>
+    <div class="sync-time"><div id="sync-time">–</div><div style="font-size:.5rem;color:var(--dim)">Last Sync</div></div>
+  </div>
+</header>
+
+<div id="tabbar">
+  <div class="tab active" id="tab-graph" onclick="switchTab('graph')">🕸 Part 1–3 · Network Graph</div>
+  <div class="tab" id="tab-resilience" onclick="switchTab('resilience')">◈ Part 4 · Risk &amp; Resilience</div>
+  <div class="tab" id="tab-detect" onclick="switchTab('detect')">🔍 Part 2 · All Detections <span class="tab-badge" id="det-badge">0</span></div>
+</div>
+
+<div id="left">
+  <div class="panel-hdr"><span>Node Directory</span><span id="node-count" style="color:var(--blue);font-weight:700">–</span></div>
+  <div id="node-list"></div>
+</div>
+
+<div id="center">
+  <!-- GRAPH TAB -->
+  <div class="tab-view active" id="view-graph">
+    <svg id="graph-svg"></svg>
+    <div id="graph-controls">
+      <button class="ctrl-btn active" id="layout-force" onclick="setLayout('force')">Force</button>
+      <button class="ctrl-btn" id="layout-tier" onclick="setLayout('tier')">Tier</button>
+      <button class="ctrl-btn" id="layout-risk" onclick="setLayout('risk')">Risk Cluster</button>
+      <div style="width:1px;background:var(--border);margin:2px 2px"></div>
+      <button class="ctrl-btn active" id="labels-btn" onclick="toggleLabels()">Labels</button>
+    </div>
+    <div id="zoom-ctrls">
+      <button class="zoom-btn" onclick="doZoom(1.3)">+</button>
+      <button class="zoom-btn" onclick="doZoom(1)">⊙</button>
+      <button class="zoom-btn" onclick="doZoom(.75)">−</button>
+    </div>
+    <div id="legend-box">
+      <div class="leg-section">Node Type</div>
+      <div class="leg-row"><div class="leg-dot" style="background:#3fb950"></div>Supplier</div>
+      <div class="leg-row"><div class="leg-dot" style="background:#58a6ff"></div>Manufacturer</div>
+      <div class="leg-row"><div class="leg-dot" style="background:#d29922"></div>Distributor</div>
+      <div class="leg-row"><div class="leg-dot" style="background:#f85149"></div>Retailer</div>
+      <div class="leg-row"><div class="leg-dot" style="background:#bc8cff"></div>Logistics</div>
+      <div class="leg-row"><div class="leg-dot" style="background:#39d353"></div>Regulatory</div>
+      <div class="leg-section">Risk Level</div>
+      <div class="leg-row"><div class="leg-line" style="background:#3fb950"></div>Low &lt; 40</div>
+      <div class="leg-row"><div class="leg-line" style="background:#d29922"></div>Med 40–70</div>
+      <div class="leg-row"><div class="leg-line" style="background:#f85149"></div>High &gt; 70</div>
+    </div>
+    <div id="stats-bar">
+      <div class="stat-box"><div class="stat-val" style="color:var(--blue)" id="stat-nodes">–</div><div class="stat-lbl">Nodes</div></div>
+      <div class="stat-box"><div class="stat-val" style="color:var(--green)" id="stat-edges">–</div><div class="stat-lbl">Edges</div></div>
+      <div class="stat-box"><div class="stat-val" style="color:var(--red)" id="stat-spofs">–</div><div class="stat-lbl">SPOFs</div></div>
+      <div class="stat-box"><div class="stat-val" style="color:var(--amber)" id="stat-highrisk">–</div><div class="stat-lbl">High Risk</div></div>
+      <div class="stat-box"><div class="stat-val" style="color:var(--teal)" id="stat-res">–</div><div class="stat-lbl">Resilience</div></div>
+    </div>
+  </div>
+
+  <!-- RESILIENCE TAB (Part 4) — fixed: no inline display:none, controlled purely by .active class -->
+  <div class="tab-view" id="view-resilience">
+    <div style="overflow-y:auto;height:100%;padding:20px" id="res-scroll">
+      <div class="res-top">
+        <div class="res-score-card" id="res-card">
+          <div class="res-number" id="res-num" style="color:var(--green)">–</div>
+          <div class="res-denom">/ 100</div>
+          <div class="res-grade-badge" id="res-grade" style="color:var(--green);border-color:var(--green)">Grade –</div>
+        </div>
+        <div class="res-kpi-grid">
+          <div class="res-kpi"><div class="res-kpi-label">⚠ SPOF Nodes</div><div class="res-kpi-value" style="color:var(--red)" id="kpi-spof">–</div></div>
+          <div class="res-kpi"><div class="res-kpi-label">🔴 High Risk</div><div class="res-kpi-value" style="color:var(--amber)" id="kpi-hr">–</div></div>
+          <div class="res-kpi"><div class="res-kpi-label">🔵 Total Nodes</div><div class="res-kpi-value" style="color:var(--blue)" id="kpi-total">–</div></div>
+          <div class="res-kpi"><div class="res-kpi-label">✅ Avg Reliability</div><div class="res-kpi-value" style="color:var(--green)" id="kpi-rel">–</div></div>
+        </div>
+      </div>
+      <div class="section-box">
+        <div class="section-title">Interpretation</div>
+        <div class="interp-text" id="res-interp">–</div>
+      </div>
+      <div class="section-box">
+        <div class="section-title">Network Resilience Trend</div>
+        <svg id="trend-svg"></svg>
+      </div>
+      <div class="section-box">
+        <div class="section-title">Monte Carlo Cascade Failure · 500 Simulations</div>
+        <span class="mc-big" id="mc-prob">–</span>
+        <span class="mc-sub">probability of cascade failure</span>
+      </div>
+      <div class="section-box">
+        <div class="section-title">ML Risk Predictions · LinearRegression</div>
+        <div class="pred-grid" id="pred-grid"></div>
+      </div>
+      <button class="action-btn" onclick="recalcRisk()">↻ Recalculate All Risk Scores (Part 4 Formula)</button>
+    </div>
+  </div>
+
+  <!-- DETECTIONS TAB (Part 2) — fixed: no inline display:none -->
+  <div class="tab-view" id="view-detect">
+    <div style="overflow-y:auto;height:100%;padding:14px">
+      <div class="det-grid">
+        <div class="det-card" id="det-spof"></div>
+        <div class="det-card" id="det-geo"></div>
+        <div class="det-card" id="det-rel"></div>
+        <div class="det-card" id="det-mm"></div>
+        <div class="det-card" id="det-ml"></div>
+        <div class="det-card" id="det-cen"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="right">
+  <div id="node-detail">
+    <div class="nd-empty" id="nd-empty">
+      <div class="nd-empty-icon">◎</div>
+      <div class="nd-empty-hint">Click any node on the graph<br>to view details</div>
+    </div>
+    <div id="nd-content" style="display:none"></div>
+  </div>
+  <div style="flex:1;overflow:hidden;display:flex;flex-direction:column">
+    <div class="alert-grp">
+      <div class="alert-grp-hdr" onclick="toggleAlert('spof')">⚠ Single Points of Failure<span class="alert-count" id="ac-spof" style="background:var(--red-glow);color:var(--red)">0</span></div>
+      <div class="alert-body" id="ab-spof" style="display:none"></div>
+    </div>
+    <div class="alert-grp">
+      <div class="alert-grp-hdr" onclick="toggleAlert('geo')">🌐 Geo Concentration<span class="alert-count" id="ac-geo" style="background:var(--amber-glow);color:var(--amber)">0</span></div>
+      <div class="alert-body" id="ab-geo" style="display:none"></div>
+    </div>
+    <div class="alert-grp">
+      <div class="alert-grp-hdr" onclick="toggleAlert('rel')">📉 Low Reliability<span class="alert-count" id="ac-rel" style="background:var(--amber-glow);color:var(--amber)">0</span></div>
+      <div class="alert-body" id="ab-rel" style="display:none"></div>
+    </div>
+    <div class="alert-grp">
+      <div class="alert-grp-hdr" onclick="toggleAlert('mm')">⚡ Demand Mismatch<span class="alert-count" id="ac-mm" style="background:var(--blue-glow);color:var(--blue)">0</span></div>
+      <div class="alert-body" id="ab-mm" style="display:none"></div>
+    </div>
+    <div class="alert-grp">
+      <div class="alert-grp-hdr" onclick="toggleAlert('ml')">🤖 ML Anomalies<span class="alert-count" id="ac-ml" style="background:var(--purple-glow);color:var(--purple)">0</span></div>
+      <div class="alert-body" id="ab-ml" style="display:none"></div>
+    </div>
+    <div class="alert-grp" style="border-bottom:none">
+      <div class="alert-grp-hdr" onclick="toggleAlert('cen')">📌 Critical Nodes<span class="alert-count" id="ac-cen" style="background:var(--blue-glow);color:var(--blue)">–</span></div>
+      <div class="alert-body" id="ab-cen" style="display:none"></div>
+    </div>
+  </div>
+  <button class="refresh-btn" onclick="loadAll()">↻ Refresh All Data</button>
+</div>
+</div>
+
+<div id="tooltip"></div>
+
+<script>
+const TC={supplier:'#3fb950',manufacturer:'#58a6ff',distributor:'#d29922',retailer:'#f85149',logistics:'#bc8cff',regulatory:'#39d353'};
+const DC={auto:'#3fb950',pharma:'#bc8cff',electronics:'#d29922'};
+function rc(s){return s>=70?'#f85149':s>=40?'#d29922':'#3fb950'}
+function rb(s){return s>=70?'rgba(248,81,73,':s>=40?'rgba(210,153,34,':'rgba(63,185,80,'}
+
+let allN=[],allE=[],det={},dom='all',showLabels=true,layout='force',selId=null,spofSet=new Set();
+let svgEl,gEl,zb,sim,alertOpen={};
+
+function toggleAlert(k){
+  const b=document.getElementById('ab-'+k);
+  alertOpen[k]=!alertOpen[k];
+  b.style.display=alertOpen[k]?'block':'none';
+}
+
+async function loadAll(silent=false){
+  if(!silent)document.getElementById('spinner').classList.add('on');
+  try{
+    const[nR,eR,dR,sR,rR]=await Promise.all([fetch('/api/nodes'),fetch('/api/edges'),fetch('/api/detections'),fetch('/api/summary'),fetch('/api/resilience')]);
+    allN=await nR.json();allE=await eR.json();det=await dR.json();
+    const sum=await sR.json();const res=await rR.json();
+    spofSet=new Set((det.spof?.nodes||[]).map(n=>n.id));
+    document.getElementById('stat-nodes').textContent=sum.total_nodes;
+    document.getElementById('stat-edges').textContent=sum.total_edges;
+    document.getElementById('stat-spofs').textContent=sum.spof_count;
+    document.getElementById('stat-highrisk').textContent=sum.high_risk_count;
+    document.getElementById('stat-res').textContent=res.score;
+    document.getElementById('sync-time').textContent=new Date().toLocaleTimeString();
+    document.getElementById('node-count').textContent=allN.length+' nodes';
+    const total=(det.spof?.count||0)+(det.reliability?.count||0)+(det.ml_anomalies?.count||0)+(det.demand_mismatch?.count||0);
+    document.getElementById('det-badge').textContent=total;
+    drawGraph();renderNodeList();renderAlerts();renderDetections();renderResilience(res,sum);
+    if(!silent)document.getElementById('loading').classList.add('hidden');
+  }catch(e){document.getElementById('ld-msg').textContent='Error: '+e.message+' — Is Flask running on :5001?'}
+  document.getElementById('spinner').classList.remove('on');
+}
+
+function visN(){return allN.filter(n=>dom==='all'||n.domain===dom)}
+function visE(ids){return allE.filter(e=>{const s=e.source||e.source_id,t=e.target||e.target_id;return ids.has(s)&&ids.has(t)})}
+
+function drawGraph(){
+  const cont=document.getElementById('center');
+  const W=cont.clientWidth,H=cont.clientHeight;
+  d3.select('#graph-svg').selectAll('*').remove();
+  svgEl=d3.select('#graph-svg');
+  zb=d3.zoom().scaleExtent([.08,8]).on('zoom',e=>gEl.attr('transform',e.transform));
+  svgEl.call(zb);
+  const defs=svgEl.append('defs');
+  [['lo','#3fb950'],['md','#d29922'],['hi','#f85149']].forEach(([k,c])=>{
+    defs.append('marker').attr('id','arr-'+k).attr('viewBox','0 -5 10 10').attr('refX',22).attr('refY',0)
+      .attr('markerWidth',4).attr('markerHeight',4).attr('orient','auto')
+      .append('path').attr('d','M0,-5L10,0L0,5').attr('fill',c).attr('opacity',.7);
+  });
+  gEl=svgEl.append('g');
+  const vN=visN(),ids=new Set(vN.map(n=>n.id)),vE=visE(ids);
+  const sN=vN.map(n=>({...n})),sE=vE.map(e=>({...e,source:e.source||e.source_id,target:e.target||e.target_id}));
+  sim=d3.forceSimulation(sN)
+    .force('link',d3.forceLink(sE).id(d=>d.id).distance(d=>80+d.risk_score*.5).strength(.4))
+    .force('charge',d3.forceManyBody().strength(-230))
+    .force('center',d3.forceCenter(W/2,H/2))
+    .force('collide',d3.forceCollide(26));
+  if(layout==='tier'){const tx={3:W*.13,2:W*.36,1:W*.63,0:W*.87};sim.force('tx',d3.forceX(d=>tx[d.tier]??W/2).strength(.5)).force('ty',d3.forceY(H/2).strength(.1));}
+  else if(layout==='risk'){sim.force('rx',d3.forceX(d=>d.risk_score/100*W*.78+W*.1).strength(.45)).force('ry',d3.forceY(H/2).strength(.1));}
+  const link=gEl.append('g').selectAll('line').data(sE).enter().append('line')
+    .attr('stroke',d=>rc(d.risk_score)).attr('stroke-width',d=>Math.max(.5,2.5-d.risk_score/40))
+    .attr('stroke-opacity',.35).attr('marker-end',d=>'url(#arr-'+(d.risk_score>=70?'hi':d.risk_score>=40?'md':'lo')+')');
+  const node=gEl.append('g').selectAll('g').data(sN).enter().append('g').attr('cursor','pointer')
+    .call(d3.drag().on('start',(e,d)=>{if(!e.active)sim.alphaTarget(.3).restart();d.fx=d.x;d.fy=d.y}).on('drag',(e,d)=>{d.fx=e.x;d.fy=e.y}).on('end',(e,d)=>{if(!e.active)sim.alphaTarget(0);d.fx=null;d.fy=null}))
+    .on('click',(e,d)=>onNodeClick(d)).on('mouseover',(e,d)=>showTip(e,d)).on('mousemove',e=>moveTip(e)).on('mouseout',()=>hideTip());
+  node.filter(d=>spofSet.has(d.id)).append('circle').attr('r',19).attr('fill','none').attr('stroke','#f85149').attr('stroke-width',1.5).attr('stroke-dasharray','4 3').attr('opacity',.8);
+  node.filter(d=>d.id===selId).append('circle').attr('r',17).attr('fill','none').attr('stroke',d=>rc(d.risk_score)).attr('stroke-width',2.5);
+  node.append('circle').attr('r',d=>spofSet.has(d.id)?13:10).attr('fill',d=>TC[d.type]||'#666').attr('stroke',d=>rc(d.risk_score)).attr('stroke-width',d=>d.risk_score>=70?2.5:1.5).attr('fill-opacity',.9);
+  node.append('text').attr('text-anchor','middle').attr('dy','3px').attr('font-family','Space Mono,monospace').attr('font-size',6.5).attr('font-weight','700').attr('fill','#000').attr('pointer-events','none').text(d=>Math.round(d.risk_score));
+  node.append('text').attr('class','node-lbl').attr('dy',25).attr('text-anchor','middle').attr('font-family','DM Sans,sans-serif').attr('font-size',7.5).attr('fill','#8b949e').attr('pointer-events','none').text(d=>d.label.length>16?d.label.slice(0,15)+'…':d.label).style('display',showLabels?'':'none');
+  sim.on('tick',()=>{link.attr('x1',d=>d.source.x).attr('y1',d=>d.source.y).attr('x2',d=>d.target.x).attr('y2',d=>d.target.y);node.attr('transform',d=>`translate(${d.x},${d.y})`);});
+}
+
+function showTip(e,d){
+  const gc=d.geo_risk_zone==='high'?'#f85149':d.geo_risk_zone==='medium'?'#d29922':'#3fb950';
+  document.getElementById('tooltip').innerHTML=`<div class="tt-id">${d.id}</div><div class="tt-name">${d.label}</div><div class="tt-row"><span class="tt-key">Type</span><span>${d.type}</span></div><div class="tt-row"><span class="tt-key">Domain</span><span>${d.domain}</span></div><div class="tt-row"><span class="tt-key">Country</span><span>${d.geo_country}</span></div><div class="tt-row"><span class="tt-key">Risk</span><span style="color:${rc(d.risk_score)};font-weight:700">${d.risk_score.toFixed(1)}</span></div><div class="tt-row"><span class="tt-key">Reliability</span><span>${d.reliability}%</span></div><div class="tt-row"><span class="tt-key">Geo Zone</span><span style="color:${gc}">${d.geo_risk_zone.toUpperCase()}</span></div>${d.is_spof?'<div style="margin-top:5px;padding:2px 6px;background:rgba(248,81,73,.15);border:1px solid rgba(248,81,73,.3);border-radius:4px;color:#f85149;font-size:.56rem;text-align:center">⚠ SINGLE POINT OF FAILURE</div>':''}`;
+  document.getElementById('tooltip').style.opacity=1;moveTip(e);
+}
+function moveTip(e){const t=document.getElementById('tooltip');t.style.left=(e.clientX+14)+'px';t.style.top=(e.clientY-8)+'px';}
+function hideTip(){document.getElementById('tooltip').style.opacity=0;}
+
+async function onNodeClick(d){
+  selId=d.id;
+  document.querySelectorAll('.node-item').forEach(el=>el.classList.toggle('selected',el.dataset.id===d.id));
+  document.getElementById('nd-empty').style.display='none';
+  const c=document.getElementById('nd-content');c.style.display='block';
+  c.innerHTML=`<div style="font-family:var(--mono);font-size:.6rem;color:var(--muted);text-align:center;padding:20px">Loading ${d.id}…</div>`;
+  try{
+    const dt=await fetch('/api/nodes/'+d.id+'/detail').then(r=>r.json());
+    const gc=dt.geo_risk_zone==='high'?'var(--red)':dt.geo_risk_zone==='medium'?'var(--amber)':'var(--green)';
+    const outH=(dt.out_edges||[]).map(e=>`<div class="edge-item"><span class="edge-arr">→</span><span class="edge-lbl">${e.target_label||e.target_id}</span><span class="edge-risk-badge" style="background:${rb(e.risk_score)}.15);color:${rc(e.risk_score)}">${e.risk_score.toFixed(0)}</span></div>`).join('');
+    const inH=(dt.in_edges||[]).map(e=>`<div class="edge-item"><span class="edge-arr">←</span><span class="edge-lbl">${e.source_label||e.source_id}</span><span class="edge-risk-badge" style="background:${rb(e.risk_score)}.15);color:${rc(e.risk_score)}">${e.risk_score.toFixed(0)}</span></div>`).join('');
+    c.innerHTML=`<div class="nd-id">${dt.id}</div><div class="nd-name" style="color:${TC[dt.type]||'var(--txt)'}">${dt.label}</div>${dt.is_spof?'<div class="spof-badge">⚠ Single Point of Failure</div>':''}<div class="risk-bar-row"><div class="risk-bar-label"><span>Risk Score</span><span style="color:${rc(dt.risk_score)};font-weight:700">${dt.risk_score.toFixed(1)}</span></div><div class="risk-bar-track"><div class="risk-bar-fill" style="width:${dt.risk_score}%;background:${rc(dt.risk_score)}"></div></div></div><div class="nd-data-grid"><div class="nd-cell"><div class="nd-cell-label">Type</div><div class="nd-cell-value" style="color:${TC[dt.type]||'#fff'}">${dt.type}</div></div><div class="nd-cell"><div class="nd-cell-label">Domain</div><div class="nd-cell-value" style="color:${DC[dt.domain]||'#fff'}">${dt.domain}</div></div><div class="nd-cell"><div class="nd-cell-label">Country</div><div class="nd-cell-value">${dt.geo_country}</div></div><div class="nd-cell"><div class="nd-cell-label">Geo Zone</div><div class="nd-cell-value" style="color:${gc}">${dt.geo_risk_zone.toUpperCase()}</div></div><div class="nd-cell"><div class="nd-cell-label">Reliability</div><div class="nd-cell-value" style="color:${rc(100-dt.reliability)}">${dt.reliability}%</div></div><div class="nd-cell"><div class="nd-cell-label">Demand Match</div><div class="nd-cell-value">${dt.demand_match}%</div></div><div class="nd-cell"><div class="nd-cell-label">Tier</div><div class="nd-cell-value">${dt.tier}</div></div><div class="nd-cell"><div class="nd-cell-label">Fin. Risk</div><div class="nd-cell-value" style="color:${rc(dt.financial_risk)}">${dt.financial_risk}</div></div></div>${outH?`<div style="margin-top:6px"><div class="edges-title">Supplies To (${dt.out_edges.length})</div>${outH}</div>`:''}${inH?`<div style="margin-top:6px"><div class="edges-title">Supplied By (${dt.in_edges.length})</div>${inH}</div>`:''}`;
+  }catch(e){c.innerHTML=`<div style="font-family:var(--mono);font-size:.6rem;color:var(--muted);padding:10px">Failed to load.</div>`;}
+  drawGraph();
+}
+
+function renderNodeList(){
+  const nodes=visN();
+  const tiers=[{t:3,l:'Tier 3 · Suppliers'},{t:2,l:'Tier 2 · Manufacturers'},{t:1,l:'Tier 1 · Distributors'},{t:0,l:'Tier 0 · Retail/Regulatory'}];
+  document.getElementById('node-list').innerHTML=tiers.map(({t,l})=>{
+    const tn=nodes.filter(n=>n.tier===t);if(!tn.length)return'';
+    return`<div class="tier-hdr">${l}</div>`+tn.map(n=>`<div class="node-item ${n.id===selId?'selected':''} ${spofSet.has(n.id)?'is-spof':''}" data-id="${n.id}" onclick='onNodeClick(${JSON.stringify(n)})'><div class="node-dot" style="background:${TC[n.type]||'#666'}"></div><div class="node-name">${n.label}</div><div class="node-risk" style="background:${rb(n.risk_score)}.15);color:${rc(n.risk_score)}">${Math.round(n.risk_score)}</div></div>`).join('');
+  }).join('');
+}
+
+function renderAlerts(){
+  const D=det;
+  document.getElementById('ac-spof').textContent=D.spof?.count||0;
+  document.getElementById('ab-spof').innerHTML=(D.spof?.nodes||[]).map(n=>`<div class="alert-item crit"><div class="alert-name">${n.label}</div><div class="alert-sub">${n.domain} · ${n.geo_country} · Risk: <span style="color:${rc(n.risk_score)}">${n.risk_score.toFixed(0)}</span></div></div>`).join('')||'<div class="empty-ok">✓ No SPOFs detected</div>';
+  document.getElementById('ac-geo').textContent=D.geo_concentration?.flagged||0;
+  document.getElementById('ab-geo').innerHTML=(D.geo_concentration?.breakdown||[]).map(g=>`<div class="alert-item ${g.flagged?'warn':'info'}"><div class="alert-name">${g.country}${g.flagged?' ⚠':''}</div><div class="alert-sub">${g.count} nodes · ${g.pct}%</div><div class="mini-bar"><div class="mini-bar-fill" style="width:${g.pct}%;background:${g.flagged?'var(--amber)':'var(--blue)'}"></div></div></div>`).join('');
+  document.getElementById('ac-rel').textContent=D.reliability?.count||0;
+  document.getElementById('ab-rel').innerHTML=(D.reliability?.nodes||[]).map(n=>`<div class="alert-item ${n.severity==='critical'?'crit':'warn'}"><div class="alert-name">${n.label}</div><div class="alert-sub">${n.domain} · ${n.reliability}% reliability</div><div class="mini-bar"><div class="mini-bar-fill" style="width:${n.reliability}%;background:${n.severity==='critical'?'var(--red)':'var(--amber)'}"></div></div></div>`).join('')||'<div class="empty-ok">✓ All reliable</div>';
+  document.getElementById('ac-mm').textContent=D.demand_mismatch?.count||0;
+  document.getElementById('ab-mm').innerHTML=(D.demand_mismatch?.edges||[]).map(e=>`<div class="alert-item warn"><div class="alert-name">${e.source} → ${e.target}</div><div class="alert-sub">Supply ${e.supply_volume} / Demand ${e.demand} · Gap −${e.gap}</div></div>`).join('')||'<div class="empty-ok">✓ No mismatches</div>';
+  document.getElementById('ac-ml').textContent=D.ml_anomalies?.count||0;
+  document.getElementById('ab-ml').innerHTML=(D.ml_anomalies?.nodes||[]).map(n=>`<div class="alert-item ml-item"><div class="alert-name">${n.label}</div><div class="alert-sub">${n.domain} · Risk: ${n.risk_score.toFixed(0)} · Reliability: ${n.reliability}%</div></div>`).join('')||'<div class="empty-ok">✓ No anomalies</div>';
+  document.getElementById('ac-cen').textContent=(D.critical_nodes?.nodes||[]).length;
+  document.getElementById('ab-cen').innerHTML=(D.critical_nodes?.nodes||[]).map((n,i)=>`<div class="alert-item info"><div class="alert-name">#${i+1} ${n.label}</div><div class="alert-sub">${n.domain} · Centrality: ${n.centrality}</div></div>`).join('');
+  if(D.spof?.count>0&&!alertOpen['spof'])toggleAlert('spof');
+  if(D.reliability?.count>0&&!alertOpen['rel'])toggleAlert('rel');
+}
+
+function renderDetections(){
+  const D=det;
+  function card(title,color,items,fn){
+    return`<div class="det-title" style="color:${color}">${title}<span class="det-count" style="background:${color}22;color:${color}">${items.length}</span></div>${items.length?items.map(fn).join(''):'<div class="empty-ok">✓ None detected</div>'}`;
+  }
+  document.getElementById('det-spof').innerHTML=card('⚠ SPOF Nodes','#f85149',D.spof?.nodes||[],n=>`<div class="det-item" style="background:rgba(248,81,73,.07);border-color:rgba(248,81,73,.2)"><div class="det-item-name">${n.label}</div><div class="det-item-sub">${n.domain} · ${n.geo_country} · Risk ${n.risk_score.toFixed(0)}</div></div>`);
+  document.getElementById('det-geo').innerHTML=card('🌐 Geo Concentration','#d29922',D.geo_concentration?.breakdown||[],g=>`<div class="det-item" style="background:rgba(210,153,34,.07);border-color:rgba(210,153,34,.2)"><div class="det-item-name">${g.country}${g.flagged?' ⚠':''}</div><div class="det-item-sub">${g.count} nodes · ${g.pct}%</div><div class="det-progress"><div class="det-progress-fill" style="width:${g.pct}%;background:${g.flagged?'#d29922':'#58a6ff'}"></div></div></div>`);
+  document.getElementById('det-rel').innerHTML=card('📉 Low Reliability','#d29922',D.reliability?.nodes||[],n=>`<div class="det-item" style="background:rgba(210,153,34,.07);border-color:rgba(210,153,34,.2)"><div class="det-item-name">${n.label} <span style="color:${n.severity==='critical'?'#f85149':'#d29922'};font-size:.58rem">[${n.severity}]</span></div><div class="det-item-sub">${n.domain} · ${n.reliability}%</div><div class="det-progress"><div class="det-progress-fill" style="width:${n.reliability}%;background:${n.severity==='critical'?'#f85149':'#d29922'}"></div></div></div>`);
+  document.getElementById('det-mm').innerHTML=card('⚡ Demand Mismatch','#58a6ff',D.demand_mismatch?.edges||[],e=>`<div class="det-item" style="background:rgba(88,166,255,.07);border-color:rgba(88,166,255,.2)"><div class="det-item-name">${e.source} → ${e.target}</div><div class="det-item-sub">Supply ${e.supply_volume} / Demand ${e.demand} · Gap −${e.gap}</div></div>`);
+  document.getElementById('det-ml').innerHTML=card('🤖 ML Anomalies','#bc8cff',D.ml_anomalies?.nodes||[],n=>`<div class="det-item" style="background:rgba(188,140,255,.07);border-color:rgba(188,140,255,.2)"><div class="det-item-name">${n.label}</div><div class="det-item-sub">${n.domain} · Risk ${n.risk_score.toFixed(0)} · IsolationForest</div></div>`);
+  document.getElementById('det-cen').innerHTML=card('📌 Critical Nodes','#39d353',D.critical_nodes?.nodes||[],(n,i)=>`<div class="det-item" style="background:rgba(57,211,83,.07);border-color:rgba(57,211,83,.2)"><div class="det-item-name">#${i+1} ${n.label}</div><div class="det-item-sub">${n.domain} · Centrality: ${n.centrality}</div></div>`);
+}
+
+function renderResilience(res,sum){
+  const s=res.score;
+  const col=s>=85?'var(--green)':s>=70?'var(--blue)':s>=55?'var(--amber)':'var(--red)';
+  document.getElementById('res-num').textContent=s;document.getElementById('res-num').style.color=col;
+  document.getElementById('res-grade').textContent='Grade '+res.grade;document.getElementById('res-grade').style.color=col;document.getElementById('res-grade').style.borderColor=col;
+  document.getElementById('res-card').style.boxShadow='0 0 30px '+col+'44';
+  document.getElementById('kpi-spof').textContent=res.spof_count;
+  document.getElementById('kpi-hr').textContent=res.high_risk_nodes;
+  document.getElementById('kpi-total').textContent=res.total_nodes;
+  document.getElementById('kpi-rel').textContent=(sum?.avg_reliability||'–')+'%';
+  document.getElementById('res-interp').textContent=res.interpretation||'–';
+  document.getElementById('res-interp').style.color=col;
+  document.getElementById('mc-prob').textContent=(det.cascade_risk?.probability??'–')+'%';
+  drawTrend(res.trend||[]);
+  loadPredictions();
+}
+
+function drawTrend(data){
+  d3.select('#trend-svg').selectAll('*').remove();
+  if(!data.length){d3.select('#trend-svg').append('text').attr('x','50%').attr('y','50%').attr('text-anchor','middle').attr('fill','#484f58').attr('font-size',11).text('No trend data yet — refresh to generate');return;}
+  const el=document.getElementById('trend-svg');
+  const W=el.getBoundingClientRect().width||500,H=80;
+  const sv=d3.select('#trend-svg');
+  const x=d3.scaleLinear().domain([0,Math.max(1,data.length-1)]).range([24,W-10]);
+  const y=d3.scaleLinear().domain([0,100]).range([H-10,8]);
+  sv.append('line').attr('x1',24).attr('y1',y(70)).attr('x2',W-10).attr('y2',y(70)).attr('stroke','rgba(63,185,80,.2)').attr('stroke-dasharray','4 3');
+  sv.append('text').attr('x',4).attr('y',y(70)+4).attr('fill','#484f58').attr('font-size',8).text('70');
+  const area=d3.area().x((d,i)=>x(i)).y0(H-10).y1(d=>y(d.resilience_score)).curve(d3.curveCatmullRom);
+  sv.append('path').datum(data).attr('fill','rgba(63,185,80,.08)').attr('d',area);
+  sv.append('path').datum(data).attr('fill','none').attr('stroke','#3fb950').attr('stroke-width',2).attr('d',d3.line().x((d,i)=>x(i)).y(d=>y(d.resilience_score)).curve(d3.curveCatmullRom));
+  sv.selectAll('circle').data(data).enter().append('circle').attr('cx',(d,i)=>x(i)).attr('cy',d=>y(d.resilience_score)).attr('r',3.5).attr('fill','#3fb950').attr('stroke','var(--bg)').attr('stroke-width',1.5);
+}
+
+async function loadPredictions(){
+  const nodes=allN.filter(n=>n.risk_score>40).slice(0,4);
+  const preds=await Promise.all(nodes.map(n=>fetch('/api/risk/predict/'+n.id).then(r=>r.json()).catch(()=>null)));
+  document.getElementById('pred-grid').innerHTML=preds.filter(p=>p&&!p.error).map(p=>`<div class="pred-card"><div class="pred-id">${p.node_id}</div><div class="pred-val" style="color:${rc(p.predicted_next)}">${p.current_risk.toFixed(0)} → ${p.predicted_next}</div><div class="pred-trend" style="color:${p.trend==='increasing'?'var(--red)':p.trend==='decreasing'?'var(--green)':'var(--muted)'}">${p.trend==='increasing'?'↑ Rising risk':p.trend==='decreasing'?'↓ Falling risk':'→ Stable'}</div></div>`).join('')||'<div class="empty-ok" style="grid-column:span 2">Insufficient history — recalculate first</div>';
+}
+
+async function recalcRisk(){
+  document.getElementById('spinner').classList.add('on');
+  await fetch('/api/risk/recalculate',{method:'POST'});
+  await loadAll(true);
+  document.getElementById('spinner').classList.remove('on');
+}
+
+// ── KEY FIX: Tab switching uses only class, NO inline display style ──
+function switchTab(name){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.tab-view').forEach(v=>v.classList.remove('active'));
+  document.getElementById('tab-'+name).classList.add('active');
+  document.getElementById('view-'+name).classList.add('active');
+  if(name==='graph')drawGraph();
+  if(name==='resilience'){
+    setTimeout(()=>{
+      fetch('/api/resilience').then(r=>r.json()).then(res=>{
+        fetch('/api/summary').then(r2=>r2.json()).then(sum=>renderResilience(res,sum));
+      });
+    },50);
+  }
+}
+
+function setDomain(d,btn){dom=d;document.querySelectorAll('.domain-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');drawGraph();renderNodeList();}
+function setLayout(m){layout=m;['force','tier','risk'].forEach(k=>document.getElementById('layout-'+k).classList.toggle('active',k===m));drawGraph();}
+function toggleLabels(){showLabels=!showLabels;document.getElementById('labels-btn').classList.toggle('active',showLabels);if(svgEl)svgEl.selectAll('.node-lbl').style('display',showLabels?'':'none');}
+function doZoom(f){if(!svgEl)return;if(f===1)svgEl.transition().duration(400).call(zb.transform,d3.zoomIdentity);else svgEl.transition().duration(300).call(zb.scaleBy,f);}
+
+window.addEventListener('resize',()=>{if(allN.length)drawGraph();});
+setInterval(()=>loadAll(true),20000);
+loadAll();
+</script>
+</body>
+</html>
