@@ -51,7 +51,7 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyBQzicWmZi--VAvm35ksUExAujbiemCbx8',
-    appId: '1:139821605349:android:adf94c4d6187c738420f0c',
+    appId: '1:139821605349:android:19ac31d21493d346420f0c',
     messagingSenderId: '139821605349',
     projectId: 'n-scrrpa',
     storageBucket: 'n-scrrpa.firebasestorage.app',
@@ -59,11 +59,13 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyDTeq8WDsG3Tzb7lx1d8I-4kPR3l9pEw3E',
-    appId: '1:139821605349:ios:fcbdcb8f500b83da420f0c',
+    appId: '1:139821605349:ios:f7dcdfd7dace2e75420f0c',
     messagingSenderId: '139821605349',
     projectId: 'n-scrrpa',
     storageBucket: 'n-scrrpa.firebasestorage.app',
-    iosBundleId: 'com.example.scrrpaApp',
+    androidClientId: '139821605349-57735kspd5slav04652amnnl2de6f2e3.apps.googleusercontent.com',
+    iosClientId: '139821605349-jvdblli0o1l1gd3svgdfcjbqsbfvipc6.apps.googleusercontent.com',
+    iosBundleId: 'com.nscrra.scrrpaApp',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
@@ -72,6 +74,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '139821605349',
     projectId: 'n-scrrpa',
     storageBucket: 'n-scrrpa.firebasestorage.app',
+    androidClientId: '139821605349-57735kspd5slav04652amnnl2de6f2e3.apps.googleusercontent.com',
+    iosClientId: '139821605349-n2l6ds61gan4l12js673rg9oam3tgntl.apps.googleusercontent.com',
     iosBundleId: 'com.example.scrrpaApp',
   );
 

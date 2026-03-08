@@ -1,18 +1,103 @@
-rules_version='2'
-
+rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    match /{document=**} {
-      // This rule allows anyone with your database reference to view, edit,
-      // and delete all data in your database. It is useful for getting
-      // started, but it is configured to expire after 30 days because it
-      // leaves your app open to attackers. At that time, all client
-      // requests to your database will be denied.
-      //
-      // Make sure to write security rules for your app before that time, or
-      // else all client requests to your database will be denied until you
-      // update your rules.
-      allow read, write: if request.time < timestamp.date(2026, 4, 7);
+    
+    // Helper functions
+    function isSignedIn() {
+      return request.auth != null;
+    }
+    
+    function isOwner(userId) {
+      return request.auth.uid == userId;
+    }
+    
+    function isAdmin() {
+      return isSignedIn() && 
+             get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin';
+    }
+    
+    function isSupplier() {
+      return isSignedIn() && 
+             get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'supplier';
+    }
+    
+    function isCustomer() {
+      return isSignedIn() && 
+             get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'customer';
+    }
+    
+    // Users collection
+    match /users/{userId} {
+      allow read: if isSignedIn();
+      allow create: if isSignedIn() && isOwner(userId);
+      allow update: if isOwner(userId) || isAdmin();
+      allow delete: if isAdmin();
+    }
+    
+    // Orders collection
+    match /orders/{orderId} {
+      allow read: if isSignedIn() && (
+        isOwner(resource.data.customerId) || 
+        isOwner(resource.data.supplierId) || 
+        isAdmin()
+      );
+      allow create: if isSignedIn() && (isCustomer() || isAdmin());
+      allow update: if isSignedIn() && (
+        isOwner(resource.data.customerId) || 
+        isOwner(resource.data.supplierId) || 
+        isAdmin()
+      );
+      allow delete: if isAdmin();
+    }
+    
+    // Shipments collection
+    match /shipments/{shipmentId} {
+      allow read: if isSignedIn();
+      allow create: if isSignedIn() && (isSupplier() || isAdmin());
+      allow update: if isSignedIn() && (isSupplier() || isAdmin());
+      allow delete: if isAdmin();
+    }
+    
+    // Alerts collection
+    match /alerts/{alertId} {
+      allow read: if isSignedIn() && (
+        isOwner(resource.data.userId) || 
+        isAdmin()
+      );
+      allow create: if isSignedIn();
+      allow update: if isOwner(resource.data.userId) || isAdmin();
+      allow delete: if isAdmin();
+    }
+    
+    // Suppliers collection
+    match /suppliers/{supplierId} {
+      allow read: if isSignedIn();
+      allow create: if isSignedIn() && (isSupplier() || isAdmin());
+      allow update: if isOwner(supplierId) || isAdmin();
+      allow delete: if isAdmin();
+    }
+    
+    // Reports collection
+    match /reports/{reportId} {
+      allow read: if isSignedIn();
+      allow create: if isSignedIn();
+      allow update: if isSignedIn() && (
+        isOwner(resource.data.createdBy) || 
+        isAdmin()
+      );
+      allow delete: if isAdmin();
+    }
+    
+    // Network analytics (read-only for most users)
+    match /network/{nodeId} {
+      allow read: if isSignedIn();
+      allow write: if isAdmin();
+    }
+    
+    // System settings (admin only)
+    match /settings/{settingId} {
+      allow read: if isSignedIn();
+      allow write: if isAdmin();
     }
   }
 }

@@ -6,7 +6,8 @@ final apiServiceProvider = Provider((ref) => ApiService());
 
 class ApiService {
   final Dio _dio = Dio(BaseOptions(
-    baseUrl: 'https://api.nscrra.app', // Update with actual backend URL
+    // Use 10.0.2.2 for Android Emulator, localhost for iOS/Web/Desktop
+    baseUrl: 'http://localhost:8080', 
     connectTimeout: const Duration(seconds: 15),
     receiveTimeout: const Duration(seconds: 15),
   ));

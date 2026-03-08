@@ -12,7 +12,20 @@
           "package_name": "com.example.scrrpa_app"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "139821605349-57735kspd5slav04652amnnl2de6f2e3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.scrrpa_app",
+            "certificate_hash": "0f605c7437d6a508d869cf0582b048c49764e62a"
+          }
+        },
+        {
+          "client_id": "139821605349-qtptg270vtku93hd7k184eet5172amic.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyBQzicWmZi--VAvm35ksUExAujbiemCbx8"
@@ -20,7 +33,55 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "139821605349-qtptg270vtku93hd7k184eet5172amic.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "139821605349-n2l6ds61gan4l12js673rg9oam3tgntl.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.scrrpaApp"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:139821605349:android:19ac31d21493d346420f0c",
+        "android_client_info": {
+          "package_name": "com.nscrra.scrrpa_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "139821605349-qtptg270vtku93hd7k184eet5172amic.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBQzicWmZi--VAvm35ksUExAujbiemCbx8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "139821605349-qtptg270vtku93hd7k184eet5172amic.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "139821605349-n2l6ds61gan4l12js673rg9oam3tgntl.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.scrrpaApp"
+              }
+            }
+          ]
         }
       }
     }

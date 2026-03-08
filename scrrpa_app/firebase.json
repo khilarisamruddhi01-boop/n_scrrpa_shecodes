@@ -1,48 +1,51 @@
 {
-  "flutter": {
-    "platforms": {
-      "android": {
-        "default": {
-          "projectId": "n-scrrpa",
-          "appId": "1:139821605349:android:adf94c4d6187c738420f0c",
-          "fileOutput": "android/app/google-services.json"
+    "flutter": {
+        "platforms": {
+            "android": {
+                "default": {
+                    "projectId": "n-scrrpa",
+                    "appId": "1:139821605349:android:19ac31d21493d346420f0c",
+                    "fileOutput": "android/app/google-services.json"
+                }
+            },
+            "dart": {
+                "lib/firebase_options.dart": {
+                    "projectId": "n-scrrpa",
+                    "configurations": {
+                        "android": "1:139821605349:android:19ac31d21493d346420f0c",
+                        "ios": "1:139821605349:ios:f7dcdfd7dace2e75420f0c",
+                        "macos": "1:139821605349:ios:fcbdcb8f500b83da420f0c",
+                        "web": "1:139821605349:web:23e7a043b077db9f420f0c",
+                        "windows": "1:139821605349:web:39cb642d63b78685420f0c"
+                    }
+                }
+            }
         }
-      },
-      "dart": {
-        "lib/firebase_options.dart": {
-          "projectId": "n-scrrpa",
-          "configurations": {
-            "android": "1:139821605349:android:adf94c4d6187c738420f0c",
-            "ios": "1:139821605349:ios:fcbdcb8f500b83da420f0c",
-            "macos": "1:139821605349:ios:fcbdcb8f500b83da420f0c",
-            "web": "1:139821605349:web:23e7a043b077db9f420f0c",
-            "windows": "1:139821605349:web:39cb642d63b78685420f0c"
-          }
+    },
+    "firestore": {
+        "database": "(default)",
+        "location": "asia-south1",
+        "rules": "firestore.rules",
+        "indexes": "firestore.indexes.json"
+    },
+    "storage": {
+        "rules": "storage.rules"
+    },
+    "hosting": {
+        "public": "web/public",
+        "ignore": [
+            "firebase.json",
+            "**/.*",
+            "**/node_modules/**"
+        ]
+    },
+    "auth": {
+        "providers": {
+            "emailPassword": true,
+            "googleSignIn": {
+                "oAuthBrandDisplayName": "n-scrrpa",
+                "supportEmail": "samruddhikhilari630@gmail.com"
+            }
         }
-      }
     }
-  },
-  "firestore": {
-    "database": "(default)",
-    "location": "asia-south1",
-    "rules": "firestore.rules",
-    "indexes": "firestore.indexes.json"
-  },
-  "hosting": {
-    "public": "web/public",
-    "ignore": [
-      "firebase.json",
-      "**/.*",
-      "**/node_modules/**"
-    ]
-  },
-  "auth": {
-    "providers": {
-      "emailPassword": true,
-      "googleSignIn": {
-        "oAuthBrandDisplayName": "n-scrrpa",
-        "supportEmail": "samruddhikhilari630@gmail.com"
-      }
-    }
-  }
 }
