@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>N-SCRRA Login</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2E9CCA",
+                        "navy-deep": "#1E3A5F",
+                        "background-light": "#f8f6f6",
+                        "background-dark": "#221610",
+                    },
+                    fontFamily: {
+                        "display": ["Public Sans"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Public Sans', sans-serif;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark min-h-screen">
+<div class="relative flex flex-col min-h-screen w-full overflow-x-hidden">
+<!-- Subtle Navy Top Gradient Strip -->
+<div class="h-2 w-full bg-navy-deep"></div>
+<div class="flex flex-col items-center px-6 pt-12 pb-8">
+<!-- App Logo (Small Navy) -->
+<div class="mb-8 flex items-center justify-center">
+<div class="flex items-center gap-2">
+<div class="bg-navy-deep p-2 rounded-lg">
+<span class="material-symbols-outlined text-white text-3xl">analytics</span>
+</div>
+<span class="text-navy-deep text-2xl font-bold tracking-tight">N-SCRRA</span>
+</div>
+</div>
+<!-- Welcome Header -->
+<div class="text-center mb-10">
+<h1 class="text-navy-deep dark:text-slate-100 text-3xl font-bold leading-tight">Welcome Back</h1>
+<p class="text-slate-600 dark:text-slate-400 text-base mt-2">Access your supply chain resilience insights</p>
+</div>
+<!-- Login Form Container -->
+<div class="w-full max-w-md space-y-5">
+<!-- Organization Selector -->
+<div class="flex flex-col gap-2">
+<label class="text-navy-deep dark:text-slate-200 text-sm font-semibold">Organization</label>
+<div class="relative">
+<select class="form-select w-full h-14 pl-4 pr-10 rounded-xl border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 focus:border-primary focus:ring-primary appearance-none">
+<option value="">Select your tenant/org</option>
+<option value="federal">Federal Agency</option>
+<option value="logistics-a">Global Logistics Alpha</option>
+<option value="manufacturing-b">Strategic Manufacturing B</option>
+</select>
+<div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none text-slate-400">
+<span class="material-symbols-outlined">corporate_fare</span>
+</div>
+</div>
+</div>
+<!-- Email Field -->
+<div class="flex flex-col gap-2">
+<label class="text-navy-deep dark:text-slate-200 text-sm font-semibold">Email Address</label>
+<div class="relative flex items-center">
+<input class="form-input w-full h-14 pl-4 pr-12 rounded-xl border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 focus:border-primary focus:ring-primary" placeholder="name@organization.gov" type="email"/>
+<div class="absolute right-4 text-slate-400">
+<span class="material-symbols-outlined">mail</span>
+</div>
+</div>
+</div>
+<!-- Password Field -->
+<div class="flex flex-col gap-2">
+<div class="flex justify-between items-center">
+<label class="text-navy-deep dark:text-slate-200 text-sm font-semibold">Password</label>
+<a class="text-primary text-sm font-medium hover:underline" href="#">Forgot Password?</a>
+</div>
+<div class="relative flex items-center">
+<input class="form-input w-full h-14 pl-4 pr-12 rounded-xl border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 focus:border-primary focus:ring-primary" placeholder="••••••••" type="password"/>
+<button class="absolute right-4 text-slate-400 hover:text-slate-600 focus:outline-none">
+<span class="material-symbols-outlined">visibility</span>
+</button>
+</div>
+</div>
+<!-- Login Button -->
+<button class="w-full h-14 bg-primary hover:bg-primary/90 text-white font-bold rounded-xl transition-all shadow-lg shadow-primary/20 mt-4">
+                    Login
+                </button>
+<!-- Divider -->
+<div class="relative flex py-5 items-center">
+<div class="flex-grow border-t border-slate-200 dark:border-slate-700"></div>
+<span class="flex-shrink mx-4 text-slate-400 text-sm font-medium uppercase tracking-wider">or continue with</span>
+<div class="flex-grow border-t border-slate-200 dark:border-slate-700"></div>
+</div>
+<!-- Social & Biometric -->
+<div class="grid grid-cols-5 gap-3">
+<button class="col-span-4 flex items-center justify-center gap-3 h-14 border-2 border-slate-200 dark:border-slate-700 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+<img alt="Google Logo" class="w-6 h-6" data-alt="Google company logo for social login" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDz2jpa186mBYzPoevOtmF0abYLGoyGp6pe5KAmmtYAPLVF78ouT2yYRg4k3ie1-M0eapsPLK_TD6Di386QgrmNaXpcVaIQS70DBAC9yG4RODISl72SnStkdkEBw2TJzhfj7pw9XhE4aoBov9M4Gj4tA1EMZVqnVFKFz2yUEJbJNmXBVXlyAzAAGhc0wjoUpa8yBc1oCQMjH7_4Dr25JynVXF38gUJ9shDregcL7ny3ZaOBkBKh27CwR6sqz3vyckzdDmJhZnUTBMHS"/>
+<span class="text-slate-700 dark:text-slate-200 font-semibold">Google Workspace</span>
+</button>
+<!-- Biometric Button -->
+<button class="col-span-1 flex items-center justify-center h-14 border-2 border-slate-200 dark:border-slate-700 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors text-navy-deep dark:text-slate-200">
+<span class="material-symbols-outlined text-3xl">fingerprint</span>
+</button>
+</div>
+<!-- Registration Link -->
+<div class="text-center pt-6">
+<p class="text-slate-600 dark:text-slate-400">
+                        Don't have an account? 
+                        <a class="text-navy-deep dark:text-primary font-bold hover:underline" href="#">Register Now</a>
+</p>
+</div>
+</div>
+</div>
+<!-- Footer Decoration / Map Preview (Optional Abstract) -->
+<div class="mt-auto opacity-10">
+<div class="w-full h-32 bg-cover bg-center" data-alt="Abstract network connection map representing global supply chains" data-location="Washington DC" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAZ0VPtBT0IplTFCZVVC3KjmVZV16NZfP7m4u5Bjnw78nuY-Q982u-f5hCCtMYHbJg76crzXt34dnA6JWg7anJIIYPfKDH75_vS8HHS_IFM-_4f-BIK28OSdlWcmC3pV1sUEozDJ0C8iGWmihLSu25FMtBpBKxxh0Re2l5uO9Rly-ucqlmUp68qmhlCfERpg13RYcaf7mi5ZloCdqUmEVXaFsGoUIuGdzPCAPXRAGDQ3BARGd_SiVsDpIZrasNArABmvjnAcZFAIMZ-');"></div>
+</div>
+</div>
+</body></html>

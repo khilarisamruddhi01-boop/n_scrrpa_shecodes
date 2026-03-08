@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              colors: {
+                "primary": "#ec5b13",
+                "background-light": "#f8f6f6",
+                "background-dark": "#221610",
+              },
+              fontFamily: {
+                "display": ["Public Sans"]
+              },
+              borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+            },
+          },
+        }
+    </script>
+<title>Reset Password</title>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen flex items-center justify-center p-4">
+<div class="max-w-[480px] w-full bg-white dark:bg-slate-900 rounded-xl shadow-xl overflow-hidden border border-slate-200 dark:border-slate-800">
+<!-- Top App Bar Component -->
+<div class="flex items-center p-4 pb-2 justify-between">
+<div class="text-slate-900 dark:text-slate-100 flex size-10 shrink-0 items-center justify-center cursor-pointer hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full transition-colors">
+<span class="material-symbols-outlined">arrow_back</span>
+</div>
+<h2 class="text-slate-900 dark:text-slate-100 text-lg font-bold leading-tight tracking-[-0.015em] flex-1 text-center pr-10">Reset Password</h2>
+</div>
+<div class="px-6 pt-6 pb-2 text-center">
+<div class="inline-flex items-center justify-center size-16 bg-primary/10 rounded-full mb-6">
+<span class="material-symbols-outlined text-primary text-4xl">lock_reset</span>
+</div>
+<h1 class="text-slate-900 dark:text-slate-100 tracking-tight text-2xl font-bold leading-tight mb-2">Create new password</h1>
+<p class="text-slate-500 dark:text-slate-400 text-base font-normal leading-relaxed">Your new password must be different from previously used passwords to keep your account secure.</p>
+</div>
+<form class="p-6 space-y-5">
+<!-- New Password Field -->
+<div class="flex flex-col gap-2">
+<label class="text-slate-700 dark:text-slate-300 text-sm font-semibold leading-normal">New Password</label>
+<div class="relative flex w-full items-stretch group">
+<input class="form-input flex w-full min-w-0 flex-1 rounded-xl text-slate-900 dark:text-slate-100 border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 focus:border-primary focus:ring-2 focus:ring-primary/20 h-14 pr-12 text-base font-normal transition-all" placeholder="Enter new password" type="password"/>
+<div class="absolute right-0 top-0 h-full flex items-center pr-4 text-slate-400 dark:text-slate-500 hover:text-primary cursor-pointer transition-colors">
+<span class="material-symbols-outlined">visibility</span>
+</div>
+</div>
+</div>
+<!-- Password Strength Meter -->
+<div class="bg-slate-50 dark:bg-slate-800/50 p-4 rounded-xl space-y-2 border border-slate-100 dark:border-slate-800">
+<div class="flex justify-between items-center mb-1">
+<span class="text-slate-600 dark:text-slate-400 text-sm font-medium">Password strength</span>
+<span class="text-primary text-sm font-bold">Medium (65%)</span>
+</div>
+<div class="h-2 w-full bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden">
+<div class="h-full bg-primary transition-all duration-500" style="width: 65%;"></div>
+</div>
+<div class="flex flex-wrap gap-2 mt-3">
+<div class="flex items-center gap-1.5 text-xs text-primary font-medium">
+<span class="material-symbols-outlined text-[14px]">check_circle</span> 8+ chars
+                    </div>
+<div class="flex items-center gap-1.5 text-xs text-primary font-medium">
+<span class="material-symbols-outlined text-[14px]">check_circle</span> Symbol
+                    </div>
+<div class="flex items-center gap-1.5 text-xs text-slate-400 dark:text-slate-500">
+<span class="material-symbols-outlined text-[14px]">circle</span> Number
+                    </div>
+</div>
+</div>
+<!-- Confirm Password Field -->
+<div class="flex flex-col gap-2">
+<label class="text-slate-700 dark:text-slate-300 text-sm font-semibold leading-normal">Confirm Password</label>
+<div class="relative flex w-full items-stretch group">
+<input class="form-input flex w-full min-w-0 flex-1 rounded-xl text-slate-900 dark:text-slate-100 border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 focus:border-primary focus:ring-2 focus:ring-primary/20 h-14 pr-12 text-base font-normal transition-all" placeholder="Re-type your password" type="password"/>
+<div class="absolute right-0 top-0 h-full flex items-center pr-4 text-slate-400 dark:text-slate-500 hover:text-primary cursor-pointer transition-colors">
+<span class="material-symbols-outlined">visibility</span>
+</div>
+</div>
+</div>
+<button class="w-full bg-primary hover:bg-primary/90 text-white font-bold h-14 rounded-xl transition-all shadow-lg shadow-primary/25 mt-4 flex items-center justify-center gap-2" type="submit">
+                Reset Password
+            </button>
+</form>
+<div class="px-6 pb-8 text-center">
+<p class="text-slate-500 dark:text-slate-400 text-sm">
+                Need help? <a class="text-primary font-semibold hover:underline" href="#">Contact Support</a>
+</p>
+</div>
+</div>
+</body></html>

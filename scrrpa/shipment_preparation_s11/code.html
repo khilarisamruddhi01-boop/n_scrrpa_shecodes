@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Prepare Shipment - N-SCRRA</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ec5b13",
+                        "background-light": "#f8f6f6",
+                        "background-dark": "#221610",
+                    },
+                    fontFamily: {
+                        "display": ["Public Sans"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen">
+<div class="max-w-lg mx-auto bg-background-light dark:bg-background-dark min-h-screen flex flex-col shadow-xl">
+<header class="sticky top-0 z-50 bg-background-light dark:bg-background-dark border-b border-slate-200 dark:border-slate-800">
+<div class="flex items-center p-4 gap-4">
+<button class="p-2 hover:bg-slate-200 dark:hover:bg-slate-800 rounded-full transition-colors">
+<span class="material-symbols-outlined block text-slate-700 dark:text-slate-300">arrow_back</span>
+</button>
+<h1 class="text-xl font-bold tracking-tight">Prepare Shipment</h1>
+</div>
+</header>
+<main class="flex-1 overflow-y-auto p-4 space-y-6">
+<section class="space-y-4">
+<div class="flex flex-col gap-1.5">
+<label class="text-sm font-semibold text-slate-600 dark:text-slate-400">Select Order</label>
+<div class="relative group">
+<select class="w-full appearance-none bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-xl px-4 py-3.5 focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all">
+<option value="ord-88294">#ORD-88294 from Stop B</option>
+<option value="ord-88295">#ORD-88295 from Stop C</option>
+</select>
+<span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400">expand_more</span>
+</div>
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="text-sm font-semibold text-slate-600 dark:text-slate-400">Origin Warehouse</label>
+<div class="relative">
+<select class="w-full appearance-none bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-xl px-4 py-3.5 focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all">
+<option value="east-coast">East Coast Facility</option>
+<option value="west-coast">West Coast Logistics Hub</option>
+<option value="central">Central Distribution Center</option>
+</select>
+<span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400">warehouse</span>
+</div>
+</div>
+</section>
+<section class="space-y-3">
+<label class="text-sm font-semibold text-slate-600 dark:text-slate-400">Transport Mode</label>
+<div class="grid grid-cols-4 gap-2">
+<button class="flex flex-col items-center justify-center p-3 rounded-xl border-2 border-primary bg-primary/10 text-primary transition-all">
+<span class="material-symbols-outlined mb-1">local_shipping</span>
+<span class="text-xs font-bold">Road</span>
+</button>
+<button class="flex flex-col items-center justify-center p-3 rounded-xl border-2 border-slate-200 dark:border-slate-800 hover:border-primary/50 text-slate-500 dark:text-slate-400 transition-all">
+<span class="material-symbols-outlined mb-1">train</span>
+<span class="text-xs font-bold">Rail</span>
+</button>
+<button class="flex flex-col items-center justify-center p-3 rounded-xl border-2 border-slate-200 dark:border-slate-800 hover:border-primary/50 text-slate-500 dark:text-slate-400 transition-all">
+<span class="material-symbols-outlined mb-1">directions_boat</span>
+<span class="text-xs font-bold">Sea</span>
+</button>
+<button class="flex flex-col items-center justify-center p-3 rounded-xl border-2 border-slate-200 dark:border-slate-800 hover:border-primary/50 text-slate-500 dark:text-slate-400 transition-all">
+<span class="material-symbols-outlined mb-1">flight</span>
+<span class="text-xs font-bold">Air</span>
+</button>
+</div>
+</section>
+<section class="grid grid-cols-2 gap-4">
+<div class="flex flex-col gap-1.5">
+<label class="text-sm font-semibold text-slate-600 dark:text-slate-400">Dispatch Date</label>
+<div class="relative">
+<input class="w-full bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-xl px-4 py-3.5 focus:ring-2 focus:ring-primary focus:border-primary outline-none text-sm" type="date" value="2023-10-24"/>
+</div>
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="text-sm font-semibold text-slate-600 dark:text-slate-400">Estimated Arrival</label>
+<div class="bg-slate-100 dark:bg-slate-800 rounded-xl px-4 py-3.5 border border-transparent">
+<p class="text-sm font-bold text-slate-800 dark:text-slate-200">Oct 28, 2023</p>
+</div>
+</div>
+</section>
+<section class="flex flex-col gap-1.5">
+<label class="text-sm font-semibold text-slate-600 dark:text-slate-400">Packaging Details</label>
+<textarea class="w-full bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-xl px-4 py-3 focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all placeholder:text-slate-400 text-sm" placeholder="Specify pallets, containers, hazardous materials handling..." rows="3"></textarea>
+</section>
+<section class="space-y-3">
+<label class="text-sm font-semibold text-slate-600 dark:text-slate-400">Route Preview</label>
+<div class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 overflow-hidden shadow-sm">
+<div class="relative h-40 w-full bg-slate-200 dark:bg-slate-800">
+<div class="absolute inset-0 bg-cover bg-center opacity-80" data-alt="Satellite map view of interstate highway route" data-location="New Jersey" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDn5FNw2Kybpl6PMnQ538az7EhyuD6TMrL2rph0BRjeTS_SFsr5g39As4Tdf5SGJ5wYWiIqX7m9sp183fuVf9GBPHk0NMPnKqWoGx4K6fXxmcTg0QA7uKzbgHKfFsm1Dgyut9G3_o19Ks3ro40s7ZWGoGXQo77MfGwVHp4WhPFg5Cl1iA3pgnKJD1hqlWJnhJ6UQxEITA6_XtrV1iws9ZNrq5RXD-0kRojHflBqfPh1Mj3EUteQaDhuiAS9SOwzKlKWNqwKWP8YNAUi')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+<div class="absolute top-3 right-3">
+<span class="bg-green-500 text-white text-[10px] font-bold uppercase tracking-wider px-2 py-1 rounded-full flex items-center gap-1 shadow-lg">
+<span class="size-1.5 bg-white rounded-full"></span> Low Risk
+                            </span>
+</div>
+</div>
+<div class="p-3 flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-sm">route</span>
+<span class="text-xs font-medium text-slate-500">I-95 North Corridor (420 miles)</span>
+</div>
+<button class="text-primary text-xs font-bold flex items-center gap-0.5">
+                            DETAILS <span class="material-symbols-outlined text-sm">chevron_right</span>
+</button>
+</div>
+</div>
+</section>
+</main>
+<footer class="p-4 border-t border-slate-200 dark:border-slate-800 bg-background-light dark:bg-background-dark">
+<button class="w-full bg-primary hover:bg-primary/90 text-white font-bold py-4 rounded-xl shadow-lg shadow-primary/20 transition-all active:scale-[0.98] flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">assignment_turned_in</span>
+                Generate Shipment ID &amp; Dispatch
+            </button>
+</footer>
+</div>
+</body></html>

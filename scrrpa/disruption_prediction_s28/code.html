@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Disruption Prediction Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ec5b13",
+                        "background-light": "#f8f6f6",
+                        "background-dark": "#221610",
+                    },
+                    fontFamily: {
+                        "display": ["Public Sans", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen">
+<div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
+<!-- Header -->
+<header class="flex items-center bg-white dark:bg-zinc-900/50 border-b border-slate-200 dark:border-zinc-800 p-4 justify-between sticky top-0 z-10">
+<div class="flex size-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
+<span class="material-symbols-outlined">analytics</span>
+</div>
+<h2 class="text-slate-900 dark:text-white text-lg font-bold leading-tight tracking-tight flex-1 text-center">Disruption Forecast</h2>
+<div class="flex w-10 items-center justify-end">
+<button class="flex items-center justify-center rounded-full size-10 hover:bg-slate-100 dark:hover:bg-zinc-800 transition-colors">
+<span class="material-symbols-outlined text-slate-600 dark:text-slate-300">notifications</span>
+</button>
+</div>
+</header>
+<!-- Time Range Selector -->
+<nav class="bg-white dark:bg-zinc-900/50 border-b border-slate-200 dark:border-zinc-800">
+<div class="flex px-4 gap-6 overflow-x-auto">
+<a class="flex flex-col items-center justify-center border-b-2 border-primary text-primary pb-3 pt-4 whitespace-nowrap" href="#">
+<span class="text-sm font-bold">30 Days</span>
+</a>
+<a class="flex flex-col items-center justify-center border-b-2 border-transparent text-slate-500 dark:text-slate-400 pb-3 pt-4 whitespace-nowrap hover:text-primary transition-colors" href="#">
+<span class="text-sm font-bold">60 Days</span>
+</a>
+<a class="flex flex-col items-center justify-center border-b-2 border-transparent text-slate-500 dark:text-slate-400 pb-3 pt-4 whitespace-nowrap hover:text-primary transition-colors" href="#">
+<span class="text-sm font-bold">90 Days</span>
+</a>
+<a class="flex flex-col items-center justify-center border-b-2 border-transparent text-slate-500 dark:text-slate-400 pb-3 pt-4 whitespace-nowrap hover:text-primary transition-colors" href="#">
+<span class="text-sm font-bold">Custom Range</span>
+</a>
+</div>
+</nav>
+<main class="flex-1 p-4 max-w-5xl mx-auto w-full">
+<!-- Main Probability Summary -->
+<section class="bg-white dark:bg-zinc-900 rounded-xl p-6 shadow-sm border border-slate-200 dark:border-zinc-800 mb-6">
+<div class="flex flex-col gap-1 mb-6">
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium uppercase tracking-wider">Overall Disruption Probability</p>
+<div class="flex items-end gap-3">
+<span class="text-4xl font-bold tracking-tighter text-slate-900 dark:text-white">68.4%</span>
+<span class="text-emerald-600 dark:text-emerald-400 text-sm font-bold flex items-center mb-1">
+<span class="material-symbols-outlined text-sm mr-1">trending_up</span>
+                            +12.3%
+                        </span>
+</div>
+<p class="text-slate-400 dark:text-zinc-500 text-xs mt-1 italic">Based on real-time global supply chain telemetry</p>
+</div>
+<!-- Main Chart Component -->
+<div class="relative h-[240px] w-full flex flex-col justify-end">
+<div class="absolute inset-0 flex items-end">
+<!-- Chart Area SVG -->
+<svg class="w-full h-full" preserveaspectratio="none" viewbox="0 0 400 150">
+<defs>
+<lineargradient id="chartGradient" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#ec5b13" stop-opacity="0.25"></stop>
+<stop offset="100%" stop-color="#ec5b13" stop-opacity="0"></stop>
+</lineargradient>
+</defs>
+<!-- Confidence Band (Semi-transparent) -->
+<path class="text-primary/10" d="M0,100 Q50,80 100,90 T200,60 T300,75 T400,40 L400,120 T300,140 T200,130 T100,140 T0,150 Z" fill="currentColor"></path>
+<!-- Probability Line Area -->
+<path d="M0,110 Q50,90 100,110 T200,80 T300,95 T400,50 L400,150 L0,150 Z" fill="url(#chartGradient)"></path>
+<!-- Probability Main Line -->
+<path d="M0,110 Q50,90 100,110 T200,80 T300,95 T400,50" fill="none" stroke="#ec5b13" stroke-linecap="round" stroke-width="3"></path>
+</svg>
+</div>
+<!-- Chart X-Axis Labels -->
+<div class="flex justify-between mt-4 pt-4 border-t border-slate-100 dark:border-zinc-800 text-[11px] font-bold text-slate-400 uppercase">
+<span>Day 1</span>
+<span>Day 10</span>
+<span>Day 20</span>
+<span>Day 30</span>
+</div>
+</div>
+<div class="flex items-center gap-4 mt-6 pt-4 border-t border-slate-100 dark:border-zinc-800">
+<div class="flex items-center gap-2">
+<span class="size-3 rounded-full bg-primary"></span>
+<span class="text-xs text-slate-600 dark:text-slate-400">Predicted Probability</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="size-3 rounded-full bg-primary/20"></span>
+<span class="text-xs text-slate-600 dark:text-slate-400">95% Confidence Band</span>
+</div>
+</div>
+</section>
+<!-- Top Predicted Risk Events -->
+<h3 class="text-slate-900 dark:text-white text-lg font-bold leading-tight mb-4">Risk Exposure Breakdown</h3>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<!-- Risk Card 1 -->
+<div class="bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800 rounded-xl overflow-hidden hover:shadow-md transition-shadow">
+<div class="p-4">
+<div class="flex justify-between items-start mb-3">
+<div class="size-10 rounded-lg bg-orange-100 dark:bg-orange-900/30 flex items-center justify-center text-orange-600">
+<span class="material-symbols-outlined">tsunami</span>
+</div>
+<span class="bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400 text-[10px] font-bold px-2 py-1 rounded uppercase">High Impact</span>
+</div>
+<h4 class="font-bold text-slate-900 dark:text-white mb-1">Port Congestion (Singapore)</h4>
+<p class="text-sm text-slate-500 dark:text-slate-400 mb-4">Vessel backlog expected to increase transit time by 4.2 days.</p>
+<div class="flex items-center justify-between pt-4 border-t border-slate-50 dark:border-zinc-800/50">
+<div>
+<p class="text-[10px] text-slate-400 uppercase font-bold">Probability</p>
+<p class="text-lg font-bold text-slate-900 dark:text-white">82%</p>
+</div>
+<div class="text-right">
+<p class="text-[10px] text-slate-400 uppercase font-bold">ETA Delay</p>
+<p class="text-lg font-bold text-primary">+96h</p>
+</div>
+</div>
+</div>
+<div class="h-1 bg-slate-100 dark:bg-zinc-800 w-full">
+<div class="h-full bg-primary" style="width: 82%"></div>
+</div>
+</div>
+<!-- Risk Card 2 -->
+<div class="bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800 rounded-xl overflow-hidden hover:shadow-md transition-shadow">
+<div class="p-4">
+<div class="flex justify-between items-start mb-3">
+<div class="size-10 rounded-lg bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center text-blue-600">
+<span class="material-symbols-outlined">factory</span>
+</div>
+<span class="bg-orange-100 dark:bg-orange-900/30 text-orange-600 dark:text-orange-400 text-[10px] font-bold px-2 py-1 rounded uppercase">Mid Impact</span>
+</div>
+<h4 class="font-bold text-slate-900 dark:text-white mb-1">Semiconductor Shortage</h4>
+<p class="text-sm text-slate-500 dark:text-slate-400 mb-4">Tier 2 supplier reporting material deficit in Silicon wafers.</p>
+<div class="flex items-center justify-between pt-4 border-t border-slate-50 dark:border-zinc-800/50">
+<div>
+<p class="text-[10px] text-slate-400 uppercase font-bold">Probability</p>
+<p class="text-lg font-bold text-slate-900 dark:text-white">45%</p>
+</div>
+<div class="text-right">
+<p class="text-[10px] text-slate-400 uppercase font-bold">Inventory Risk</p>
+<p class="text-lg font-bold text-primary">-15%</p>
+</div>
+</div>
+</div>
+<div class="h-1 bg-slate-100 dark:bg-zinc-800 w-full">
+<div class="h-full bg-primary" style="width: 45%"></div>
+</div>
+</div>
+</div>
+<!-- Mitigation Recommendation -->
+<div class="mt-6 p-4 bg-primary/5 border border-primary/20 rounded-xl flex items-start gap-4">
+<span class="material-symbols-outlined text-primary">lightbulb</span>
+<div>
+<h5 class="font-bold text-primary text-sm">AI Recommendation</h5>
+<p class="text-sm text-slate-700 dark:text-slate-300">Switching Route #24 to Air Freight via Doha could reduce delay probability by 34% for critical shipments arriving within Day 15-20.</p>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation -->
+<footer class="sticky bottom-0 bg-white dark:bg-zinc-950 border-t border-slate-200 dark:border-zinc-800 px-2 pb-6 pt-2 z-20">
+<div class="flex max-w-lg mx-auto">
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-400 dark:text-zinc-500 transition-colors hover:text-primary" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<p class="text-[10px] font-medium leading-none">Overview</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-primary" href="#">
+<span class="material-symbols-outlined font-bold">query_stats</span>
+<p class="text-[10px] font-bold leading-none">Predictions</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-400 dark:text-zinc-500 transition-colors hover:text-primary" href="#">
+<span class="material-symbols-outlined">history</span>
+<p class="text-[10px] font-medium leading-none">History</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-400 dark:text-zinc-500 transition-colors hover:text-primary" href="#">
+<span class="material-symbols-outlined">settings</span>
+<p class="text-[10px] font-medium leading-none">Settings</p>
+</a>
+</div>
+</footer>
+</div>
+</body></html>

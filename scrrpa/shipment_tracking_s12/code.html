@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>N-SCRRA | Shipment Tracking</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ec5b13",
+                        "background-light": "#f8f6f6",
+                        "background-dark": "#221610",
+                    },
+                    fontFamily: {
+                        "display": ["Public Sans"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Public Sans', sans-serif; }
+        .map-gradient {
+            background: radial-gradient(circle at 30% 40%, rgba(236, 91, 19, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 60%, rgba(34, 150, 243, 0.1) 0%, transparent 40%);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display overflow-hidden">
+<div class="relative h-screen w-full flex flex-col">
+<!-- Top Navigation Bar -->
+<header class="absolute top-0 left-0 right-0 z-30 bg-white/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800">
+<div class="flex items-center justify-between px-4 h-16">
+<div class="flex items-center gap-3">
+<button class="p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full transition-colors">
+<span class="material-symbols-outlined text-slate-600 dark:text-slate-300">arrow_back</span>
+</button>
+<div>
+<h1 class="text-sm font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">Tracking</h1>
+<p class="text-lg font-bold leading-none">#SHP-99281</p>
+</div>
+</div>
+<div class="flex gap-2">
+<button class="p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full relative">
+<span class="material-symbols-outlined text-slate-600 dark:text-slate-300">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-primary rounded-full"></span>
+</button>
+</div>
+</div>
+<!-- Alert Strip -->
+<div class="bg-orange-50 dark:bg-orange-900/20 border-y border-orange-100 dark:border-orange-800/30 px-4 py-2 flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-orange-600 dark:text-orange-400 text-lg">warning</span>
+<p class="text-xs font-medium text-orange-800 dark:text-orange-200">Minor congestion at I-95 North: +15m delay</p>
+</div>
+<button class="text-[10px] font-bold uppercase tracking-tight text-orange-600 dark:text-orange-400">Details</button>
+</div>
+</header>
+<!-- Full Screen Map Interface -->
+<main class="flex-1 relative overflow-hidden bg-slate-100 dark:bg-slate-900">
+<!-- Simulated Map Background -->
+<div class="absolute inset-0 z-0 map-gradient" data-location="New York City Metropolitan Area" style="">
+<img alt="Detailed city road map with navigation paths" class="w-full h-full object-cover opacity-30 mix-blend-multiply dark:mix-blend-luminosity grayscale" data-alt="Detailed topographical map showing city road networks" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCe1RZRuMhn_xIccelkaSRn7Uv856APVpD7dSV16LQIwYYeiU0jqwPB6IzGxPPYgFhbCkN5SVHIsf-tF8cfBpa28YboKkH69AjnHPA4OyqfrYGylMJVQCS1ORLRReuogK-Q24lZxe3g64t-BL53Ev-xQCjouHk67WqbWEzYrT4AmSlo4761fU7bFVntxHXB4fwg7A3gEn4fEYZ2gX8itNyRwufk8D1sZR02FddhP_hnPJrvPEU3kth8bbQQZmxaOmaNP6oWXQSdtCHh"/>
+<!-- SVG Overlay for Route and Heatmap -->
+<svg class="absolute inset-0 w-full h-full pointer-events-none" viewbox="0 0 400 800" xmlns="http://www.w3.org/2000/svg">
+<!-- Heatmap Zones -->
+<circle cx="180" cy="350" fill="rgba(239, 68, 68, 0.15)" r="60"></circle> <!-- High Risk -->
+<circle cx="220" cy="500" fill="rgba(34, 197, 94, 0.1)" r="80"></circle> <!-- Low Risk -->
+<!-- Polyline Route -->
+<path d="M100,700 L120,650 L180,500 L190,400 L250,300 L300,100" fill="none" stroke="#ec5b13" stroke-dasharray="1, 8" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"></path>
+<!-- Origin & Destination Markers -->
+<circle cx="100" cy="700" fill="#1e293b" r="6"></circle>
+<circle cx="300" cy="100" fill="#1e293b" r="6"></circle>
+</svg>
+<!-- Vehicle Marker (Road Transport) -->
+<div class="absolute top-[45%] left-[48%] -translate-x-1/2 -translate-y-1/2 z-10">
+<div class="relative">
+<div class="absolute inset-0 bg-primary animate-ping rounded-full opacity-25"></div>
+<div class="bg-primary text-white p-2 rounded-full shadow-lg border-2 border-white dark:border-background-dark flex items-center justify-center">
+<span class="material-symbols-outlined text-sm">local_shipping</span>
+</div>
+<div class="absolute -bottom-8 left-1/2 -translate-x-1/2 bg-white dark:bg-slate-800 px-2 py-1 rounded shadow text-[10px] font-bold whitespace-nowrap border border-slate-200 dark:border-slate-700">
+                            TRK-2940
+                        </div>
+</div>
+</div>
+</div>
+<!-- Floating Controls -->
+<div class="absolute right-4 bottom-80 z-20 flex flex-col gap-3">
+<button class="w-12 h-12 bg-white dark:bg-background-dark rounded-xl shadow-lg border border-slate-200 dark:border-slate-800 flex items-center justify-center text-slate-600 dark:text-slate-300">
+<span class="material-symbols-outlined">layers</span>
+</button>
+<button class="w-12 h-12 bg-white dark:bg-background-dark rounded-xl shadow-lg border border-slate-200 dark:border-slate-800 flex items-center justify-center text-slate-600 dark:text-slate-300">
+<span class="material-symbols-outlined">my_location</span>
+</button>
+<button class="w-12 h-14 bg-primary text-white rounded-xl shadow-xl flex flex-col items-center justify-center gap-1 group">
+<span class="material-symbols-outlined">route</span>
+<span class="text-[8px] font-bold uppercase">Recalc</span>
+</button>
+</div>
+</main>
+<!-- Draggable Sheet Simulation -->
+<section class="absolute bottom-0 left-0 right-0 z-40 bg-white dark:bg-background-dark rounded-t-[2rem] shadow-[0_-10px_40px_rgba(0,0,0,0.1)] border-t border-slate-100 dark:border-slate-800 pb-8 px-6">
+<!-- Drag Handle -->
+<div class="flex justify-center py-4">
+<div class="w-12 h-1.5 bg-slate-200 dark:bg-slate-700 rounded-full"></div>
+</div>
+<div class="flex items-center justify-between mb-6">
+<div>
+<span class="inline-block px-2 py-0.5 rounded bg-primary/10 text-primary text-[10px] font-bold uppercase mb-1">In-Transit</span>
+<h2 class="text-2xl font-bold tracking-tight">ETA: 4h 20m</h2>
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium">Oct 28, 2023 • 05:30 PM</p>
+</div>
+<div class="text-right">
+<div class="flex items-center justify-end gap-1 mb-1">
+<span class="material-symbols-outlined text-green-500 text-sm">security</span>
+<span class="text-xl font-bold text-green-500">12/100</span>
+</div>
+<p class="text-xs font-bold uppercase text-slate-400 tracking-wider leading-none">Risk Score</p>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4 mb-6">
+<div class="p-4 bg-background-light dark:bg-slate-800/50 rounded-xl border border-slate-100 dark:border-slate-700">
+<p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">Origin</p>
+<p class="font-bold text-sm truncate">Stop A Factory, NJ</p>
+<p class="text-xs text-slate-500 dark:text-slate-400">Departure: 08:00 AM</p>
+</div>
+<div class="p-4 bg-background-light dark:bg-slate-800/50 rounded-xl border border-slate-100 dark:border-slate-700">
+<p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">Destination</p>
+<p class="font-bold text-sm truncate">Stop B Customer, MA</p>
+<p class="text-xs text-slate-500 dark:text-slate-400">Total Dist: 240 mi</p>
+</div>
+</div>
+<div class="flex items-center gap-4 py-4 border-t border-slate-100 dark:border-slate-800">
+<div class="flex-1 flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center">
+<span class="material-symbols-outlined text-slate-600 dark:text-slate-300">person</span>
+</div>
+<div>
+<p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Assigned Driver</p>
+<p class="text-sm font-bold">Marcus Thorne</p>
+</div>
+</div>
+<div class="flex gap-2">
+<button class="w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">call</span>
+</button>
+<button class="w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">chat</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Bottom Navigation Bar (Fixed) -->
+<nav class="fixed bottom-0 left-0 right-0 z-50 bg-white dark:bg-background-dark border-t border-slate-200 dark:border-slate-800">
+<div class="flex justify-around items-center h-16 px-4">
+<a class="flex flex-col items-center gap-1 text-slate-400 dark:text-slate-500" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="text-[10px] font-medium">Overview</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-primary" href="#">
+<span class="material-symbols-outlined font-variation-fill">local_shipping</span>
+<span class="text-[10px] font-bold">Tracking</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400 dark:text-slate-500" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+<span class="text-[10px] font-medium">Orders</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400 dark:text-slate-500" href="#">
+<span class="material-symbols-outlined">warning</span>
+<span class="text-[10px] font-medium">Risks</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400 dark:text-slate-500" href="#">
+<span class="material-symbols-outlined">account_circle</span>
+<span class="text-[10px] font-medium">Profile</span>
+</a>
+</div>
+</nav>
+</div>
+</body></html>

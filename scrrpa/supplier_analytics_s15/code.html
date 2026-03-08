@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Supplier Analytics Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ec5b13",
+                        "background-light": "#f8f6f6",
+                        "background-dark": "#221610",
+                    },
+                    fontFamily: {
+                        "display": ["Public Sans", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Public Sans', sans-serif; }
+        .radar-grid { clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%); }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen">
+<!-- Top AppBar -->
+<header class="sticky top-0 z-50 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-primary/10 px-4 py-3 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="bg-primary rounded-lg p-2 text-white flex items-center justify-center">
+<span class="material-symbols-outlined">analytics</span>
+</div>
+<h1 class="text-xl font-bold tracking-tight">Supplier Analytics</h1>
+</div>
+<div class="flex items-center gap-2">
+<button class="flex items-center gap-2 bg-primary text-white px-4 py-2 rounded-lg font-semibold hover:bg-primary/90 transition-colors">
+<span class="material-symbols-outlined text-sm">download</span>
+<span>Export Report</span>
+</button>
+</div>
+</header>
+<main class="p-4 md:p-6 space-y-6 max-w-7xl mx-auto">
+<!-- Tabs -->
+<div class="flex border-b border-primary/10 gap-6 overflow-x-auto pb-px">
+<a class="flex items-center gap-2 border-b-2 border-primary pb-3 px-1 text-primary font-semibold" href="#">
+<span class="material-symbols-outlined text-xl">local_shipping</span>
+<span>Delivery</span>
+</a>
+<a class="flex items-center gap-2 border-b-2 border-transparent pb-3 px-1 text-slate-500 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined text-xl">inventory_2</span>
+<span>Orders</span>
+</a>
+<a class="flex items-center gap-2 border-b-2 border-transparent pb-3 px-1 text-slate-500 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined text-xl">warning</span>
+<span>Risk</span>
+</a>
+</div>
+<!-- Top Stats Row -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Delivery Reliability Gauge -->
+<div class="bg-white dark:bg-slate-800/50 p-6 rounded-xl border border-primary/5 shadow-sm">
+<div class="flex justify-between items-start mb-4">
+<h3 class="font-bold text-slate-700 dark:text-slate-200">Delivery Reliability</h3>
+<span class="text-green-500 text-sm font-medium flex items-center">+2.1%</span>
+</div>
+<div class="relative flex items-center justify-center h-40">
+<svg class="w-full max-w-[200px]" viewbox="0 0 100 50">
+<path class="text-slate-100 dark:text-slate-700" d="M 10 50 A 40 40 0 0 1 90 50" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="12"></path>
+<path d="M 10 50 A 40 40 0 0 1 85 20" fill="none" stroke="url(#gaugeGradient)" stroke-linecap="round" stroke-width="12"></path>
+<defs>
+<lineargradient id="gaugeGradient" x1="0%" x2="100%" y1="0%" y2="0%">
+<stop offset="0%" stop-color="#ec5b13"></stop>
+<stop offset="100%" stop-color="#f97316"></stop>
+</lineargradient>
+</defs>
+</svg>
+<div class="absolute bottom-0 text-center">
+<span class="text-3xl font-bold">94.2%</span>
+<p class="text-xs text-slate-500 uppercase tracking-widest mt-1">On-Time rate</p>
+</div>
+</div>
+</div>
+<!-- Order Frequency Bar Chart -->
+<div class="bg-white dark:bg-slate-800/50 p-6 rounded-xl border border-primary/5 shadow-sm">
+<h3 class="font-bold text-slate-700 dark:text-slate-200 mb-4">Order Frequency</h3>
+<div class="flex items-end justify-between h-40 gap-2 px-2">
+<div class="w-full bg-primary/20 rounded-t-sm relative group" style="height: 60%;">
+<div class="absolute inset-0 bg-primary opacity-0 group-hover:opacity-100 transition-opacity rounded-t-sm"></div>
+</div>
+<div class="w-full bg-primary/20 rounded-t-sm relative group" style="height: 85%;">
+<div class="absolute inset-0 bg-primary opacity-0 group-hover:opacity-100 transition-opacity rounded-t-sm"></div>
+</div>
+<div class="w-full bg-primary/20 rounded-t-sm relative group" style="height: 45%;">
+<div class="absolute inset-0 bg-primary opacity-0 group-hover:opacity-100 transition-opacity rounded-t-sm"></div>
+</div>
+<div class="w-full bg-primary/20 rounded-t-sm relative group" style="height: 70%;">
+<div class="absolute inset-0 bg-primary opacity-0 group-hover:opacity-100 transition-opacity rounded-t-sm"></div>
+</div>
+<div class="w-full bg-primary rounded-t-sm relative" style="height: 95%;"></div>
+<div class="w-full bg-primary/20 rounded-t-sm relative group" style="height: 55%;">
+<div class="absolute inset-0 bg-primary opacity-0 group-hover:opacity-100 transition-opacity rounded-t-sm"></div>
+</div>
+</div>
+<div class="flex justify-between mt-2 text-[10px] text-slate-400 font-bold">
+<span>JAN</span><span>FEB</span><span>MAR</span><span>APR</span><span>MAY</span><span>JUN</span>
+</div>
+</div>
+<!-- Route Risk Exposure Radar -->
+<div class="bg-white dark:bg-slate-800/50 p-6 rounded-xl border border-primary/5 shadow-sm">
+<h3 class="font-bold text-slate-700 dark:text-slate-200 mb-4">Route Risk Exposure</h3>
+<div class="relative h-40 flex items-center justify-center">
+<!-- Radar Grid Placeholder -->
+<div class="absolute inset-0 flex items-center justify-center opacity-10">
+<div class="w-32 h-32 border-2 border-slate-900 dark:border-white radar-grid"></div>
+<div class="absolute w-24 h-24 border-2 border-slate-900 dark:border-white radar-grid"></div>
+<div class="absolute w-16 h-16 border-2 border-slate-900 dark:border-white radar-grid"></div>
+</div>
+<!-- Data Polygon -->
+<svg class="w-32 h-32 drop-shadow-lg" viewbox="0 0 100 100">
+<polygon fill="rgba(236, 91, 19, 0.4)" points="50,10 80,40 70,80 30,80 20,40" stroke="#ec5b13" stroke-width="2"></polygon>
+</svg>
+<div class="absolute top-0 text-[10px] font-bold text-slate-400">GEO</div>
+<div class="absolute right-0 text-[10px] font-bold text-slate-400">WEATHER</div>
+<div class="absolute bottom-0 text-[10px] font-bold text-slate-400">POLITICAL</div>
+</div>
+</div>
+</div>
+<!-- Delay Heatmap Calendar -->
+<section class="bg-white dark:bg-slate-800/50 p-6 rounded-xl border border-primary/5 shadow-sm">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
+<div>
+<h3 class="text-lg font-bold">Delay Heatmap</h3>
+<p class="text-sm text-slate-500">Correlation of shipping delays by calendar day</p>
+</div>
+<div class="flex items-center gap-3 text-xs">
+<span class="text-slate-400">Less Delay</span>
+<div class="flex gap-1">
+<div class="w-4 h-4 rounded-sm bg-primary/10"></div>
+<div class="w-4 h-4 rounded-sm bg-primary/30"></div>
+<div class="w-4 h-4 rounded-sm bg-primary/60"></div>
+<div class="w-4 h-4 rounded-sm bg-primary"></div>
+</div>
+<span class="text-slate-400">High Delay</span>
+</div>
+</div>
+<div class="grid grid-cols-7 gap-2">
+<!-- Day Labels -->
+<div class="text-center text-[10px] font-bold text-slate-400 uppercase">Mon</div>
+<div class="text-center text-[10px] font-bold text-slate-400 uppercase">Tue</div>
+<div class="text-center text-[10px] font-bold text-slate-400 uppercase">Wed</div>
+<div class="text-center text-[10px] font-bold text-slate-400 uppercase">Thu</div>
+<div class="text-center text-[10px] font-bold text-slate-400 uppercase">Fri</div>
+<div class="text-center text-[10px] font-bold text-slate-400 uppercase">Sat</div>
+<div class="text-center text-[10px] font-bold text-slate-400 uppercase">Sun</div>
+<!-- Calendar Days (Mockup for one month) -->
+<!-- Week 1 -->
+<div class="aspect-square rounded-lg bg-primary/10 border border-primary/5 flex items-center justify-center text-xs font-medium">1</div>
+<div class="aspect-square rounded-lg bg-primary/30 border border-primary/5 flex items-center justify-center text-xs font-medium">2</div>
+<div class="aspect-square rounded-lg bg-primary/10 border border-primary/5 flex items-center justify-center text-xs font-medium">3</div>
+<div class="aspect-square rounded-lg bg-primary/60 border border-primary/5 flex items-center justify-center text-xs font-medium text-white">4</div>
+<div class="aspect-square rounded-lg bg-primary/10 border border-primary/5 flex items-center justify-center text-xs font-medium">5</div>
+<div class="aspect-square rounded-lg bg-primary/10 border border-primary/5 flex items-center justify-center text-xs font-medium">6</div>
+<div class="aspect-square rounded-lg bg-primary/10 border border-primary/5 flex items-center justify-center text-xs font-medium">7</div>
+<!-- Week 2 -->
+<div class="aspect-square rounded-lg bg-primary border border-primary/5 flex items-center justify-center text-xs font-medium text-white shadow-lg shadow-primary/20">8</div>
+<div class="aspect-square rounded-lg bg-primary/60 border border-primary/5 flex items-center justify-center text-xs font-medium text-white">9</div>
+<div class="aspect-square rounded-lg bg-primary/30 border border-primary/5 flex items-center justify-center text-xs font-medium">10</div>
+<div class="aspect-square rounded-lg bg-primary/10 border border-primary/5 flex items-center justify-center text-xs font-medium">11</div>
+<div class="aspect-square rounded-lg bg-primary/10 border border-primary/5 flex items-center justify-center text-xs font-medium">12</div>
+<div class="aspect-square rounded-lg bg-primary/10 border border-primary/5 flex items-center justify-center text-xs font-medium">13</div>
+<div class="aspect-square rounded-lg bg-primary/10 border border-primary/5 flex items-center justify-center text-xs font-medium">14</div>
+<!-- Week 3 -->
+<div class="aspect-square rounded-lg bg-primary/30 border border-primary/5 flex items-center justify-center text-xs font-medium">15</div>
+<div class="aspect-square rounded-lg bg-primary/10 border border-primary/5 flex items-center justify-center text-xs font-medium">16</div>
+<div class="aspect-square rounded-lg bg-primary/60 border border-primary/5 flex items-center justify-center text-xs font-medium text-white">17</div>
+<div class="aspect-square rounded-lg bg-primary/30 border border-primary/5 flex items-center justify-center text-xs font-medium">18</div>
+<div class="aspect-square rounded-lg bg-primary/10 border border-primary/5 flex items-center justify-center text-xs font-medium">19</div>
+<div class="aspect-square rounded-lg bg-primary/10 border border-primary/5 flex items-center justify-center text-xs font-medium">20</div>
+<div class="aspect-square rounded-lg bg-primary/10 border border-primary/5 flex items-center justify-center text-xs font-medium">21</div>
+<!-- Week 4 -->
+<div class="aspect-square rounded-lg bg-primary/10 border border-primary/5 flex items-center justify-center text-xs font-medium">22</div>
+<div class="aspect-square rounded-lg bg-primary/10 border border-primary/5 flex items-center justify-center text-xs font-medium">23</div>
+<div class="aspect-square rounded-lg bg-primary/10 border border-primary/5 flex items-center justify-center text-xs font-medium">24</div>
+<div class="aspect-square rounded-lg bg-primary/30 border border-primary/5 flex items-center justify-center text-xs font-medium">25</div>
+<div class="aspect-square rounded-lg bg-primary/60 border border-primary/5 flex items-center justify-center text-xs font-medium text-white">26</div>
+<div class="aspect-square rounded-lg bg-primary/30 border border-primary/5 flex items-center justify-center text-xs font-medium">27</div>
+<div class="aspect-square rounded-lg bg-primary/10 border border-primary/5 flex items-center justify-center text-xs font-medium">28</div>
+</div>
+</section>
+<!-- Route Status Table -->
+<section class="bg-white dark:bg-slate-800/50 rounded-xl border border-primary/5 shadow-sm overflow-hidden">
+<div class="px-6 py-4 border-b border-primary/5 flex justify-between items-center">
+<h3 class="font-bold">Active Route Status</h3>
+<button class="text-primary text-sm font-semibold hover:underline">View All Routes</button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead class="bg-slate-50 dark:bg-slate-900/50 text-xs font-bold text-slate-400 uppercase">
+<tr>
+<th class="px-6 py-3">Route ID</th>
+<th class="px-6 py-3">Supplier</th>
+<th class="px-6 py-3">ETA Status</th>
+<th class="px-6 py-3">Risk Level</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-primary/5 text-sm">
+<tr>
+<td class="px-6 py-4 font-medium">RT-2044</td>
+<td class="px-6 py-4 text-slate-500">Global Logistics Corp</td>
+<td class="px-6 py-4">
+<span class="px-2 py-1 rounded-full bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 text-xs font-bold">ON TIME</span>
+</td>
+<td class="px-6 py-4">
+<div class="w-full bg-slate-100 dark:bg-slate-700 h-1.5 rounded-full">
+<div class="bg-green-500 h-1.5 rounded-full" style="width: 15%"></div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="px-6 py-4 font-medium">RT-3091</td>
+<td class="px-6 py-4 text-slate-500">Nordic Freight Systems</td>
+<td class="px-6 py-4">
+<span class="px-2 py-1 rounded-full bg-orange-100 dark:bg-orange-900/30 text-orange-600 dark:text-orange-400 text-xs font-bold">2H DELAY</span>
+</td>
+<td class="px-6 py-4">
+<div class="w-full bg-slate-100 dark:bg-slate-700 h-1.5 rounded-full">
+<div class="bg-orange-500 h-1.5 rounded-full" style="width: 45%"></div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="px-6 py-4 font-medium">RT-8821</td>
+<td class="px-6 py-4 text-slate-500">Pacific Rim Carriers</td>
+<td class="px-6 py-4">
+<span class="px-2 py-1 rounded-full bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400 text-xs font-bold">CRITICAL</span>
+</td>
+<td class="px-6 py-4">
+<div class="w-full bg-slate-100 dark:bg-slate-700 h-1.5 rounded-full">
+<div class="bg-red-500 h-1.5 rounded-full" style="width: 85%"></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 left-0 right-0 bg-white dark:bg-slate-900 border-t border-primary/10 px-4 pb-4 pt-2 flex justify-around items-center z-50">
+<a class="flex flex-col items-center gap-1 text-primary" href="#">
+<span class="material-symbols-outlined fill-1">dashboard</span>
+<span class="text-[10px] font-bold uppercase tracking-tighter">Dashboard</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">local_shipping</span>
+<span class="text-[10px] font-bold uppercase tracking-tighter">Suppliers</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">assessment</span>
+<span class="text-[10px] font-bold uppercase tracking-tighter">Reports</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-[10px] font-bold uppercase tracking-tighter">Settings</span>
+</a>
+</nav>
+<div class="h-20"></div> <!-- Spacer for fixed nav -->
+</body></html>

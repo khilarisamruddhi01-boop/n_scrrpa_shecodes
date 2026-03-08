@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Forgot Password - N-SCRRA</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1E3A5F",
+                        "background-light": "#f8f6f6",
+                        "background-dark": "#221610",
+                    },
+                    fontFamily: {
+                        "display": ["Public Sans"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Public Sans', sans-serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark min-h-screen flex items-center justify-center p-4">
+<!-- Container -->
+<div class="w-full max-w-md bg-white dark:bg-slate-900 rounded-xl shadow-xl overflow-hidden border border-slate-200 dark:border-slate-800">
+<!-- Header / Navigation -->
+<div class="flex items-center p-4 border-b border-slate-100 dark:border-slate-800">
+<button class="flex items-center justify-center size-10 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 transition-colors">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<h2 class="ml-2 text-slate-900 dark:text-slate-100 text-lg font-bold font-display">Reset Password</h2>
+</div>
+<!-- Main Content -->
+<div class="p-8">
+<!-- Branding/Icon Section -->
+<div class="flex justify-center mb-8">
+<div class="size-20 bg-primary/10 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-4xl">lock_reset</span>
+</div>
+</div>
+<!-- Text Section -->
+<div class="text-center mb-8">
+<h1 class="text-slate-900 dark:text-slate-100 text-2xl font-bold font-display mb-2">Forgot Password?</h1>
+<p class="text-slate-600 dark:text-slate-400 text-base">
+                    No worries! Enter your email address below and we'll send you a link to reset your password.
+                </p>
+</div>
+<!-- Input Field -->
+<div class="space-y-6">
+<div class="flex flex-col gap-2">
+<label class="text-slate-700 dark:text-slate-300 text-sm font-medium font-display px-1">Email Address</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">mail</span>
+<input class="w-full pl-12 pr-4 py-3.5 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-slate-900 dark:text-slate-100 focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none" placeholder="e.g. name@n-scrra.gov" type="email"/>
+</div>
+</div>
+<!-- Action Button -->
+<button class="w-full py-4 bg-primary hover:bg-primary/90 text-white font-bold rounded-xl shadow-lg shadow-primary/20 transition-all active:scale-[0.98]">
+                    Send Reset Link
+                </button>
+</div>
+<!-- Back to Login -->
+<div class="mt-8 text-center">
+<a class="inline-flex items-center gap-2 text-primary font-semibold hover:underline decoration-2 underline-offset-4" href="#">
+<span class="material-symbols-outlined text-sm">login</span>
+                    Back to Login
+                </a>
+</div>
+</div>
+<!-- Footer / Success State Preview (Hidden or Decorative) -->
+<div class="px-8 pb-8">
+<div class="p-4 bg-green-50 dark:bg-green-900/20 border border-green-100 dark:border-green-800 rounded-xl flex items-start gap-3">
+<span class="material-symbols-outlined text-green-600 dark:text-green-400">check_circle</span>
+<div>
+<p class="text-sm font-bold text-green-800 dark:text-green-300">Success!</p>
+<p class="text-xs text-green-700 dark:text-green-400 mt-0.5">If an account exists for that email, you will receive a reset link shortly.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Decorative Elements -->
+<div class="fixed bottom-0 left-0 w-full h-1 bg-primary"></div>
+<div class="fixed -top-24 -right-24 size-64 bg-primary/5 rounded-full blur-3xl"></div>
+<div class="fixed -bottom-24 -left-24 size-64 bg-primary/5 rounded-full blur-3xl"></div>
+</body></html>

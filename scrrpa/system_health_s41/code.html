@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ec5b13",
+                        "background-light": "#f8f6f6",
+                        "background-dark": "#221610",
+                    },
+                    fontFamily: {
+                        "display": ["Public Sans"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<title>System Health S41</title>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen">
+<!-- Header -->
+<header class="sticky top-0 z-50 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-primary/10 px-4 py-3">
+<div class="max-w-7xl mx-auto flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="bg-primary text-white p-2 rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined">health_metrics</span>
+</div>
+<div>
+<h1 class="text-lg font-bold leading-tight">System Health <span class="text-primary font-mono text-sm ml-1">(S41)</span></h1>
+<p class="text-xs text-slate-500 dark:text-slate-400">Monitoring 4 active regions</p>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-2 rounded-full hover:bg-primary/10 text-slate-600 dark:text-slate-300">
+<span class="material-symbols-outlined">search</span>
+</button>
+<button class="p-2 rounded-full hover:bg-primary/10 text-slate-600 dark:text-slate-300 relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 size-2 bg-primary rounded-full border-2 border-background-light dark:border-background-dark"></span>
+</button>
+<div class="h-8 w-8 rounded-full overflow-hidden ml-2 border border-primary/20">
+<img alt="Profile" data-alt="Abstract geometric avatar for system administrator" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDD_1-agSbKvoGSSANVVpJ0GOV2N82NO360Dy7MU6nCOiNpThemkTccdT-u86sR2l1aKfvdtVc73GFAAUCqcjlvaBMVuVXR1VFYt0_OA4r0bdEsiDry3oxptYr-jOdQb96ySQCXwgJ1CR42jo3DGOCrXDINR4BEPwX0IewtOR72cCy2kFX5-BCKFDXrUwKyI7GqtGlLFBVCK0rkiKTt5hFqJEXIBPyXL4Jc-QAboKjvL4rf1Ax3LWA15vw4ZC2iUHRznPZDZpHaSNbK"/>
+</div>
+</div>
+</div>
+</header>
+<main class="max-w-7xl mx-auto p-4 space-y-6 pb-24">
+<!-- Real-time Metrics -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+<div class="bg-white dark:bg-primary/5 rounded-xl p-5 border border-primary/10 shadow-sm flex flex-col gap-2">
+<div class="flex justify-between items-start">
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium">API Latency</p>
+<span class="material-symbols-outlined text-primary">timer</span>
+</div>
+<div class="flex items-end gap-2">
+<p class="text-3xl font-bold tracking-tight">45ms</p>
+<p class="text-red-500 text-sm font-medium mb-1 flex items-center">
+<span class="material-symbols-outlined text-sm">trending_up</span> 5%
+                    </p>
+</div>
+<div class="w-full h-1 bg-slate-100 dark:bg-primary/10 rounded-full mt-2 overflow-hidden">
+<div class="bg-primary h-full w-[45%]"></div>
+</div>
+</div>
+<div class="bg-white dark:bg-primary/5 rounded-xl p-5 border border-primary/10 shadow-sm flex flex-col gap-2">
+<div class="flex justify-between items-start">
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium">Error Rate</p>
+<span class="material-symbols-outlined text-primary">error</span>
+</div>
+<div class="flex items-end gap-2">
+<p class="text-3xl font-bold tracking-tight">0.02%</p>
+<p class="text-green-500 text-sm font-medium mb-1 flex items-center">
+<span class="material-symbols-outlined text-sm">trending_down</span> 0.01%
+                    </p>
+</div>
+<div class="w-full h-1 bg-slate-100 dark:bg-primary/10 rounded-full mt-2 overflow-hidden">
+<div class="bg-green-500 h-full w-[2%]"></div>
+</div>
+</div>
+<div class="bg-white dark:bg-primary/5 rounded-xl p-5 border border-primary/10 shadow-sm flex flex-col gap-2">
+<div class="flex justify-between items-start">
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium">DB Load</p>
+<span class="material-symbols-outlined text-primary">database</span>
+</div>
+<div class="flex items-end gap-2">
+<p class="text-3xl font-bold tracking-tight">18%</p>
+<p class="text-red-500 text-sm font-medium mb-1 flex items-center">
+<span class="material-symbols-outlined text-sm">trending_up</span> 2%
+                    </p>
+</div>
+<div class="w-full h-1 bg-slate-100 dark:bg-primary/10 rounded-full mt-2 overflow-hidden">
+<div class="bg-primary h-full w-[18%]"></div>
+</div>
+</div>
+</div>
+<!-- Service Status Grid -->
+<section>
+<div class="flex items-center justify-between mb-4">
+<h2 class="text-xl font-bold">Service Status</h2>
+<button class="text-primary text-sm font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">refresh</span> Refresh All
+                </button>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+<!-- Auth Service -->
+<div class="bg-white dark:bg-primary/5 rounded-xl border border-primary/10 p-4 group">
+<div class="flex justify-between items-start mb-3">
+<div class="p-2 bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 rounded-lg">
+<span class="material-symbols-outlined">verified_user</span>
+</div>
+<span class="text-[10px] font-bold uppercase tracking-wider bg-green-100 text-green-700 px-2 py-0.5 rounded-full">Online</span>
+</div>
+<h3 class="font-bold mb-1">Auth Service</h3>
+<p class="text-xs text-slate-500 dark:text-slate-400 mb-4 italic">V2.4.1 • cluster-a1</p>
+<button class="w-full py-2 bg-slate-100 dark:bg-primary/10 hover:bg-primary hover:text-white transition-colors rounded-lg text-sm font-semibold flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm">restart_alt</span> Restart
+                    </button>
+</div>
+<!-- API Gateway -->
+<div class="bg-white dark:bg-primary/5 rounded-xl border border-primary/10 p-4 group">
+<div class="flex justify-between items-start mb-3">
+<div class="p-2 bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 rounded-lg">
+<span class="material-symbols-outlined">hub</span>
+</div>
+<span class="text-[10px] font-bold uppercase tracking-wider bg-green-100 text-green-700 px-2 py-0.5 rounded-full">Online</span>
+</div>
+<h3 class="font-bold mb-1">API Gateway</h3>
+<p class="text-xs text-slate-500 dark:text-slate-400 mb-4 italic">V3.1.0 • edge-main</p>
+<button class="w-full py-2 bg-slate-100 dark:bg-primary/10 hover:bg-primary hover:text-white transition-colors rounded-lg text-sm font-semibold flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm">restart_alt</span> Restart
+                    </button>
+</div>
+<!-- Worker Node -->
+<div class="bg-white dark:bg-primary/5 rounded-xl border border-primary/20 p-4 ring-1 ring-primary/20">
+<div class="flex justify-between items-start mb-3">
+<div class="p-2 bg-amber-100 dark:bg-amber-900/30 text-amber-600 dark:text-amber-400 rounded-lg">
+<span class="material-symbols-outlined">engineering</span>
+</div>
+<span class="text-[10px] font-bold uppercase tracking-wider bg-amber-100 text-amber-700 px-2 py-0.5 rounded-full">Degraded</span>
+</div>
+<h3 class="font-bold mb-1">Worker Node</h3>
+<p class="text-xs text-slate-500 dark:text-slate-400 mb-4 italic">Memory Pressure: 92%</p>
+<button class="w-full py-2 bg-primary text-white hover:bg-primary/90 transition-colors rounded-lg text-sm font-semibold flex items-center justify-center gap-2 shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined text-sm">restart_alt</span> Restart Service
+                    </button>
+</div>
+<!-- Database -->
+<div class="bg-white dark:bg-primary/5 rounded-xl border border-primary/10 p-4 group">
+<div class="flex justify-between items-start mb-3">
+<div class="p-2 bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 rounded-lg">
+<span class="material-symbols-outlined">storage</span>
+</div>
+<span class="text-[10px] font-bold uppercase tracking-wider bg-green-100 text-green-700 px-2 py-0.5 rounded-full">Online</span>
+</div>
+<h3 class="font-bold mb-1">Database</h3>
+<p class="text-xs text-slate-500 dark:text-slate-400 mb-4 italic">Primary-Replica Sync: OK</p>
+<button class="w-full py-2 bg-slate-100 dark:bg-primary/10 hover:bg-primary hover:text-white transition-colors rounded-lg text-sm font-semibold flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm">restart_alt</span> Restart
+                    </button>
+</div>
+</div>
+</section>
+<!-- Live Log Viewer -->
+<section class="bg-slate-900 rounded-xl border border-slate-700 overflow-hidden">
+<div class="bg-slate-800 px-4 py-2 border-b border-slate-700 flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="size-2 rounded-full bg-red-500 animate-pulse"></div>
+<span class="text-slate-300 text-xs font-mono font-bold tracking-wider">LIVE LOGS</span>
+</div>
+<div class="flex items-center gap-4">
+<select class="bg-transparent border-none text-slate-400 text-xs font-mono focus:ring-0">
+<option>All Services</option>
+<option>Auth Service</option>
+<option>API Gateway</option>
+</select>
+<button class="text-slate-400 hover:text-white">
+<span class="material-symbols-outlined text-sm">download</span>
+</button>
+<button class="text-slate-400 hover:text-white">
+<span class="material-symbols-outlined text-sm">close</span>
+</button>
+</div>
+</div>
+<div class="p-4 font-mono text-xs leading-relaxed max-h-[300px] overflow-y-auto">
+<div class="flex gap-4 mb-1">
+<span class="text-slate-500">[14:22:01]</span>
+<span class="text-blue-400">INFO</span>
+<span class="text-slate-300">Auth-Service: Token validated for UID: 98231</span>
+</div>
+<div class="flex gap-4 mb-1">
+<span class="text-slate-500">[14:22:03]</span>
+<span class="text-blue-400">INFO</span>
+<span class="text-slate-300">API-Gateway: GET /v1/products/list - 200 OK (12ms)</span>
+</div>
+<div class="flex gap-4 mb-1">
+<span class="text-slate-500">[14:22:05]</span>
+<span class="text-amber-400">WARN</span>
+<span class="text-slate-300">Worker-Node: GC cycle taking longer than expected (400ms)</span>
+</div>
+<div class="flex gap-4 mb-1">
+<span class="text-slate-500">[14:22:07]</span>
+<span class="text-red-400">ERROR</span>
+<span class="text-slate-300">Database: Deadlock detected in transaction #91223</span>
+</div>
+<div class="flex gap-4 mb-1">
+<span class="text-slate-500">[14:22:08]</span>
+<span class="text-blue-400">INFO</span>
+<span class="text-slate-300">Auth-Service: Session extended for UID: 44102</span>
+</div>
+<div class="flex gap-4 mb-1">
+<span class="text-slate-500">[14:22:10]</span>
+<span class="text-blue-400">INFO</span>
+<span class="text-slate-300">API-Gateway: POST /v1/orders/create - 201 Created (45ms)</span>
+</div>
+<div class="flex gap-4 mb-1 animate-pulse">
+<span class="text-slate-500">[14:22:12]</span>
+<span class="text-blue-400">INFO</span>
+<span class="text-slate-300">System: Pulse check completed on all nodes...</span>
+</div>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 left-0 right-0 bg-white dark:bg-background-dark border-t border-primary/10 px-2 py-1 flex items-center justify-around z-50">
+<a class="flex flex-col items-center gap-1 p-2 text-primary" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1">dashboard</span>
+<span class="text-[10px] font-bold">Dashboard</span>
+</a>
+<a class="flex flex-col items-center gap-1 p-2 text-slate-500 dark:text-slate-400 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">dns</span>
+<span class="text-[10px] font-medium">Services</span>
+</a>
+<a class="flex flex-col items-center gap-1 p-2 text-slate-500 dark:text-slate-400 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">terminal</span>
+<span class="text-[10px] font-medium">Logs</span>
+</a>
+<a class="flex flex-col items-center gap-1 p-2 text-slate-500 dark:text-slate-400 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-[10px] font-medium">Settings</span>
+</a>
+</nav>
+</body></html>

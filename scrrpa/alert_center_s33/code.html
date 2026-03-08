@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Alert Center - S33</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ec5b13",
+                        "background-light": "#f8f6f6",
+                        "background-dark": "#221610",
+                    },
+                    fontFamily: {
+                        "display": ["Public Sans"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen">
+<!-- Header / Top Bar -->
+<header class="sticky top-0 z-10 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-primary/10">
+<div class="flex items-center p-4 justify-between max-w-2xl mx-auto">
+<div class="flex size-10 shrink-0 items-center justify-center rounded-lg hover:bg-primary/10 cursor-pointer">
+<span class="material-symbols-outlined">arrow_back</span>
+</div>
+<h1 class="text-lg font-bold leading-tight tracking-tight flex-1 text-center">Alert Center</h1>
+<div class="flex size-10 items-center justify-end rounded-lg hover:bg-primary/10 cursor-pointer">
+<span class="material-symbols-outlined">search</span>
+</div>
+</div>
+<!-- Navigation Tabs -->
+<nav class="flex border-b border-primary/10 px-4 gap-4 overflow-x-auto no-scrollbar max-w-2xl mx-auto">
+<a class="flex flex-col items-center justify-center border-b-2 border-primary text-primary pb-3 pt-4 px-2 whitespace-nowrap" href="#">
+<span class="text-sm font-bold">All</span>
+</a>
+<a class="flex flex-col items-center justify-center border-b-2 border-transparent text-slate-500 dark:text-slate-400 pb-3 pt-4 px-2 whitespace-nowrap hover:text-primary" href="#">
+<span class="text-sm font-bold">Critical</span>
+</a>
+<a class="flex flex-col items-center justify-center border-b-2 border-transparent text-slate-500 dark:text-slate-400 pb-3 pt-4 px-2 whitespace-nowrap hover:text-primary" href="#">
+<span class="text-sm font-bold">High</span>
+</a>
+<a class="flex flex-col items-center justify-center border-b-2 border-transparent text-slate-500 dark:text-slate-400 pb-3 pt-4 px-2 whitespace-nowrap hover:text-primary" href="#">
+<span class="text-sm font-bold">Medium</span>
+</a>
+<a class="flex flex-col items-center justify-center border-b-2 border-transparent text-slate-500 dark:text-slate-400 pb-3 pt-4 px-2 whitespace-nowrap hover:text-primary" href="#">
+<span class="text-sm font-bold">Low</span>
+</a>
+</nav>
+</header>
+<main class="max-w-2xl mx-auto p-4 space-y-4 pb-24">
+<!-- Expanded Critical Alert Card -->
+<div class="rounded-xl overflow-hidden border border-primary/20 bg-white dark:bg-slate-900 shadow-sm">
+<div class="h-32 bg-gradient-to-r from-red-500 to-primary flex items-end p-4" data-alt="Abstract red gradient background with pulse patterns">
+<span class="bg-white/20 backdrop-blur-md text-white text-xs font-bold px-2 py-1 rounded uppercase tracking-wider">Severity: Critical</span>
+</div>
+<div class="p-4 space-y-3">
+<h3 class="text-xl font-bold tracking-tight">Database Latency Spikes</h3>
+<p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
+                    Primary database instance (DB-Cluster-01) is experiencing sustained latency over 500ms, affecting user authentication services.
+                </p>
+<div class="bg-primary/5 dark:bg-primary/10 rounded-lg p-3 space-y-2">
+<div class="flex items-start gap-2">
+<span class="material-symbols-outlined text-primary text-sm mt-0.5">account_tree</span>
+<div class="text-xs">
+<span class="font-bold block mb-1">Affected Entities</span>
+<span class="text-slate-500 dark:text-slate-400">DB-Cluster-01, API-Gateway-North, Auth-Service-v2</span>
+</div>
+</div>
+<div class="flex items-start gap-2 pt-2 border-t border-primary/10">
+<span class="material-symbols-outlined text-primary text-sm mt-0.5">verified_user</span>
+<div class="text-xs">
+<span class="font-bold block mb-1">Recommended Action</span>
+<span class="text-slate-500 dark:text-slate-400">Initiate failover to standby replica in Region US-East-2 and scale up API instances.</span>
+</div>
+</div>
+</div>
+<div class="flex gap-2 pt-2">
+<button class="flex-1 bg-primary text-white font-bold py-2.5 rounded-lg text-sm transition hover:brightness-110">
+                        Acknowledge
+                    </button>
+<button class="flex-1 bg-primary/10 text-primary font-bold py-2.5 rounded-lg text-sm transition hover:bg-primary/20">
+                        Snooze
+                    </button>
+</div>
+</div>
+</div>
+<!-- High Severity Card -->
+<div class="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-4 shadow-sm">
+<div class="flex justify-between items-start mb-2">
+<span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-orange-100 text-orange-700 dark:bg-orange-900/30 dark:text-orange-400 uppercase">High Severity</span>
+<span class="text-xs text-slate-400">14m ago</span>
+</div>
+<h3 class="font-bold text-base mb-1">Unauthorized API Access Pattern</h3>
+<p class="text-sm text-slate-600 dark:text-slate-400 mb-4">Detected 500+ failed login attempts from IP 192.168.1.45 targeting the Admin portal.</p>
+<div class="flex items-center gap-2">
+<button class="text-xs font-bold text-primary px-3 py-1.5 rounded-lg border border-primary/30 hover:bg-primary/5 transition">Acknowledge</button>
+<button class="text-xs font-bold text-slate-500 px-3 py-1.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition">View Details</button>
+</div>
+</div>
+<!-- Medium Severity Card -->
+<div class="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-4 shadow-sm">
+<div class="flex justify-between items-start mb-2">
+<span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-yellow-100 text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-400 uppercase">Medium Severity</span>
+<span class="text-xs text-slate-400">1h ago</span>
+</div>
+<h3 class="font-bold text-base mb-1">S3 Bucket Storage Threshold</h3>
+<p class="text-sm text-slate-600 dark:text-slate-400 mb-4">Storage bucket 'user-backups-01' has reached 85% of allocated capacity.</p>
+<div class="flex items-center gap-2">
+<button class="text-xs font-bold text-primary px-3 py-1.5 rounded-lg border border-primary/30 hover:bg-primary/5 transition">Acknowledge</button>
+<button class="text-xs font-bold text-slate-500 px-3 py-1.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition">View Details</button>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 w-full bg-background-light dark:bg-background-dark border-t border-primary/10 pb-6 pt-2 px-4 z-20">
+<div class="flex gap-2 max-w-2xl mx-auto">
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-400" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<p class="text-[10px] font-medium">Dashboard</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-primary" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">notifications</span>
+<p class="text-[10px] font-medium">Alerts</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-400" href="#">
+<span class="material-symbols-outlined">database</span>
+<p class="text-[10px] font-medium">Assets</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-400" href="#">
+<span class="material-symbols-outlined">settings</span>
+<p class="text-[10px] font-medium">Settings</p>
+</a>
+</div>
+</nav>
+</body></html>

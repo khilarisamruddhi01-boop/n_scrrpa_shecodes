@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Email Verification - N-SCRRA</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ec5b13",
+                        "background-light": "#f8f6f6",
+                        "background-dark": "#221610",
+                        "navy-custom": "#0f172a",
+                    },
+                    fontFamily: {
+                        "display": ["Public Sans"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen flex flex-col">
+<!-- Top Navigation Bar -->
+<header class="flex items-center justify-between p-4 bg-white dark:bg-navy-custom/20 border-b border-slate-200 dark:border-slate-800">
+<button class="flex items-center justify-center p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
+<span class="material-symbols-outlined text-slate-700 dark:text-slate-300">arrow_back</span>
+</button>
+<h2 class="text-lg font-bold leading-tight tracking-tight text-navy-custom dark:text-white">Verify Email</h2>
+<div class="w-10"></div> <!-- Spacer for balance -->
+</header>
+<main class="flex-1 flex flex-col items-center justify-start px-6 pt-12 pb-8 max-w-md mx-auto w-full">
+<!-- Icon/Illustration Placeholder -->
+<div class="mb-8 p-4 bg-primary/10 rounded-full">
+<span class="material-symbols-outlined text-primary text-5xl">mark_email_unread</span>
+</div>
+<!-- Header Text -->
+<h1 class="text-navy-custom dark:text-white text-3xl font-bold leading-tight text-center mb-3">Enter Verification Code</h1>
+<p class="text-slate-600 dark:text-slate-400 text-base font-normal leading-relaxed text-center mb-10">
+            We've sent a 6-digit code to <span class="font-semibold text-navy-custom dark:text-primary">user@example.com</span>. Please enter it below to continue.
+        </p>
+<!-- OTP Input Row -->
+<div class="flex justify-center mb-10">
+<fieldset class="flex gap-2 sm:gap-4">
+<input class="flex h-14 w-11 sm:w-12 text-center text-xl font-bold rounded-lg border-2 border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 focus:border-primary focus:ring-0 transition-all" inputmode="numeric" maxlength="1" pattern="\d*" type="text"/>
+<input class="flex h-14 w-11 sm:w-12 text-center text-xl font-bold rounded-lg border-2 border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 focus:border-primary focus:ring-0 transition-all" inputmode="numeric" maxlength="1" pattern="\d*" type="text"/>
+<input class="flex h-14 w-11 sm:w-12 text-center text-xl font-bold rounded-lg border-2 border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 focus:border-primary focus:ring-0 transition-all" inputmode="numeric" maxlength="1" pattern="\d*" type="text"/>
+<input class="flex h-14 w-11 sm:w-12 text-center text-xl font-bold rounded-lg border-2 border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 focus:border-primary focus:ring-0 transition-all" inputmode="numeric" maxlength="1" pattern="\d*" type="text"/>
+<input class="flex h-14 w-11 sm:w-12 text-center text-xl font-bold rounded-lg border-2 border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 focus:border-primary focus:ring-0 transition-all" inputmode="numeric" maxlength="1" pattern="\d*" type="text"/>
+<input class="flex h-14 w-11 sm:w-12 text-center text-xl font-bold rounded-lg border-2 border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 focus:border-primary focus:ring-0 transition-all" inputmode="numeric" maxlength="1" pattern="\d*" type="text"/>
+</fieldset>
+</div>
+<!-- Timer Section -->
+<div class="flex flex-col items-center gap-2 mb-10">
+<div class="flex gap-3">
+<div class="flex flex-col items-center">
+<div class="flex h-12 w-16 items-center justify-center rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+<p class="text-navy-custom dark:text-white text-lg font-bold">05</p>
+</div>
+<p class="text-slate-500 dark:text-slate-400 text-xs mt-1 uppercase tracking-wider">Min</p>
+</div>
+<div class="text-navy-custom dark:text-white text-2xl font-bold self-start mt-2">:</div>
+<div class="flex flex-col items-center">
+<div class="flex h-12 w-16 items-center justify-center rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+<p class="text-navy-custom dark:text-white text-lg font-bold">00</p>
+</div>
+<p class="text-slate-500 dark:text-slate-400 text-xs mt-1 uppercase tracking-wider">Sec</p>
+</div>
+</div>
+<div class="mt-4">
+<button class="text-slate-400 dark:text-slate-600 font-medium text-sm cursor-not-allowed flex items-center gap-1" disabled="">
+                    Didn't receive the code? <span class="text-slate-300 dark:text-slate-700">Resend OTP</span>
+</button>
+</div>
+</div>
+<!-- Action Button -->
+<button class="w-full bg-primary hover:bg-primary/90 text-white font-bold py-4 px-6 rounded-xl shadow-lg shadow-primary/20 transition-all transform active:scale-[0.98]">
+            Verify &amp; Continue
+        </button>
+<!-- Footer Help -->
+<p class="mt-8 text-slate-500 dark:text-slate-400 text-sm text-center">
+            Need help? <a class="text-primary font-semibold hover:underline" href="#">Contact Support</a>
+</p>
+</main>
+<!-- Branding Element -->
+<footer class="p-8 text-center">
+<div class="inline-flex items-center gap-2">
+<div class="w-6 h-6 bg-navy-custom dark:bg-primary rounded flex items-center justify-center">
+<span class="text-white text-[10px] font-bold">N</span>
+</div>
+<span class="text-navy-custom dark:text-white font-bold tracking-widest text-xs">N-SCRRA</span>
+</div>
+</footer>
+</body></html>

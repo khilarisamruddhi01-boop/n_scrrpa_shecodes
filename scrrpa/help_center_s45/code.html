@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ec5b13",
+                        "background-light": "#f8f6f6",
+                        "background-dark": "#221610",
+                    },
+                    fontFamily: {
+                        "display": ["Public Sans"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen">
+<div class="relative flex h-auto min-h-screen w-full flex-col overflow-x-hidden">
+<!-- Top Navigation -->
+<div class="flex items-center bg-background-light dark:bg-background-dark p-4 pb-2 justify-between sticky top-0 z-10 border-b border-primary/10">
+<div class="text-primary flex size-10 shrink-0 items-center justify-center rounded-full hover:bg-primary/10 cursor-pointer">
+<span class="material-symbols-outlined">arrow_back</span>
+</div>
+<h2 class="text-slate-900 dark:text-slate-100 text-lg font-bold leading-tight tracking-tight flex-1 text-center">Help Center</h2>
+<div class="size-10 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">info</span>
+</div>
+</div>
+<!-- Search Bar Section -->
+<div class="px-4 py-6 bg-white dark:bg-slate-900/50">
+<h1 class="text-2xl font-extrabold mb-4 text-slate-900 dark:text-slate-100">How can we help?</h1>
+<label class="flex flex-col min-w-40 h-14 w-full">
+<div class="flex w-full flex-1 items-stretch rounded-xl h-full shadow-sm border border-slate-200 dark:border-slate-700">
+<div class="text-primary flex bg-white dark:bg-slate-800 items-center justify-center pl-4 rounded-l-xl" data-icon="search">
+<span class="material-symbols-outlined">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-slate-900 dark:text-slate-100 focus:outline-0 focus:ring-2 focus:ring-primary/20 border-none bg-white dark:bg-slate-800 h-full placeholder:text-slate-400 px-4 rounded-l-none pl-2 text-base font-normal" placeholder="Search documentation, guides, and more..." value=""/>
+</div>
+</label>
+</div>
+<!-- Video Tutorials Section -->
+<div class="px-4 py-6">
+<div class="flex items-center justify-between mb-4">
+<h3 class="text-slate-900 dark:text-slate-100 text-lg font-bold">Video Tutorials</h3>
+<button class="text-primary text-sm font-semibold">View all</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div class="relative group cursor-pointer overflow-hidden rounded-xl aspect-video bg-slate-200 dark:bg-slate-800 flex flex-col justify-end p-4 border border-slate-200 dark:border-slate-700" data-alt="A clean modern laptop on a desk representing getting started guide" style='background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0) 60%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuCUEr2ZJYGMhqHyjygOs2bZK3Hw7aVPQAHDzX3WNq8vNQobzv8nSInGSPOMy15ukS9-ZoNUCYLXg484zYp0k90p9mmN1HhZByUSKgpF0jMHGYQb-8Bvww91xBofsewxwvpDxHKIOsT3VWdeYUmbTrISJYUBPoEmMmhUfJ5wzDCUdq2zD_cNA0gusE7UxAsw63yTaVOh1DsH8Bah7Dc0VPAJXjW6DjWafB4WmYMtKEx7twgftCT2JlIKjO1NmtZDNbmWFl5TLGQ00bvr"); background-size: cover; background-position: center;'>
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 size-12 rounded-full bg-primary/90 text-white flex items-center justify-center opacity-90 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined">play_arrow</span>
+</div>
+<p class="text-white text-base font-bold leading-tight line-clamp-2">Quick Start Guide: Setting Up Your Workspace</p>
+<p class="text-white/80 text-xs mt-1">4:25 • Tutorial</p>
+</div>
+<div class="relative group cursor-pointer overflow-hidden rounded-xl aspect-video bg-slate-200 dark:bg-slate-800 flex flex-col justify-end p-4 border border-slate-200 dark:border-slate-700" data-alt="Data charts and analytics screen representing advanced features" style='background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0) 60%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuDPBJX_5n4uAN1nd2CPUPgRHsqAh6HfA0qu-GwRCkgZBCc_b0fqDDPTM8LDdBsWsXBhcE9XxhOHlC11hzubrUHjFlgyIZUgKqOfc74J-tEjidrYljiNu9JhngunYOkgECfPe90j2JlA9W4N0juB5HQcEk3JEFckZ09g9NLhvcU5kEsm4Qj09asFU30o7kXlQa-6Svi8v8g2ppQlUTX3gTXiPdSmp7--9vRQ2jPVGTjgV0g2FwFV7YQBzCaUVFqGT-_IOKqbgbWigEhS"); background-size: cover; background-position: center;'>
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 size-12 rounded-full bg-primary/90 text-white flex items-center justify-center opacity-90 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined">play_arrow</span>
+</div>
+<p class="text-white text-base font-bold leading-tight line-clamp-2">Advanced Analytics &amp; Data Export</p>
+<p class="text-white/80 text-xs mt-1">8:12 • Masterclass</p>
+</div>
+</div>
+</div>
+<!-- FAQ Accordion Section -->
+<div class="px-4 py-6">
+<h3 class="text-slate-900 dark:text-slate-100 text-lg font-bold mb-4">Frequently Asked Questions</h3>
+<div class="space-y-3">
+<div class="rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800/50 p-4">
+<div class="flex items-center justify-between cursor-pointer">
+<span class="font-medium text-slate-800 dark:text-slate-200">How do I reset my password?</span>
+<span class="material-symbols-outlined text-slate-400">expand_more</span>
+</div>
+</div>
+<div class="rounded-xl border border-primary/20 bg-primary/5 p-4">
+<div class="flex items-center justify-between cursor-pointer mb-2">
+<span class="font-bold text-primary">Can I share my account with others?</span>
+<span class="material-symbols-outlined text-primary">expand_less</span>
+</div>
+<p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                        Our standard plans are for individual use. However, you can upgrade to a Team Plan to invite colleagues and collaborate within a shared workspace.
+                    </p>
+</div>
+<div class="rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800/50 p-4">
+<div class="flex items-center justify-between cursor-pointer">
+<span class="font-medium text-slate-800 dark:text-slate-200">What payment methods do you accept?</span>
+<span class="material-symbols-outlined text-slate-400">expand_more</span>
+</div>
+</div>
+<div class="rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800/50 p-4">
+<div class="flex items-center justify-between cursor-pointer">
+<span class="font-medium text-slate-800 dark:text-slate-200">How do I cancel my subscription?</span>
+<span class="material-symbols-outlined text-slate-400">expand_more</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Contact Support Button -->
+<div class="p-6 mt-4">
+<div class="rounded-2xl bg-primary p-6 text-white shadow-lg shadow-primary/20">
+<div class="flex items-start justify-between">
+<div>
+<h4 class="text-xl font-bold mb-1">Still need help?</h4>
+<p class="text-white/90 text-sm mb-4">Our support team is available 24/7 to assist you.</p>
+<button class="bg-white text-primary font-bold py-3 px-6 rounded-xl flex items-center gap-2 hover:bg-slate-100 transition-colors">
+<span class="material-symbols-outlined text-sm">mail</span>
+                            Contact Support
+                        </button>
+</div>
+<div class="hidden sm:block">
+<span class="material-symbols-outlined text-6xl opacity-20">support_agent</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer / App Info -->
+<div class="mt-auto p-8 border-t border-slate-200 dark:border-slate-800 flex flex-col items-center gap-4">
+<div class="flex gap-6">
+<a class="text-slate-400 hover:text-primary transition-colors" href="#"><span class="material-symbols-outlined">language</span></a>
+<a class="text-slate-400 hover:text-primary transition-colors" href="#"><span class="material-symbols-outlined">share</span></a>
+<a class="text-slate-400 hover:text-primary transition-colors" href="#"><span class="material-symbols-outlined">policy</span></a>
+</div>
+<div class="text-center">
+<p class="text-slate-400 text-xs font-medium uppercase tracking-widest">App Version</p>
+<p class="text-slate-500 text-sm mt-1">S45-PRO • Build 2024.08.15</p>
+<p class="text-slate-400 text-[10px] mt-4">© 2024 Your Product Name. All rights reserved.</p>
+</div>
+</div>
+</div>
+</body></html>

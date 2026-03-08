@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ec5b13",
+                        "background-light": "#f8f6f6",
+                        "background-dark": "#221610",
+                    },
+                    fontFamily: {
+                        "display": ["Public Sans"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<title>S36 Admin Dashboard</title>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100">
+<div class="relative flex min-h-screen flex-col overflow-x-hidden">
+<!-- Top Header -->
+<header class="flex items-center justify-between border-b border-primary/10 bg-background-light dark:bg-background-dark p-4 sticky top-0 z-50">
+<div class="flex items-center gap-3">
+<div class="bg-primary p-2 rounded-lg text-white">
+<span class="material-symbols-outlined block">shield_with_heart</span>
+</div>
+<div>
+<h1 class="text-lg font-bold leading-tight tracking-tight">S36 Core Admin</h1>
+<p class="text-xs text-slate-500 dark:text-slate-400 uppercase tracking-widest font-bold">System Status: Optimal</p>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative">
+<button class="flex items-center justify-center rounded-xl h-10 w-10 bg-primary/10 text-primary hover:bg-primary/20">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<span class="absolute top-0 right-0 h-3 w-3 rounded-full bg-primary border-2 border-background-light dark:border-background-dark"></span>
+</div>
+<div class="h-10 w-10 rounded-full bg-slate-200 dark:bg-slate-800 flex items-center justify-center overflow-hidden border border-primary/20">
+<img class="h-full w-full object-cover" data-alt="Admin user profile avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAXAJvLTHA8b0l0jh7Et9vPIGHp0AcHCFqhbH8Pukv0OOSLkQxbpPyBRMXFuUJ9G1y5Zc1zLJwP-ebdLMYh1EaZxoVDnDNUpzElJtTPrftlW_gL3Z7guGT_kuVdRMJukBk-BpeFitPTqoTCAqUXIG1fbNjqeBz9HDaVqcQmAsy_fceJe2btVI6h2qKZqXOrXfx-onlRr2sWdbTVd8PLhzkJbWQCz2kPh9OCsxz43l8V5ByA7nD9A8vzyPOLEMkLdMYVGeeneAY_UPXE"/>
+</div>
+</div>
+</header>
+<main class="flex-1 p-4 md:p-6 space-y-6 max-w-7xl mx-auto w-full">
+<!-- Health Overview Widgets -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+<div class="flex flex-col gap-2 rounded-xl p-5 bg-white dark:bg-slate-900 border border-primary/5 shadow-sm">
+<div class="flex justify-between items-start">
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium">API Latency</p>
+<span class="material-symbols-outlined text-primary text-sm">speed</span>
+</div>
+<p class="text-2xl font-bold leading-tight">24ms</p>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-green-500 text-sm">trending_down</span>
+<p class="text-green-500 text-xs font-bold">-4ms (15m)</p>
+</div>
+</div>
+<div class="flex flex-col gap-2 rounded-xl p-5 bg-white dark:bg-slate-900 border border-primary/5 shadow-sm">
+<div class="flex justify-between items-start">
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium">System Uptime</p>
+<span class="material-symbols-outlined text-primary text-sm">cloud_done</span>
+</div>
+<p class="text-2xl font-bold leading-tight">99.98%</p>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-green-500 text-sm">trending_up</span>
+<p class="text-green-500 text-xs font-bold">+0.01%</p>
+</div>
+</div>
+<div class="flex flex-col gap-2 rounded-xl p-5 bg-white dark:bg-slate-900 border border-primary/5 shadow-sm">
+<div class="flex justify-between items-start">
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium">Error Rate</p>
+<span class="material-symbols-outlined text-primary text-sm">error_outline</span>
+</div>
+<p class="text-2xl font-bold leading-tight">0.02%</p>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-primary text-sm">trending_down</span>
+<p class="text-primary text-xs font-bold">-0.01%</p>
+</div>
+</div>
+<div class="flex flex-col gap-2 rounded-xl p-5 bg-primary text-white shadow-lg shadow-primary/20">
+<div class="flex justify-between items-start">
+<p class="text-white/80 text-sm font-medium">Supplier Approvals</p>
+<span class="material-symbols-outlined text-white text-sm">verified_user</span>
+</div>
+<p class="text-2xl font-bold leading-tight">12 Pending</p>
+<button class="mt-2 text-xs font-bold underline text-left">View queue →</button>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+<!-- Activity Chart & Disruption Map -->
+<div class="lg:col-span-2 space-y-6">
+<!-- Activity Chart Card -->
+<div class="bg-white dark:bg-slate-900 rounded-xl p-6 border border-primary/5 shadow-sm">
+<div class="flex items-center justify-between mb-6">
+<div>
+<h3 class="font-bold text-lg">User Activity Trends</h3>
+<p class="text-slate-500 dark:text-slate-400 text-sm">Live throughput tracking</p>
+</div>
+<select class="bg-slate-100 dark:bg-slate-800 border-none rounded-lg text-xs font-bold px-3 py-1">
+<option>Last 24 Hours</option>
+<option>Last 7 Days</option>
+</select>
+</div>
+<div class="flex flex-col gap-4">
+<div class="flex items-baseline gap-2">
+<p class="text-3xl font-bold">12.4k</p>
+<span class="text-green-500 text-sm font-bold">+12% vs yesterday</span>
+</div>
+<div class="h-[200px] w-full mt-4">
+<svg class="h-full w-full" fill="none" preserveaspectratio="none" viewbox="0 0 478 150" xmlns="http://www.w3.org/2000/svg">
+<path d="M0 109C18.1538 109 18.1538 21 36.3077 21C54.4615 21 54.4615 41 72.6154 41C90.7692 41 90.7692 93 108.923 93C127.077 93 127.077 33 145.231 33C163.385 33 163.385 101 181.538 101C199.692 101 199.692 61 217.846 61C236 61 236 45 254.154 45C272.308 45 272.308 121 290.462 121C308.615 121 308.615 149 326.769 149C344.923 149 344.923 1 363.077 1C381.231 1 381.231 81 399.385 81C417.538 81 417.538 129 435.692 129C453.846 129 453.846 25 472 25V149H0V109Z" fill="url(#activityGradient)"></path>
+<path d="M0 109C18.1538 109 18.1538 21 36.3077 21C54.4615 21 54.4615 41 72.6154 41C90.7692 41 90.7692 93 108.923 93C127.077 93 127.077 33 145.231 33C163.385 33 163.385 101 181.538 101C199.692 101 199.692 61 217.846 61C236 61 236 45 254.154 45C272.308 45 272.308 121 290.462 121C308.615 121 308.615 149 326.769 149C344.923 149 344.923 1 363.077 1C381.231 1 381.231 81 399.385 81C417.538 81 417.538 129 435.692 129C453.846 129 453.846 25 472 25" stroke="#ec5b13" stroke-linecap="round" stroke-width="3"></path>
+<defs>
+<lineargradient id="activityGradient" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#ec5b13" stop-opacity="0.2"></stop>
+<stop offset="100%" stop-color="#ec5b13" stop-opacity="0"></stop>
+</lineargradient>
+</defs>
+</svg>
+</div>
+<div class="flex justify-between px-2 text-[10px] font-bold text-slate-400 uppercase tracking-tighter">
+<span>00:00</span><span>04:00</span><span>08:00</span><span>12:00</span><span>16:00</span><span>20:00</span><span>23:59</span>
+</div>
+</div>
+</div>
+<!-- Mini Map Card -->
+<div class="bg-white dark:bg-slate-900 rounded-xl p-6 border border-primary/5 shadow-sm overflow-hidden">
+<div class="flex items-center justify-between mb-4">
+<h3 class="font-bold text-lg">Active Disruptions</h3>
+<div class="flex items-center gap-2">
+<span class="flex h-2 w-2 rounded-full bg-red-500 animate-pulse"></span>
+<span class="text-xs font-bold text-red-500">3 Global Alerts</span>
+</div>
+</div>
+<div class="relative h-[240px] w-full rounded-lg bg-slate-100 dark:bg-slate-800 overflow-hidden">
+<img class="h-full w-full object-cover opacity-60 grayscale dark:invert" data-alt="World map showing active service disruptions" data-location="Global" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDNUh7amak29rWBMYAGmpLh6k5hHNIjZUOhgledObOv7DOnJ7S53x4wPNEMp4J9uJQNw1CbLG0JTJFqC4rDzVzw75irJUZp3Ce-1V_rRuFtqI8Xuy3O8fH9U34poKG3AMCPG17AILT80rByQaFPxihjnI6-3G5Jtu1tbhaZAUN-vd9O_oy0ZU36W3h6plmQdosVne9H6S62_GNr-P-9HwOziVOE8MIz4l6y3u2-oLpB1W3yruMkyWc1-EBelNBjKBF0rLU4SK4f63Na"/>
+<!-- Disruption Pings -->
+<div class="absolute top-[30%] left-[25%] h-6 w-6 rounded-full bg-red-500/40 animate-ping"></div>
+<div class="absolute top-[30%] left-[25%] h-3 w-3 rounded-full bg-red-500"></div>
+<div class="absolute bottom-[40%] right-[30%] h-6 w-6 rounded-full bg-primary/40 animate-ping"></div>
+<div class="absolute bottom-[40%] right-[30%] h-3 w-3 rounded-full bg-primary"></div>
+</div>
+</div>
+</div>
+<!-- Side Panels: Data Sources & Audit Log -->
+<div class="space-y-6">
+<!-- Data Source Status Grid -->
+<div class="bg-white dark:bg-slate-900 rounded-xl p-6 border border-primary/5 shadow-sm">
+<h3 class="font-bold text-lg mb-4">Data Source Status</h3>
+<div class="grid grid-cols-2 gap-3">
+<div class="bg-slate-50 dark:bg-slate-800/50 p-3 rounded-lg border border-slate-100 dark:border-slate-800">
+<p class="text-[10px] font-bold text-slate-400 uppercase mb-1">AWS-West</p>
+<div class="flex items-center gap-2">
+<span class="h-2 w-2 rounded-full bg-green-500"></span>
+<span class="text-sm font-bold">Stable</span>
+</div>
+</div>
+<div class="bg-slate-50 dark:bg-slate-800/50 p-3 rounded-lg border border-slate-100 dark:border-slate-800">
+<p class="text-[10px] font-bold text-slate-400 uppercase mb-1">Azure-East</p>
+<div class="flex items-center gap-2">
+<span class="h-2 w-2 rounded-full bg-green-500"></span>
+<span class="text-sm font-bold">Stable</span>
+</div>
+</div>
+<div class="bg-slate-50 dark:bg-slate-800/50 p-3 rounded-lg border border-slate-100 dark:border-slate-800">
+<p class="text-[10px] font-bold text-slate-400 uppercase mb-1">DB-Primary</p>
+<div class="flex items-center gap-2">
+<span class="h-2 w-2 rounded-full bg-primary"></span>
+<span class="text-sm font-bold">Syncing</span>
+</div>
+</div>
+<div class="bg-slate-50 dark:bg-slate-800/50 p-3 rounded-lg border border-slate-100 dark:border-slate-800">
+<p class="text-[10px] font-bold text-slate-400 uppercase mb-1">Redis-Cache</p>
+<div class="flex items-center gap-2">
+<span class="h-2 w-2 rounded-full bg-red-500"></span>
+<span class="text-sm font-bold">High Load</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Audit Events List -->
+<div class="bg-white dark:bg-slate-900 rounded-xl p-6 border border-primary/5 shadow-sm flex flex-col min-h-[400px]">
+<h3 class="font-bold text-lg mb-4">Recent Audit Events</h3>
+<div class="space-y-4 flex-1">
+<div class="flex gap-3">
+<div class="h-8 w-8 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-slate-400 text-sm">person</span>
+</div>
+<div>
+<p class="text-sm font-medium"><span class="font-bold">admin_jane</span> updated security policy</p>
+<p class="text-[10px] text-slate-400 font-bold uppercase">2 mins ago • IP: 192.168.1.45</p>
+</div>
+</div>
+<div class="flex gap-3">
+<div class="h-8 w-8 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary text-sm">key</span>
+</div>
+<div>
+<p class="text-sm font-medium">New API Key generated for <span class="font-bold">Logistics_Hub</span></p>
+<p class="text-[10px] text-slate-400 font-bold uppercase">14 mins ago • System Event</p>
+</div>
+</div>
+<div class="flex gap-3">
+<div class="h-8 w-8 rounded-full bg-red-100 dark:bg-red-900/30 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-red-500 text-sm">lock</span>
+</div>
+<div>
+<p class="text-sm font-medium">Suspicious login attempt blocked</p>
+<p class="text-[10px] text-slate-400 font-bold uppercase">42 mins ago • Location: Unknown</p>
+</div>
+</div>
+<div class="flex gap-3">
+<div class="h-8 w-8 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-slate-400 text-sm">settings</span>
+</div>
+<div>
+<p class="text-sm font-medium">Backup script completed successfully</p>
+<p class="text-[10px] text-slate-400 font-bold uppercase">1 hour ago • Auto-cron</p>
+</div>
+</div>
+</div>
+<button class="mt-4 w-full py-2 bg-slate-100 dark:bg-slate-800 rounded-lg text-xs font-bold hover:bg-primary/10 hover:text-primary transition-colors">
+                        Download Full Audit Log
+                    </button>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="flex border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-4 pb-6 pt-2 sticky bottom-0">
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-primary" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1">dashboard</span>
+<p class="text-xs font-bold leading-normal tracking-tight">Status</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-400 hover:text-primary" href="#">
+<span class="material-symbols-outlined">group</span>
+<p class="text-xs font-medium leading-normal tracking-tight">Users</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-400 hover:text-primary" href="#">
+<span class="material-symbols-outlined">inventory</span>
+<p class="text-xs font-medium leading-normal tracking-tight">Suppliers</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-400 hover:text-primary" href="#">
+<span class="material-symbols-outlined">rule</span>
+<p class="text-xs font-medium leading-normal tracking-tight">Audit</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-400 hover:text-primary" href="#">
+<span class="material-symbols-outlined">settings_suggest</span>
+<p class="text-xs font-medium leading-normal tracking-tight">Config</p>
+</a>
+</nav>
+</div>
+</body></html>

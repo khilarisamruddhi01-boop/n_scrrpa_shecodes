@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>N-SCRRA Supplier Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ec5b13", // Theme Gold/Orange for N-SCRRA
+                        "background-light": "#f8f6f6",
+                        "background-dark": "#221610",
+                        "navy": "#0a192f",
+                        "gold-accent": "#ec5b13",
+                    },
+                    fontFamily: {
+                        "display": ["Public Sans"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Public Sans', sans-serif; }
+        .chart-bar { transition: height 0.3s ease; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen pb-20">
+<!-- AppBar -->
+<header class="sticky top-0 z-50 bg-navy text-white px-4 py-3 flex items-center justify-between shadow-md">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded-lg bg-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-white">storefront</span>
+</div>
+<div>
+<h1 class="text-lg font-bold leading-tight">Dashboard</h1>
+<p class="text-xs text-slate-300">N-SCRRA Supplier Portal</p>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-2 hover:bg-white/10 rounded-full relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 size-2 bg-red-500 rounded-full border-2 border-navy"></span>
+</button>
+<div class="size-9 rounded-full border-2 border-primary/50 overflow-hidden bg-slate-700" data-alt="User profile avatar circle">
+<img alt="Profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBt1U-UHnbGgheodjFxh4PyjvYGna8pBdv-I7fOaSkssaejDfYqKfPkMWPNd5GE4tE_kIti4CP96ZTGFdDovTFhGiGZ6R3iDLMwQcAz_48SjkGPuToSOYeBLAyC9-gfrMZApel9JkNckAZ9kHd82OvR4q7AVdmK2YopVfGDvvx5ju6LxSyKRqfpVBiHbyJ5aX7Xc5NLjK5jKWJ8jbMJw4hHkZpmcRNsPekgDdhONlesfYzIeNoj6J265jyNlbKr9etFoi7-GhhUM3Hi"/>
+</div>
+</div>
+</header>
+<main class="p-4 space-y-6 max-w-5xl mx-auto">
+<!-- Alerts Banner (Scrollable Chips) -->
+<section class="flex gap-3 overflow-x-auto pb-2 no-scrollbar">
+<div class="flex shrink-0 items-center gap-2 px-3 py-1.5 bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-400 rounded-full border border-red-200 dark:border-red-800 text-xs font-semibold">
+<span class="material-symbols-outlined text-sm">error</span>
+                Stock Critical: SKU-902
+            </div>
+<div class="flex shrink-0 items-center gap-2 px-3 py-1.5 bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400 rounded-full border border-amber-200 dark:border-amber-800 text-xs font-semibold">
+<span class="material-symbols-outlined text-sm">warning</span>
+                Port Congestion: Lagos
+            </div>
+<div class="flex shrink-0 items-center gap-2 px-3 py-1.5 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400 rounded-full border border-blue-200 dark:border-blue-800 text-xs font-semibold">
+<span class="material-symbols-outlined text-sm">info</span>
+                Policy Update 2024
+            </div>
+<div class="flex shrink-0 items-center gap-2 px-3 py-1.5 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 rounded-full border border-green-200 dark:border-green-800 text-xs font-semibold">
+<span class="material-symbols-outlined text-sm">check_circle</span>
+                Audit Passed
+            </div>
+</section>
+<!-- Stats Grid -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-4">
+<div class="bg-white dark:bg-slate-800 p-4 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 flex flex-col justify-between">
+<div>
+<div class="flex justify-between items-start mb-2">
+<p class="text-sm font-medium text-slate-500 dark:text-slate-400">Total Orders</p>
+<span class="material-symbols-outlined text-primary">shopping_cart</span>
+</div>
+<p class="text-3xl font-bold">1,284</p>
+</div>
+<div class="mt-4 flex gap-2">
+<span class="px-2 py-0.5 bg-amber-100 dark:bg-amber-900/40 text-amber-600 text-[10px] font-bold rounded uppercase">8 Pending</span>
+<span class="px-2 py-0.5 bg-green-100 dark:bg-green-900/40 text-green-600 text-[10px] font-bold rounded uppercase">42 Accepted</span>
+</div>
+</div>
+<div class="bg-white dark:bg-slate-800 p-4 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 flex flex-col justify-between">
+<div>
+<div class="flex justify-between items-start mb-2">
+<p class="text-sm font-medium text-slate-500 dark:text-slate-400">Active Shipments</p>
+<span class="material-symbols-outlined text-primary">local_shipping</span>
+</div>
+<p class="text-3xl font-bold">42</p>
+</div>
+<div class="mt-4">
+<p class="text-xs text-slate-500 dark:text-slate-400 flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">schedule</span>
+                        Avg ETA: 2.4 days
+                    </p>
+</div>
+</div>
+<div class="bg-white dark:bg-slate-800 p-4 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 flex flex-col justify-between">
+<div>
+<div class="flex justify-between items-start mb-2">
+<p class="text-sm font-medium text-slate-500 dark:text-slate-400">Monthly Revenue</p>
+<span class="material-symbols-outlined text-primary">payments</span>
+</div>
+<p class="text-3xl font-bold">₦4.2M</p>
+</div>
+<div class="mt-4 flex items-center gap-1 text-green-600 font-bold text-sm">
+<span class="material-symbols-outlined text-sm">trending_up</span>
+                    +5.8%
+                </div>
+</div>
+</section>
+<!-- Risk & Map Section -->
+<section class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+<!-- Map Preview -->
+<div class="lg:col-span-2 bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 overflow-hidden">
+<div class="p-4 border-b border-slate-100 dark:border-slate-700 flex justify-between items-center">
+<h3 class="font-bold text-sm">Customer Network Nodes</h3>
+<span class="text-[10px] bg-slate-100 dark:bg-slate-700 px-2 py-0.5 rounded text-slate-500">Live View</span>
+</div>
+<div class="h-[200px] w-full bg-slate-200 relative group" data-location="Nigeria" style="">
+<div class="absolute inset-0 bg-cover bg-center opacity-80" data-alt="Simplified top-down map showing logistics nodes" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAPy_uXa67z-NmRC8JYDtaa2S99KOooFN1A7uuCAGvgvvz4TWKsJsj9N32AWKwrxs0q-RwjXyH27m2Mc46a2Uuu7Fymyo5q62fM-h4gfuVc_hknTTcCuAIuvvRrVFXvlh-uxgm0JgkFP6KtYDAbc-S8XGcrkHgeISJ2zE_19DXbz5mmxMOmRwBgI0V0SYuWYVc4rT9Y4R5DXJVCobt2zkdFR0phyzZg4oOuyJdv9e8sdZqFrdzglUPqLB76Tqfd6i457mZZQzS9NROx')"></div>
+<div class="absolute top-1/2 left-1/3 size-3 bg-primary rounded-full ring-4 ring-primary/30"></div>
+<div class="absolute top-1/4 left-2/3 size-3 bg-primary rounded-full ring-4 ring-primary/30"></div>
+<div class="absolute top-2/3 left-1/2 size-3 bg-primary rounded-full ring-4 ring-primary/30"></div>
+<div class="absolute inset-0 bg-navy/10 group-hover:bg-transparent transition-colors"></div>
+</div>
+</div>
+<!-- Risk Badge -->
+<div class="bg-navy text-white rounded-xl shadow-lg p-6 flex flex-col items-center justify-center text-center relative overflow-hidden">
+<div class="absolute -top-10 -right-10 size-32 bg-primary/20 rounded-full blur-2xl"></div>
+<p class="text-xs uppercase tracking-widest text-slate-300 font-bold mb-4">Risk Exposure Index</p>
+<div class="relative flex items-center justify-center">
+<svg class="size-32 transform -rotate-90">
+<circle class="text-slate-700" cx="64" cy="64" fill="transparent" r="56" stroke="currentColor" stroke-width="8"></circle>
+<circle class="text-amber-500" cx="64" cy="64" fill="transparent" r="56" stroke="currentColor" stroke-dasharray="351.8" stroke-dashoffset="175.9" stroke-width="8"></circle>
+</svg>
+<div class="absolute inset-0 flex flex-col items-center justify-center">
+<span class="text-2xl font-black">MEDIUM</span>
+<span class="text-xs text-amber-500 font-bold">54/100</span>
+</div>
+</div>
+<button class="mt-6 text-xs bg-white/10 hover:bg-white/20 px-4 py-2 rounded-full font-bold border border-white/20">VIEW ANALYSIS</button>
+</div>
+</section>
+<!-- Charts Section -->
+<section class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Delivery Performance Bar Chart -->
+<div class="bg-white dark:bg-slate-800 p-6 rounded-xl border border-slate-200 dark:border-slate-700">
+<div class="flex justify-between items-center mb-6">
+<h3 class="font-bold text-sm">Delivery Performance</h3>
+<div class="flex gap-4 text-[10px] font-bold uppercase">
+<div class="flex items-center gap-1"><span class="size-2 bg-primary rounded-full"></span> On-time</div>
+<div class="flex items-center gap-1"><span class="size-2 bg-navy rounded-full dark:bg-slate-500"></span> Delayed</div>
+</div>
+</div>
+<div class="flex items-end justify-between h-40 gap-2 px-2">
+<div class="flex flex-col items-center gap-1 w-full">
+<div class="flex gap-1 w-full items-end h-full">
+<div class="bg-primary w-full rounded-t" style="height: 80%"></div>
+<div class="bg-navy dark:bg-slate-600 w-full rounded-t" style="height: 20%"></div>
+</div>
+<span class="text-[10px] font-bold text-slate-400">JAN</span>
+</div>
+<div class="flex flex-col items-center gap-1 w-full">
+<div class="flex gap-1 w-full items-end h-full">
+<div class="bg-primary w-full rounded-t" style="height: 90%"></div>
+<div class="bg-navy dark:bg-slate-600 w-full rounded-t" style="height: 10%"></div>
+</div>
+<span class="text-[10px] font-bold text-slate-400">FEB</span>
+</div>
+<div class="flex flex-col items-center gap-1 w-full">
+<div class="flex gap-1 w-full items-end h-full">
+<div class="bg-primary w-full rounded-t" style="height: 75%"></div>
+<div class="bg-navy dark:bg-slate-600 w-full rounded-t" style="height: 25%"></div>
+</div>
+<span class="text-[10px] font-bold text-slate-400">MAR</span>
+</div>
+<div class="flex flex-col items-center gap-1 w-full">
+<div class="flex gap-1 w-full items-end h-full">
+<div class="bg-primary w-full rounded-t" style="height: 85%"></div>
+<div class="bg-navy dark:bg-slate-600 w-full rounded-t" style="height: 15%"></div>
+</div>
+<span class="text-[10px] font-bold text-slate-400">APR</span>
+</div>
+<div class="flex flex-col items-center gap-1 w-full">
+<div class="flex gap-1 w-full items-end h-full">
+<div class="bg-primary w-full rounded-t" style="height: 95%"></div>
+<div class="bg-navy dark:bg-slate-600 w-full rounded-t" style="height: 5%"></div>
+</div>
+<span class="text-[10px] font-bold text-slate-400">MAY</span>
+</div>
+<div class="flex flex-col items-center gap-1 w-full">
+<div class="flex gap-1 w-full items-end h-full">
+<div class="bg-primary w-full rounded-t" style="height: 88%"></div>
+<div class="bg-navy dark:bg-slate-600 w-full rounded-t" style="height: 12%"></div>
+</div>
+<span class="text-[10px] font-bold text-slate-400">JUN</span>
+</div>
+</div>
+</div>
+<!-- Shipment Trends Line Chart Area -->
+<div class="bg-white dark:bg-slate-800 p-6 rounded-xl border border-slate-200 dark:border-slate-700">
+<div class="flex justify-between items-center mb-6">
+<h3 class="font-bold text-sm">Shipment Trends (8 Weeks)</h3>
+<span class="material-symbols-outlined text-slate-400 text-sm">more_horiz</span>
+</div>
+<div class="h-40 relative">
+<svg class="w-full h-full preserve-3d" viewbox="0 0 100 40">
+<path d="M0 35 Q 12.5 30, 25 32 T 50 15 T 75 25 T 100 5" fill="transparent" stroke="#ec5b13" stroke-width="2" vector-effect="non-scaling-stroke"></path>
+<path d="M0 35 Q 12.5 30, 25 32 T 50 15 T 75 25 T 100 5 V 40 H 0 Z" fill="url(#gradient)" opacity="0.1"></path>
+<defs>
+<lineargradient id="gradient" x1="0%" x2="0%" y1="0%" y2="100%">
+<stop offset="0%" style="stop-color:#ec5b13;stop-opacity:1"></stop>
+<stop offset="100%" style="stop-color:#ec5b13;stop-opacity:0"></stop>
+</lineargradient>
+</defs>
+</svg>
+<div class="absolute bottom-0 w-full flex justify-between px-1 text-[8px] font-bold text-slate-400">
+<span>W1</span><span>W2</span><span>W3</span><span>W4</span><span>W5</span><span>W6</span><span>W7</span><span>W8</span>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 right-0 bg-navy border-t border-slate-800 px-4 pb-4 pt-2 z-50 flex justify-between items-center">
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-primary" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<p class="text-[10px] font-bold uppercase tracking-wider">Home</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-400" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+<p class="text-[10px] font-bold uppercase tracking-wider">Orders</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-400" href="#">
+<span class="material-symbols-outlined">hub</span>
+<p class="text-[10px] font-bold uppercase tracking-wider">Network</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-400" href="#">
+<span class="material-symbols-outlined">account_circle</span>
+<p class="text-[10px] font-bold uppercase tracking-wider">Profile</p>
+</a>
+</nav>
+</body></html>

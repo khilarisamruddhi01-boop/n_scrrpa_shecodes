@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Risk Model Tuning (S40)</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ec5b13",
+                        "background-light": "#f8f6f6",
+                        "background-dark": "#221610",
+                    },
+                    fontFamily: {
+                        "display": ["Public Sans"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Public Sans', sans-serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .slider-thumb::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 18px;
+            height: 18px;
+            background: #ec5b13;
+            cursor: pointer;
+            border-radius: 50%;
+            border: 2px solid white;
+        }
+        .slider-thumb::-moz-range-thumb {
+            width: 18px;
+            height: 18px;
+            background: #ec5b13;
+            cursor: pointer;
+            border-radius: 50%;
+            border: 2px solid white;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen flex flex-col">
+<!-- Header -->
+<header class="sticky top-0 z-10 flex items-center bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-primary/10 p-4 justify-between">
+<div class="flex items-center gap-3">
+<div class="text-primary flex size-10 shrink-0 items-center justify-center rounded-lg bg-primary/10">
+<span class="material-symbols-outlined">arrow_back</span>
+</div>
+<div>
+<h1 class="text-slate-900 dark:text-slate-100 text-lg font-bold leading-tight tracking-tight">Risk Model Tuning (S40)</h1>
+<p class="text-slate-500 dark:text-slate-400 text-xs">Adjust sensitivity parameters</p>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<button class="flex size-10 items-center justify-center rounded-lg bg-primary text-white shadow-sm">
+<span class="material-symbols-outlined">save</span>
+</button>
+<button class="flex size-10 items-center justify-center rounded-lg border border-primary/20 text-slate-600 dark:text-slate-300">
+<span class="material-symbols-outlined">history</span>
+</button>
+</div>
+</header>
+<main class="flex-1 overflow-y-auto">
+<!-- Stats Overview -->
+<div class="grid grid-cols-2 gap-4 p-4">
+<div class="flex flex-col gap-1 rounded-xl p-5 border border-primary/10 bg-white dark:bg-slate-900/50 shadow-sm">
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium">Current Version</p>
+<div class="flex items-baseline gap-2">
+<p class="text-slate-900 dark:text-slate-100 text-2xl font-bold">v2.4.1</p>
+<span class="text-emerald-600 dark:text-emerald-400 text-xs font-bold px-1.5 py-0.5 rounded bg-emerald-100 dark:bg-emerald-900/30">LATEST</span>
+</div>
+</div>
+<div class="flex flex-col gap-1 rounded-xl p-5 border border-primary/10 bg-white dark:bg-slate-900/50 shadow-sm">
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium">Model Accuracy</p>
+<div class="flex items-baseline gap-2">
+<p class="text-slate-900 dark:text-slate-100 text-2xl font-bold">94.2%</p>
+<span class="text-primary text-xs font-medium">+0.5%</span>
+</div>
+</div>
+</div>
+<!-- Weight Tuning Section -->
+<div class="px-4 py-2">
+<div class="flex items-center justify-between mb-4">
+<h2 class="text-slate-900 dark:text-slate-100 text-xl font-bold tracking-tight">Risk Factor Weights</h2>
+<span class="text-xs font-semibold text-primary uppercase tracking-wider">Total: 100%</span>
+</div>
+<div class="space-y-1">
+<!-- Supply Chain Risk -->
+<div class="bg-white dark:bg-slate-900/40 rounded-xl p-4 mb-3 border border-slate-200 dark:border-slate-800 shadow-sm">
+<div class="flex items-center justify-between mb-3">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">inventory_2</span>
+<p class="text-slate-900 dark:text-slate-100 font-semibold">Supply Chain</p>
+</div>
+<span class="text-primary font-bold text-lg">45%</span>
+</div>
+<input class="w-full h-2 bg-slate-200 dark:bg-slate-700 rounded-lg appearance-none cursor-pointer accent-primary slider-thumb" type="range" value="45"/>
+<div class="flex justify-between mt-2">
+<span class="text-[10px] text-slate-400 uppercase font-bold">Low Impact</span>
+<span class="text-[10px] text-slate-400 uppercase font-bold">High Impact</span>
+</div>
+</div>
+<!-- Logistics Risk -->
+<div class="bg-white dark:bg-slate-900/40 rounded-xl p-4 mb-3 border border-slate-200 dark:border-slate-800 shadow-sm">
+<div class="flex items-center justify-between mb-3">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">local_shipping</span>
+<p class="text-slate-900 dark:text-slate-100 font-semibold">Logistics</p>
+</div>
+<span class="text-primary font-bold text-lg">20%</span>
+</div>
+<input class="w-full h-2 bg-slate-200 dark:bg-slate-700 rounded-lg appearance-none cursor-pointer accent-primary slider-thumb" type="range" value="20"/>
+</div>
+<!-- Geopolitical Risk -->
+<div class="bg-white dark:bg-slate-900/40 rounded-xl p-4 mb-3 border border-slate-200 dark:border-slate-800 shadow-sm">
+<div class="flex items-center justify-between mb-3">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">public</span>
+<p class="text-slate-900 dark:text-slate-100 font-semibold">Geopolitical</p>
+</div>
+<span class="text-primary font-bold text-lg">15%</span>
+</div>
+<input class="w-full h-2 bg-slate-200 dark:bg-slate-700 rounded-lg appearance-none cursor-pointer accent-primary slider-thumb" type="range" value="15"/>
+</div>
+<!-- Financial Risk -->
+<div class="bg-white dark:bg-slate-900/40 rounded-xl p-4 mb-3 border border-slate-200 dark:border-slate-800 shadow-sm">
+<div class="flex items-center justify-between mb-3">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">payments</span>
+<p class="text-slate-900 dark:text-slate-100 font-semibold">Financial</p>
+</div>
+<span class="text-primary font-bold text-lg">10%</span>
+</div>
+<input class="w-full h-2 bg-slate-200 dark:bg-slate-700 rounded-lg appearance-none cursor-pointer accent-primary slider-thumb" type="range" value="10"/>
+</div>
+<!-- Weather Risk -->
+<div class="bg-white dark:bg-slate-900/40 rounded-xl p-4 mb-3 border border-slate-200 dark:border-slate-800 shadow-sm">
+<div class="flex items-center justify-between mb-3">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">thermostat</span>
+<p class="text-slate-900 dark:text-slate-100 font-semibold">Weather</p>
+</div>
+<span class="text-primary font-bold text-lg">5%</span>
+</div>
+<input class="w-full h-2 bg-slate-200 dark:bg-slate-700 rounded-lg appearance-none cursor-pointer accent-primary slider-thumb" type="range" value="5"/>
+</div>
+<!-- Regulatory Risk -->
+<div class="bg-white dark:bg-slate-900/40 rounded-xl p-4 mb-3 border border-slate-200 dark:border-slate-800 shadow-sm">
+<div class="flex items-center justify-between mb-3">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">gavel</span>
+<p class="text-slate-900 dark:text-slate-100 font-semibold">Regulatory</p>
+</div>
+<span class="text-primary font-bold text-lg">5%</span>
+</div>
+<input class="w-full h-2 bg-slate-200 dark:bg-slate-700 rounded-lg appearance-none cursor-pointer accent-primary slider-thumb" type="range" value="5"/>
+</div>
+</div>
+</div>
+<!-- Simulation Preview Map/Graph (Visual Anchor) -->
+<div class="p-4 mb-20">
+<div class="relative w-full aspect-video rounded-xl overflow-hidden border border-slate-200 dark:border-slate-800 bg-slate-100 dark:bg-slate-900">
+<div class="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent"></div>
+<img alt="Global Network Map" class="w-full h-full object-cover opacity-60 dark:opacity-40 grayscale" data-alt="Abstract world map with data points" data-location="Global" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD-EOH5TlqLQPUerwaJ0sC3XElguMd0RgWS6_3aLTZX-oBtIf4rCmXQpQVIVMZ6SX-GgaB6B_DPHGat2AVEnGKKAfMURstDZmnu2fiSOPbQyxO-NN6GlGdpqwyMNLtZBXtchYo5nJEk7x4AQ54IC5hLH8D6a7LYwwAofVtGZZ9bIIOaYO4pp_9KL6mmu84Utijnc5_hCwFet237pUMniX1sCcXU7X5NLJehQh4jsZlwv2OPeXp2L7jcfpm0WIG4npERimonrN2MoBi4"/>
+<div class="absolute inset-0 flex flex-col items-center justify-center p-6 text-center">
+<div class="bg-white/90 dark:bg-slate-900/90 backdrop-blur-sm p-4 rounded-lg shadow-xl border border-primary/20 max-w-xs">
+<p class="text-xs font-bold text-primary uppercase mb-1">Impact Projection</p>
+<p class="text-sm text-slate-700 dark:text-slate-300">Tuning suggests a 12% decrease in supply chain volatility based on current weights.</p>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 left-0 right-0 flex border-t border-slate-200 dark:border-slate-800 bg-white/95 dark:bg-background-dark/95 backdrop-blur-sm px-4 pb-6 pt-3 z-50">
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-400 dark:text-slate-500" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<p class="text-[10px] font-semibold uppercase tracking-wider">Dashboard</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-primary" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">analytics</span>
+<p class="text-[10px] font-semibold uppercase tracking-wider">Models</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-400 dark:text-slate-500" href="#">
+<span class="material-symbols-outlined">science</span>
+<p class="text-[10px] font-semibold uppercase tracking-wider">Simulate</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-400 dark:text-slate-500" href="#">
+<span class="material-symbols-outlined">settings</span>
+<p class="text-[10px] font-semibold uppercase tracking-wider">Settings</p>
+</a>
+</nav>
+</body></html>

@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Cascade Simulation S29</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ec5b13",
+                        "background-light": "#f8f6f6",
+                        "background-dark": "#221610",
+                    },
+                    fontFamily: {
+                        "display": ["Public Sans"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Public Sans', sans-serif; }
+        .node-ripple {
+            position: relative;
+        }
+        .node-ripple::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 2px solid #ec5b13;
+            opacity: 0.5;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display">
+<div class="flex h-screen overflow-hidden">
+<!-- Sidebar: Impact Metrics -->
+<aside class="w-80 border-r border-primary/10 bg-white dark:bg-background-dark/50 p-6 flex flex-col gap-6 overflow-y-auto">
+<div class="flex items-center gap-3">
+<div class="p-2 bg-primary rounded-lg text-white">
+<span class="material-symbols-outlined">hub</span>
+</div>
+<h1 class="text-xl font-bold tracking-tight">Cascade S29</h1>
+</div>
+<div class="space-y-4">
+<h3 class="text-sm font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Impact Metrics</h3>
+<div class="p-4 rounded-xl bg-primary/5 border border-primary/10">
+<p class="text-xs font-medium text-slate-500 dark:text-slate-400">Nodes Affected</p>
+<div class="flex items-end justify-between mt-1">
+<span class="text-3xl font-bold text-primary">1,284</span>
+<span class="text-xs font-bold text-red-500 flex items-center mb-1">
+<span class="material-symbols-outlined text-sm">trending_up</span> 12%
+                        </span>
+</div>
+</div>
+<div class="p-4 rounded-xl bg-primary/5 border border-primary/10">
+<p class="text-xs font-medium text-slate-500 dark:text-slate-400">Revenue at Risk</p>
+<div class="flex items-end justify-between mt-1">
+<span class="text-3xl font-bold text-slate-900 dark:text-slate-100">$4.2M</span>
+<span class="text-xs font-bold text-red-500 flex items-center mb-1">
+<span class="material-symbols-outlined text-sm">warning</span> High
+                        </span>
+</div>
+</div>
+<div class="p-4 rounded-xl bg-slate-100 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700">
+<p class="text-xs font-medium text-slate-500 dark:text-slate-400">Avg. Propagation Speed</p>
+<div class="flex items-end justify-between mt-1">
+<span class="text-2xl font-bold">42ms</span>
+<span class="text-xs text-slate-400">Stable</span>
+</div>
+</div>
+</div>
+<div class="mt-auto pt-6 border-t border-slate-200 dark:border-slate-800">
+<div class="flex items-center gap-3 p-3 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 cursor-pointer transition-colors">
+<span class="material-symbols-outlined text-slate-500">settings</span>
+<span class="font-medium">Simulation Settings</span>
+</div>
+<div class="flex items-center gap-3 p-3 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 cursor-pointer transition-colors">
+<span class="material-symbols-outlined text-slate-500">help_outline</span>
+<span class="font-medium">Documentation</span>
+</div>
+</div>
+</aside>
+<!-- Main Workspace -->
+<main class="flex-1 flex flex-col relative">
+<!-- Header Nav -->
+<header class="h-16 border-b border-primary/10 px-6 flex items-center justify-between bg-white/80 dark:bg-background-dark/80 backdrop-blur-md z-10">
+<div class="flex gap-8">
+<a class="relative flex flex-col items-center justify-center text-primary font-bold text-sm py-5" href="#">
+                        Simulation Mode
+                        <div class="absolute bottom-0 w-full h-1 bg-primary rounded-t-full"></div>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-500 dark:text-slate-400 font-bold text-sm py-5 hover:text-primary transition-colors" href="#">
+                        Graph View
+                    </a>
+</div>
+<div class="flex items-center gap-4">
+<button class="flex items-center gap-2 px-4 py-2 rounded-lg bg-slate-100 dark:bg-slate-800 font-semibold text-sm hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">
+<span class="material-symbols-outlined text-sm">download</span>
+                        Export Report
+                    </button>
+<button class="p-2 rounded-lg bg-primary text-white shadow-lg shadow-primary/20 hover:bg-primary/90 transition-all">
+<span class="material-symbols-outlined">save</span>
+</button>
+</div>
+</header>
+<!-- Simulation Canvas -->
+<div class="flex-1 bg-slate-50 dark:bg-background-dark relative overflow-hidden flex items-center justify-center">
+<!-- Grid Overlay -->
+<div class="absolute inset-0 opacity-[0.03] dark:opacity-[0.07]" style="background-image: radial-gradient(#ec5b13 0.5px, transparent 0.5px); background-size: 24px 24px;"></div>
+<!-- Mock Network Graph -->
+<div class="relative w-full h-full p-12">
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px]">
+<!-- Connecting Lines (SVG) -->
+<svg class="absolute inset-0 w-full h-full text-primary/20" viewbox="0 0 600 400">
+<line stroke="currentColor" stroke-width="2" x1="300" x2="150" y1="200" y2="100"></line>
+<line stroke="currentColor" stroke-width="2" x1="300" x2="450" y1="200" y2="100"></line>
+<line stroke="currentColor" stroke-width="2" x1="300" x2="300" y1="200" y2="350"></line>
+<line stroke="currentColor" stroke-width="1" x1="150" x2="50" y1="100" y2="150"></line>
+<line stroke="currentColor" stroke-width="1" x1="450" x2="550" y1="100" y2="150"></line>
+</svg>
+<!-- Trigger Node with Ripple -->
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 group">
+<div class="node-ripple w-12 h-12 bg-primary rounded-full flex items-center justify-center shadow-xl shadow-primary/40 cursor-pointer z-20 relative">
+<span class="material-symbols-outlined text-white">bolt</span>
+</div>
+<div class="absolute -top-10 left-1/2 -translate-x-1/2 bg-slate-900 text-white text-[10px] px-2 py-1 rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity">
+                                Trigger Node: Alpha-7
+                            </div>
+</div>
+<!-- Secondary Nodes -->
+<div class="absolute top-[100px] left-[150px] -translate-x-1/2 -translate-y-1/2">
+<div class="w-8 h-8 border-2 border-primary bg-white dark:bg-background-dark rounded-full flex items-center justify-center shadow-md">
+<div class="w-2 h-2 bg-primary rounded-full animate-pulse"></div>
+</div>
+</div>
+<div class="absolute top-[100px] left-[450px] -translate-x-1/2 -translate-y-1/2">
+<div class="w-8 h-8 border-2 border-primary bg-white dark:bg-background-dark rounded-full flex items-center justify-center shadow-md">
+<div class="w-2 h-2 bg-primary rounded-full animate-pulse"></div>
+</div>
+</div>
+<div class="absolute top-[350px] left-[300px] -translate-x-1/2 -translate-y-1/2">
+<div class="w-8 h-8 border-2 border-slate-300 dark:border-slate-600 bg-white dark:bg-background-dark rounded-full flex items-center justify-center shadow-md">
+<div class="w-2 h-2 bg-slate-300 dark:bg-slate-600 rounded-full"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Simulation Info Toast -->
+<div class="absolute top-6 left-1/2 -translate-x-1/2 bg-white/90 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-700 px-4 py-2 rounded-full shadow-lg flex items-center gap-4 text-sm font-medium">
+<span class="flex h-2 w-2 rounded-full bg-primary animate-pulse"></span>
+                    Simulation Running: Cascade Event S29
+                    <span class="text-slate-400">|</span>
+                    Step 142/500
+                </div>
+</div>
+<!-- Bottom Control Panel -->
+<footer class="bg-white dark:bg-background-dark border-t border-primary/10 p-4 space-y-4 shadow-2xl">
+<div class="flex items-center gap-6">
+<!-- Transport Controls -->
+<div class="flex items-center gap-2 bg-slate-100 dark:bg-slate-800 p-1 rounded-xl">
+<button class="p-2 text-slate-600 dark:text-slate-300 hover:bg-white dark:hover:bg-slate-700 rounded-lg transition-colors">
+<span class="material-symbols-outlined">restart_alt</span>
+</button>
+<button class="p-2 text-slate-600 dark:text-slate-300 hover:bg-white dark:hover:bg-slate-700 rounded-lg transition-colors">
+<span class="material-symbols-outlined">skip_previous</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center bg-primary text-white rounded-lg shadow-lg shadow-primary/30 hover:scale-105 transition-transform">
+<span class="material-symbols-outlined">play_arrow</span>
+</button>
+<button class="p-2 text-slate-600 dark:text-slate-300 hover:bg-white dark:hover:bg-slate-700 rounded-lg transition-colors">
+<span class="material-symbols-outlined">skip_next</span>
+</button>
+<button class="p-2 text-slate-600 dark:text-slate-300 hover:bg-white dark:hover:bg-slate-700 rounded-lg transition-colors">
+<span class="material-symbols-outlined">stop</span>
+</button>
+</div>
+<!-- Timeline Slider -->
+<div class="flex-1 flex flex-col gap-1">
+<div class="flex justify-between text-[10px] font-bold text-slate-500 uppercase tracking-tighter">
+<span>00:00:00</span>
+<span class="text-primary">Current: 00:14:22</span>
+<span>01:00:00</span>
+</div>
+<div class="relative w-full h-1.5 bg-slate-200 dark:bg-slate-700 rounded-full cursor-pointer group">
+<div class="absolute top-0 left-0 h-full w-[42%] bg-primary rounded-full"></div>
+<div class="absolute top-1/2 left-[42%] -translate-x-1/2 -translate-y-1/2 w-4 h-4 bg-white border-2 border-primary rounded-full shadow-md group-hover:scale-125 transition-transform"></div>
+</div>
+</div>
+<!-- Speed & Volume Controls -->
+<div class="flex items-center gap-4 border-l border-slate-200 dark:border-slate-700 pl-6">
+<div class="flex items-center gap-2">
+<span class="text-xs font-bold text-slate-500">SPEED</span>
+<select class="bg-transparent border-none text-sm font-bold focus:ring-0 p-0 cursor-pointer">
+<option>1.0x</option>
+<option>2.0x</option>
+<option>0.5x</option>
+</select>
+</div>
+<button class="p-2 text-slate-500 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">layers</span>
+</button>
+</div>
+</div>
+<!-- Bottom Navigation Bar for Mobile/Quick Access -->
+<div class="flex justify-around pt-2 border-t border-slate-100 dark:border-slate-800 lg:hidden">
+<a class="flex flex-col items-center gap-1 text-primary" href="#">
+<span class="material-symbols-outlined">play_circle</span>
+<p class="text-[10px] font-bold uppercase">Simulate</p>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400" href="#">
+<span class="material-symbols-outlined">history</span>
+<p class="text-[10px] font-bold uppercase">History</p>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400" href="#">
+<span class="material-symbols-outlined">bar_chart</span>
+<p class="text-[10px] font-bold uppercase">Reports</p>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400" href="#">
+<span class="material-symbols-outlined">settings</span>
+<p class="text-[10px] font-bold uppercase">Settings</p>
+</a>
+</div>
+</footer>
+</main>
+<!-- Right Tool Panel (Collapsed for cleaner UI) -->
+<div class="w-14 border-l border-primary/10 bg-white dark:bg-background-dark/50 flex flex-col items-center py-6 gap-6">
+<button class="p-2 rounded-lg text-slate-400 hover:text-primary transition-colors" title="Zoom In">
+<span class="material-symbols-outlined">zoom_in</span>
+</button>
+<button class="p-2 rounded-lg text-slate-400 hover:text-primary transition-colors" title="Zoom Out">
+<span class="material-symbols-outlined">zoom_out</span>
+</button>
+<div class="w-8 h-px bg-slate-200 dark:bg-slate-700"></div>
+<button class="p-2 rounded-lg text-slate-400 hover:text-primary transition-colors" title="Filter Nodes">
+<span class="material-symbols-outlined">filter_list</span>
+</button>
+<button class="p-2 rounded-lg text-slate-400 hover:text-primary transition-colors" title="Layers">
+<span class="material-symbols-outlined">layers</span>
+</button>
+<button class="p-2 rounded-lg text-primary bg-primary/10 transition-colors" title="Inspect">
+<span class="material-symbols-outlined">search</span>
+</button>
+</div>
+</div>
+</body></html>

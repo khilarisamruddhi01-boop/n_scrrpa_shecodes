@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Supplier Feedback</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ec5b13",
+                        "background-light": "#f8f6f6",
+                        "background-dark": "#221610",
+                    },
+                    fontFamily: {
+                        "display": ["Public Sans"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .filled-star {
+            font-variation-settings: 'FILL' 1;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen">
+<!-- Top App Bar -->
+<header class="sticky top-0 z-50 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 px-4 py-3 flex items-center gap-4">
+<button class="p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full transition-colors">
+<span class="material-symbols-outlined block">arrow_back</span>
+</button>
+<h1 class="text-xl font-bold tracking-tight">Supplier Feedback</h1>
+</header>
+<main class="max-w-2xl mx-auto p-4 space-y-8 pb-24">
+<!-- Shipment Selector -->
+<section class="space-y-2">
+<label class="text-sm font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Select Shipment</label>
+<div class="relative">
+<select class="w-full h-14 pl-4 pr-10 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl appearance-none focus:ring-2 focus:ring-primary focus:border-primary transition-all outline-none">
+<option value="">Choose a completed shipment</option>
+<option value="SHP-98322">SHP-98322 - Industrial Parts (Delivered Oct 24)</option>
+<option value="SHP-98401">SHP-98401 - Raw Steel Coils (Delivered Oct 22)</option>
+<option value="SHP-98115">SHP-98115 - Circuit Boards (Delivered Oct 19)</option>
+</select>
+<span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400">unfold_more</span>
+</div>
+</section>
+<!-- Overall Rating -->
+<section class="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm">
+<h2 class="text-lg font-bold mb-4">Overall Performance</h2>
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-4xl text-primary filled-star">star</span>
+<span class="material-symbols-outlined text-4xl text-primary filled-star">star</span>
+<span class="material-symbols-outlined text-4xl text-primary filled-star">star</span>
+<span class="material-symbols-outlined text-4xl text-primary filled-star">star</span>
+<span class="material-symbols-outlined text-4xl text-slate-300 dark:text-slate-600">star</span>
+<span class="ml-4 text-2xl font-black text-slate-900 dark:text-white">4.0</span>
+</div>
+<p class="text-sm text-slate-500 dark:text-slate-400">Tap a star to rate the overall experience with Stop A.</p>
+</section>
+<!-- Category Ratings -->
+<section class="space-y-4">
+<h3 class="text-sm font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 px-1">Specific Categories</h3>
+<div class="grid gap-4">
+<!-- Delivery Speed -->
+<div class="bg-white dark:bg-slate-800 p-4 rounded-xl border border-slate-200 dark:border-slate-700 flex items-center justify-between">
+<span class="font-medium">Delivery Speed</span>
+<div class="flex gap-1 text-primary">
+<span class="material-symbols-outlined text-xl filled-star">star</span>
+<span class="material-symbols-outlined text-xl filled-star">star</span>
+<span class="material-symbols-outlined text-xl filled-star">star</span>
+<span class="material-symbols-outlined text-xl filled-star">star</span>
+<span class="material-symbols-outlined text-xl filled-star">star</span>
+</div>
+</div>
+<!-- Packaging Quality -->
+<div class="bg-white dark:bg-slate-800 p-4 rounded-xl border border-slate-200 dark:border-slate-700 flex items-center justify-between">
+<span class="font-medium">Packaging Quality</span>
+<div class="flex gap-1 text-primary">
+<span class="material-symbols-outlined text-xl filled-star">star</span>
+<span class="material-symbols-outlined text-xl filled-star">star</span>
+<span class="material-symbols-outlined text-xl filled-star">star</span>
+<span class="material-symbols-outlined text-xl">star</span>
+<span class="material-symbols-outlined text-xl">star</span>
+</div>
+</div>
+<!-- Communication -->
+<div class="bg-white dark:bg-slate-800 p-4 rounded-xl border border-slate-200 dark:border-slate-700 flex items-center justify-between">
+<span class="font-medium">Communication</span>
+<div class="flex gap-1 text-primary">
+<span class="material-symbols-outlined text-xl filled-star">star</span>
+<span class="material-symbols-outlined text-xl filled-star">star</span>
+<span class="material-symbols-outlined text-xl filled-star">star</span>
+<span class="material-symbols-outlined text-xl filled-star">star</span>
+<span class="material-symbols-outlined text-xl">star</span>
+</div>
+</div>
+<!-- Product Quality -->
+<div class="bg-white dark:bg-slate-800 p-4 rounded-xl border border-slate-200 dark:border-slate-700 flex items-center justify-between">
+<span class="font-medium">Product Quality</span>
+<div class="flex gap-1 text-primary">
+<span class="material-symbols-outlined text-xl filled-star">star</span>
+<span class="material-symbols-outlined text-xl filled-star">star</span>
+<span class="material-symbols-outlined text-xl filled-star">star</span>
+<span class="material-symbols-outlined text-xl filled-star">star</span>
+<span class="material-symbols-outlined text-xl filled-star">star</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Comments Section -->
+<section class="space-y-2">
+<div class="flex justify-between items-end">
+<label class="text-sm font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Comments &amp; Observations</label>
+<span class="text-xs text-slate-400">124 / 500</span>
+</div>
+<textarea class="w-full p-4 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all outline-none resize-none" placeholder="Share your experience regarding the shipment handling, documentation, or product condition..." rows="4">The delivery arrived 2 hours ahead of schedule. Packaging was intact, though one of the outer pallets had some moisture on the shrink wrap. Overall very satisfied with the communication.</textarea>
+</section>
+<!-- Photo Grid -->
+<section class="space-y-3">
+<label class="text-sm font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 px-1">Attach Photos</label>
+<div class="grid grid-cols-3 sm:grid-cols-4 gap-3">
+<div class="aspect-square rounded-xl bg-slate-200 dark:bg-slate-700 overflow-hidden relative group">
+<img alt="Pallet of boxes in a warehouse" class="w-full h-full object-cover" data-alt="Warehouse shipment pallet ready for inspection" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAhD-B1DacLDsUF7OfX2IQ8QjyDAUpB9R4Q4C_UnWF0Zn3TzBm99DHOH6uNryanGwMQSveqTbHXsP0QcX5IMSUgby-Xa1bW14JffwJdEgLp55m0IIoBMLXw7DIkSgMPMXxIo-sWtyd74ITc9-xDgyKaQrk9JqtljvY8BsX9ajawL8mbJE_bmghZD_ndh6FU5IxXdcIWJdJmnAgQvtypboPxtFsAtiqLyhVcbelzmqxdQJTbDWaVUpGwBHRsvhgNlhN-j6-iyIxxIOhE"/>
+<button class="absolute top-1 right-1 bg-black/50 text-white rounded-full p-1 scale-75">
+<span class="material-symbols-outlined text-sm">close</span>
+</button>
+</div>
+<div class="aspect-square rounded-xl bg-slate-200 dark:bg-slate-700 overflow-hidden relative group">
+<img alt="Cardboard box packaging detail" class="w-full h-full object-cover" data-alt="Close up of packaging quality check" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCEC64rwEGUWrRFqZJDbeJPLgls65uCQTN_dP-svM5y1mkkdbQw5u91oUSSqeCVxP8Nn9sUB-krWRqLI1ZP-oy8hOwVUXptu0g0qZmj0hNfThT4byvueD-q5uVEeF7mtpEioL55mXbUVFH-18FLgfWO54QFBVxuQyNv-HusT-jQ4Y3IBW-gJlDK3SQ58j0LuaY4YdtQdn5dL8OuwdqvvORJogidtsY7ibaLqaQ1zOzyW3Qj24T1ouZdFh8Y_MpyaNg3kR0boAm9uAsN"/>
+<button class="absolute top-1 right-1 bg-black/50 text-white rounded-full p-1 scale-75">
+<span class="material-symbols-outlined text-sm">close</span>
+</button>
+</div>
+<button class="aspect-square rounded-xl border-2 border-dashed border-slate-300 dark:border-slate-700 flex flex-col items-center justify-center text-slate-400 hover:border-primary hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-3xl">add_a_photo</span>
+<span class="text-[10px] mt-1 font-bold">ADD PHOTO</span>
+</button>
+</div>
+</section>
+<!-- Anonymous Toggle -->
+<section class="bg-white dark:bg-slate-800 p-4 rounded-xl border border-slate-200 dark:border-slate-700 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">visibility_off</span>
+</div>
+<div>
+<p class="font-bold">Submit Anonymously</p>
+<p class="text-xs text-slate-500 dark:text-slate-400">Your company name will be hidden from the supplier.</p>
+</div>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox" value=""/>
+<div class="w-11 h-6 bg-slate-200 peer-focus:outline-none rounded-full peer dark:bg-slate-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-primary"></div>
+</label>
+</section>
+<!-- Submit Button Container -->
+<div class="fixed bottom-0 left-0 right-0 p-4 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-t border-slate-200 dark:border-slate-800">
+<div class="max-w-2xl mx-auto">
+<button class="w-full bg-primary hover:bg-primary/90 text-white font-bold py-4 rounded-xl shadow-lg shadow-primary/20 transition-all active:scale-[0.98] flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">send</span>
+                    Submit Feedback
+                </button>
+</div>
+</div>
+</main>
+</body></html>

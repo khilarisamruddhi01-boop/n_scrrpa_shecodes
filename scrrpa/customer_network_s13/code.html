@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Customer Network - N-SCRRA</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1E3A5F", // Navy Blue for Supplier/Primary
+                        "accent": "#2E9CCA",  // Accent Blue for nodes
+                        "background-light": "#f8f6f6",
+                        "background-dark": "#221610",
+                        "risk-low": "#22c55e",
+                        "risk-medium": "#eab308",
+                        "risk-high": "#ef4444",
+                    },
+                    fontFamily: {
+                        "display": ["Public Sans"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 antialiased">
+<div class="relative flex min-h-screen w-full flex-col max-w-md mx-auto overflow-x-hidden border-x border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950">
+<!-- App Bar -->
+<div class="flex items-center bg-white dark:bg-slate-900 p-4 border-b border-slate-100 dark:border-slate-800 sticky top-0 z-20">
+<div class="text-primary dark:text-accent flex size-10 shrink-0 items-center justify-center cursor-pointer">
+<span class="material-symbols-outlined">arrow_back</span>
+</div>
+<h2 class="text-slate-900 dark:text-white text-lg font-bold leading-tight tracking-tight flex-1 text-center pr-10">Customer Network</h2>
+</div>
+<!-- Search & Filter Bar -->
+<div class="px-4 py-3 bg-white dark:bg-slate-900 space-y-3 shadow-sm">
+<label class="flex flex-col min-w-40 h-11 w-full">
+<div class="flex w-full flex-1 items-stretch rounded-xl h-full border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800">
+<div class="text-slate-400 flex items-center justify-center pl-4">
+<span class="material-symbols-outlined">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-slate-900 dark:text-white focus:outline-0 focus:ring-0 border-none bg-transparent placeholder:text-slate-400 px-4 pl-2 text-sm font-normal leading-normal" placeholder="Search by sector or risk level..." value=""/>
+</div>
+</label>
+<div class="flex gap-2 overflow-x-auto pb-1 scrollbar-hide no-scrollbar">
+<button class="flex h-8 shrink-0 items-center justify-center gap-x-1 rounded-full bg-primary/10 dark:bg-primary/30 px-3 border border-primary/20">
+<p class="text-primary dark:text-blue-300 text-xs font-semibold">All Sectors</p>
+<span class="material-symbols-outlined text-[16px]">keyboard_arrow_down</span>
+</button>
+<button class="flex h-8 shrink-0 items-center justify-center gap-x-1 rounded-full bg-risk-low/10 px-3 border border-risk-low/20">
+<p class="text-risk-low text-xs font-semibold">Low Risk</p>
+</button>
+<button class="flex h-8 shrink-0 items-center justify-center gap-x-1 rounded-full bg-risk-medium/10 px-3 border border-risk-medium/20">
+<p class="text-risk-medium text-xs font-semibold">Medium</p>
+</button>
+<button class="flex h-8 shrink-0 items-center justify-center gap-x-1 rounded-full bg-risk-high/10 px-3 border border-risk-high/20">
+<p class="text-risk-high text-xs font-semibold">High Risk</p>
+</button>
+</div>
+</div>
+<!-- Interactive Graph Canvas (Simulated) -->
+<div class="relative flex-1 bg-slate-50 dark:bg-slate-950 overflow-hidden min-h-[400px]">
+<!-- SVG Simulation of Network -->
+<svg class="absolute inset-0 w-full h-full" viewbox="0 0 400 500" xmlns="http://www.w3.org/2000/svg">
+<!-- Connections (Edges) -->
+<line opacity="0.6" stroke="#CBD5E1" stroke-width="4" x1="200" x2="80" y1="250" y2="120"></line>
+<line opacity="0.4" stroke="#CBD5E1" stroke-width="2" x1="200" x2="320" y1="250" y2="150"></line>
+<line opacity="0.7" stroke="#CBD5E1" stroke-width="5" x1="200" x2="100" y1="250" y2="380"></line>
+<line opacity="0.5" stroke="#CBD5E1" stroke-width="3" x1="200" x2="300" y1="250" y2="350"></line>
+<line opacity="0.3" stroke="#CBD5E1" stroke-width="1.5" x1="200" x2="220" y1="250" y2="80"></line>
+<!-- Nodes -->
+<!-- Supplier Node (Stop A) -->
+<circle class="drop-shadow-lg" cx="200" cy="250" fill="#1E3A5F" r="32"></circle>
+<text fill="white" font-family="Public Sans" font-size="10" font-weight="bold" text-anchor="middle" x="200" y="254">Stop A</text>
+<text fill="#1E3A5F" font-family="Public Sans" font-size="11" font-weight="bold" text-anchor="middle" x="200" y="295">Supplier</text>
+<!-- Customer Node: High Risk (Stop B) -->
+<circle class="drop-shadow-md" cx="80" cy="120" fill="#ef4444" r="22"></circle>
+<text fill="white" font-family="Public Sans" font-size="9" text-anchor="middle" x="80" y="124">Stop B</text>
+<text fill="#475569" font-family="Public Sans" font-size="10" text-anchor="middle" x="80" y="155">TechFlow</text>
+<!-- Customer Node: Low Risk -->
+<circle class="drop-shadow-md" cx="320" cy="150" fill="#22c55e" r="18"></circle>
+<text fill="#475569" font-family="Public Sans" font-size="10" text-anchor="middle" x="320" y="180">LogiCorp</text>
+<!-- Customer Node: Medium Risk -->
+<circle class="drop-shadow-md" cx="100" cy="380" fill="#eab308" r="26"></circle>
+<text fill="#475569" font-family="Public Sans" font-size="10" text-anchor="middle" x="100" y="420">BuildIt Ltd</text>
+<!-- Customer Node: Low Risk small -->
+<circle class="drop-shadow-md" cx="300" cy="350" fill="#22c55e" r="20"></circle>
+<text fill="#475569" font-family="Public Sans" font-size="10" text-anchor="middle" x="300" y="385">EcoSystems</text>
+<!-- Customer Node: Medium Risk small -->
+<circle class="drop-shadow-md" cx="220" cy="80" fill="#eab308" r="15"></circle>
+<text fill="#475569" font-family="Public Sans" font-size="10" text-anchor="middle" x="220" y="108">FastTrack</text>
+</svg>
+<!-- Zoom Controls -->
+<div class="absolute bottom-6 right-4 flex flex-col gap-2">
+<button class="bg-white dark:bg-slate-800 p-2 rounded-lg shadow-md border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300">
+<span class="material-symbols-outlined">add</span>
+</button>
+<button class="bg-white dark:bg-slate-800 p-2 rounded-lg shadow-md border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300">
+<span class="material-symbols-outlined">remove</span>
+</button>
+<button class="bg-white dark:bg-slate-800 p-2 rounded-lg shadow-md border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300">
+<span class="material-symbols-outlined">center_focus_strong</span>
+</button>
+</div>
+</div>
+<!-- Legend Section -->
+<div class="bg-white dark:bg-slate-900 px-6 py-5 border-t border-slate-100 dark:border-slate-800">
+<h3 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4">Legend</h3>
+<div class="grid grid-cols-2 gap-y-4">
+<div class="flex items-center gap-3">
+<div class="size-3 rounded-full bg-risk-low"></div>
+<span class="text-sm font-medium">Low Risk</span>
+</div>
+<div class="flex items-center gap-3">
+<div class="size-3 rounded-full bg-risk-medium"></div>
+<span class="text-sm font-medium">Medium Risk</span>
+</div>
+<div class="flex items-center gap-3">
+<div class="size-3 rounded-full bg-risk-high"></div>
+<span class="text-sm font-medium">High Risk</span>
+</div>
+<div class="flex items-center gap-3">
+<div class="size-3 rounded-full bg-primary"></div>
+<span class="text-sm font-medium">Supplier</span>
+</div>
+</div>
+<div class="mt-6 space-y-3">
+<div class="flex items-center justify-between">
+<span class="text-xs text-slate-500">Node Size = Order Volume</span>
+<div class="flex gap-1">
+<div class="size-2 rounded-full bg-slate-300"></div>
+<div class="size-3 rounded-full bg-slate-300"></div>
+<div class="size-4 rounded-full bg-slate-300"></div>
+</div>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-xs text-slate-500">Edge Width = Frequency</span>
+<div class="flex items-center gap-2 h-4">
+<div class="w-8 h-[1px] bg-slate-300"></div>
+<div class="w-8 h-[3px] bg-slate-300"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Bottom Navigation Bar -->
+<div class="flex gap-2 border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-4 pb-6 pt-2 sticky bottom-0">
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-400 dark:text-slate-500 hover:text-primary dark:hover:text-accent" href="#">
+<span class="material-symbols-outlined">package_2</span>
+<p class="text-[10px] font-medium leading-normal tracking-tight">Orders</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-400 dark:text-slate-500 hover:text-primary dark:hover:text-accent" href="#">
+<span class="material-symbols-outlined">warehouse</span>
+<p class="text-[10px] font-medium leading-normal tracking-tight">Stock</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-primary dark:text-accent" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1">insights</span>
+<p class="text-[10px] font-semibold leading-normal tracking-tight">Insights</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-400 dark:text-slate-500 hover:text-primary dark:hover:text-accent" href="#">
+<span class="material-symbols-outlined">settings_suggest</span>
+<p class="text-[10px] font-medium leading-normal tracking-tight">System</p>
+</a>
+</div>
+</div>
+</body></html>

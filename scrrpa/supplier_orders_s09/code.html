@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Supplier Orders - N-SCRRA</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ec5b13",
+                        "background-light": "#f8f6f6",
+                        "background-dark": "#221610",
+                    },
+                    fontFamily: {
+                        "display": ["Public Sans"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Public Sans', sans-serif; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display">
+<div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
+<!-- Header Section -->
+<header class="sticky top-0 z-20 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-primary/10">
+<div class="flex items-center p-4 justify-between">
+<div class="flex items-center gap-3">
+<div class="bg-primary/10 p-2 rounded-lg">
+<span class="material-symbols-outlined text-primary">factory</span>
+</div>
+<div>
+<h1 class="text-xl font-bold leading-tight tracking-tight">N-SCRRA</h1>
+<p class="text-xs text-slate-500 dark:text-slate-400 uppercase tracking-wider font-semibold">Stop A: Supply Flow</p>
+</div>
+</div>
+<div class="flex gap-2">
+<button class="flex size-10 items-center justify-center rounded-full bg-slate-200 dark:bg-slate-800">
+<span class="material-symbols-outlined text-slate-700 dark:text-slate-300">notifications</span>
+</button>
+<button class="flex size-10 items-center justify-center rounded-full bg-slate-200 dark:bg-slate-800">
+<span class="material-symbols-outlined text-slate-700 dark:text-slate-300">person</span>
+</button>
+</div>
+</div>
+<!-- Search & Filters -->
+<div class="px-4 pb-2">
+<div class="relative flex w-full items-center">
+<span class="material-symbols-outlined absolute left-3 text-slate-400">search</span>
+<input class="w-full pl-10 pr-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-none rounded-xl focus:ring-2 focus:ring-primary/50 text-sm" placeholder="Search orders, customers, or SKUs..." type="text"/>
+</div>
+</div>
+<!-- Horizontal Scroll Tabs -->
+<div class="overflow-x-auto no-scrollbar">
+<div class="flex px-4 border-b border-slate-200 dark:border-slate-800 whitespace-nowrap">
+<a class="px-4 py-3 text-sm font-semibold border-b-2 border-transparent text-slate-500 dark:text-slate-400" href="#">All</a>
+<a class="px-4 py-3 text-sm font-bold border-b-2 border-primary text-primary" href="#">Pending</a>
+<a class="px-4 py-3 text-sm font-semibold border-b-2 border-transparent text-slate-500 dark:text-slate-400" href="#">Accepted</a>
+<a class="px-4 py-3 text-sm font-semibold border-b-2 border-transparent text-slate-500 dark:text-slate-400" href="#">In-Production</a>
+<a class="px-4 py-3 text-sm font-semibold border-b-2 border-transparent text-slate-500 dark:text-slate-400" href="#">Dispatched</a>
+<a class="px-4 py-3 text-sm font-semibold border-b-2 border-transparent text-slate-500 dark:text-slate-400" href="#">Completed</a>
+</div>
+</div>
+<!-- Sorting Chips -->
+<div class="flex gap-2 px-4 py-3 overflow-x-auto no-scrollbar">
+<button class="flex h-8 shrink-0 items-center gap-1 rounded-full bg-primary/10 px-3 text-xs font-bold text-primary border border-primary/20">
+<span>Newest First</span>
+<span class="material-symbols-outlined text-sm">keyboard_arrow_down</span>
+</button>
+<button class="flex h-8 shrink-0 items-center gap-1 rounded-full bg-slate-100 dark:bg-slate-800 px-3 text-xs font-medium text-slate-600 dark:text-slate-400">
+<span>Priority: High</span>
+<span class="material-symbols-outlined text-sm">filter_list</span>
+</button>
+<button class="flex h-8 shrink-0 items-center gap-1 rounded-full bg-slate-100 dark:bg-slate-800 px-3 text-xs font-medium text-slate-600 dark:text-slate-400">
+<span>Order Type</span>
+<span class="material-symbols-outlined text-sm">expand_more</span>
+</button>
+</div>
+</header>
+<!-- Main Content: Order List -->
+<main class="flex-1 px-4 py-4 space-y-4 pb-24">
+<!-- Pending Order Card 1 (Simulated Swipe Interaction) -->
+<div class="relative overflow-hidden rounded-xl bg-white dark:bg-slate-900 shadow-sm border border-slate-200 dark:border-slate-800">
+<div class="flex items-center justify-between p-4">
+<div class="flex gap-4">
+<div class="size-14 rounded-lg bg-slate-100 dark:bg-slate-800 flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Technical spare part manufacturing component" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBJPs13wHCcYSWmRftGM69muzvm8OeXFs6zK-TI5wgwZfv0OFQGauBEK7wfXHYt36njQ9HFq0QTluulwmn7CZjEXzV0eXWXGZ5Iyqf7z3I0QV21IrfxCTTw4J0R-qPnoHozkdYOwIZGAwweEfmxjuD7qMpYtoi6oElMbVN7eZFHK4cLnDLfbpXl2lZMzhRB8xfdwEbL9zOeyjVIGnsadNLuEJ2cb-ZmqdnTaiMp-igOoMSLRSfJmbp2HYylOjHfGX141iAMp6Jbi5FF"/>
+</div>
+<div class="flex flex-col">
+<h3 class="font-bold text-slate-900 dark:text-slate-100">Altra Global Logistics</h3>
+<p class="text-xs text-slate-500 font-medium">Order #ORD-88291 • Oct 24, 2023</p>
+<div class="mt-1 flex items-center gap-2">
+<span class="text-sm font-semibold text-primary">Steel Rods (Batch A)</span>
+<span class="text-xs text-slate-400">• x250 units</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col items-end gap-2">
+<span class="bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400 text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wider">Pending</span>
+<p class="text-sm font-bold">$12,450.00</p>
+</div>
+</div>
+<!-- Quick Action Buttons (Mobile swipe mimic) -->
+<div class="flex border-t border-slate-100 dark:border-slate-800">
+<button class="flex-1 flex items-center justify-center gap-2 py-3 bg-primary text-white font-bold text-sm">
+<span class="material-symbols-outlined text-lg">check_circle</span> Accept
+                    </button>
+<button class="flex-1 flex items-center justify-center gap-2 py-3 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 font-bold text-sm">
+<span class="material-symbols-outlined text-lg">cancel</span> Reject
+                    </button>
+</div>
+</div>
+<!-- Order Card 2 -->
+<div class="rounded-xl bg-white dark:bg-slate-900 shadow-sm border border-slate-200 dark:border-slate-800">
+<div class="flex items-center justify-between p-4">
+<div class="flex gap-4">
+<div class="size-14 rounded-lg bg-slate-100 dark:bg-slate-800 flex items-center justify-center">
+<span class="material-symbols-outlined text-slate-400">inventory_2</span>
+</div>
+<div class="flex flex-col">
+<h3 class="font-bold text-slate-900 dark:text-slate-100">Metro Infrastructure</h3>
+<p class="text-xs text-slate-500 font-medium">Order #ORD-88285 • Oct 23, 2023</p>
+<div class="mt-1 flex items-center gap-2">
+<span class="text-sm font-semibold text-slate-700 dark:text-slate-300">Composite Panels</span>
+<span class="text-xs text-slate-400">• x1,200 units</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col items-end gap-2">
+<span class="bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400 text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wider">In-Production</span>
+<p class="text-sm font-bold">$45,200.00</p>
+</div>
+</div>
+<div class="px-4 pb-4">
+<div class="w-full bg-slate-100 dark:bg-slate-800 h-1.5 rounded-full overflow-hidden">
+<div class="bg-blue-500 h-full w-2/3"></div>
+</div>
+<p class="text-[10px] text-slate-400 mt-1">Manufacturing phase: 65% complete</p>
+</div>
+</div>
+<!-- Order Card 3 -->
+<div class="rounded-xl bg-white dark:bg-slate-900 shadow-sm border border-slate-200 dark:border-slate-800">
+<div class="flex items-center justify-between p-4">
+<div class="flex gap-4">
+<div class="size-14 rounded-lg bg-slate-100 dark:bg-slate-800 flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Industrial metal wires and components" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC-IiZfo8gRQPLhu1v4ivMrJ794H9H-ASE1vE-1SqY4_1ieau_EHsI2a97LbyOREf7PvEF1H88VHb0EylarKoHm9vpI1Sk628LKfgKNmkEjSacOh51e8gvcCIgPw-R4eyNOfAt228d8Iwx9vXVtk0RqX5mwyGwAzooPvvtrlQtJ66qcABmZ72j9baEayODsIct1cNs_S5r63VXc3QiSAKJINZsGYlXst_erpK0O4GoWWvfgIBDCdrbclx4t0qYSu5kk65Dsn6cYViC_"/>
+</div>
+<div class="flex flex-col">
+<h3 class="font-bold text-slate-900 dark:text-slate-100">Apex Energy Solutions</h3>
+<p class="text-xs text-slate-500 font-medium">Order #ORD-88270 • Oct 22, 2023</p>
+<div class="mt-1 flex items-center gap-2">
+<span class="text-sm font-semibold text-slate-700 dark:text-slate-300">Copper Wiring Kit</span>
+<span class="text-xs text-slate-400">• x50 units</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col items-end gap-2">
+<span class="bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wider">Accepted</span>
+<p class="text-sm font-bold">$3,890.00</p>
+</div>
+</div>
+<div class="px-4 pb-4 flex gap-2">
+<button class="text-xs font-bold text-primary border border-primary/30 px-4 py-2 rounded-lg bg-primary/5">View Details</button>
+<button class="text-xs font-bold text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700 px-4 py-2 rounded-lg">Update Logistics</button>
+</div>
+</div>
+<!-- Order Card 4 (Dispatched) -->
+<div class="rounded-xl bg-white dark:bg-slate-900 shadow-sm border border-slate-200 dark:border-slate-800 opacity-80">
+<div class="flex items-center justify-between p-4">
+<div class="flex gap-4">
+<div class="size-14 rounded-lg bg-slate-100 dark:bg-slate-800 flex items-center justify-center">
+<span class="material-symbols-outlined text-slate-400">local_shipping</span>
+</div>
+<div class="flex flex-col">
+<h3 class="font-bold text-slate-900 dark:text-slate-100">Oceanic Refineries</h3>
+<p class="text-xs text-slate-500 font-medium">Order #ORD-88255 • Oct 20, 2023</p>
+<div class="mt-1 flex items-center gap-2">
+<span class="text-sm font-semibold text-slate-700 dark:text-slate-300">Valves &amp; Fittings</span>
+<span class="text-xs text-slate-400">• x450 units</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col items-end gap-2">
+<span class="bg-indigo-100 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-400 text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wider">Dispatched</span>
+<p class="text-sm font-bold">$8,120.00</p>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 left-0 right-0 z-30 bg-white dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800 px-4 pb-6 pt-2 flex justify-between items-center">
+<a class="flex flex-col items-center gap-1 text-primary" href="#">
+<span class="material-symbols-outlined">assignment</span>
+<span class="text-[10px] font-bold uppercase tracking-tight">Orders</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400 dark:text-slate-600" href="#">
+<span class="material-symbols-outlined">inventory</span>
+<span class="text-[10px] font-bold uppercase tracking-tight">Stock</span>
+</a>
+<div class="relative -top-6">
+<button class="size-14 bg-primary rounded-full shadow-lg shadow-primary/40 flex items-center justify-center text-white border-4 border-background-light dark:border-background-dark">
+<span class="material-symbols-outlined text-3xl">add</span>
+</button>
+</div>
+<a class="flex flex-col items-center gap-1 text-slate-400 dark:text-slate-600" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="text-[10px] font-bold uppercase tracking-tight">Insights</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400 dark:text-slate-600" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-[10px] font-bold uppercase tracking-tight">System</span>
+</a>
+</nav>
+<!-- Action FAB (Alternative placement example) -->
+<!-- <div class="fixed bottom-24 right-4">
+            <button class="size-14 bg-primary text-white rounded-full shadow-xl flex items-center justify-center">
+                <span class="material-symbols-outlined">add_shopping_cart</span>
+            </button>
+        </div> -->
+</div>
+</body></html>

@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Order Details - N-SCRRA</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ec5b13",
+                        "background-light": "#f8f6f6",
+                        "background-dark": "#221610",
+                    },
+                    fontFamily: {
+                        "display": ["Public Sans", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 antialiased">
+<!-- Top Navigation Bar -->
+<header class="sticky top-0 z-50 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-primary/10">
+<div class="max-w-4xl mx-auto px-4 h-16 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<button class="p-2 hover:bg-primary/10 rounded-full transition-colors">
+<span class="material-symbols-outlined text-primary">arrow_back</span>
+</button>
+<h1 class="text-lg font-bold tracking-tight">Order #ORD-88294</h1>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-2 hover:bg-primary/10 rounded-full">
+<span class="material-symbols-outlined">print</span>
+</button>
+<button class="p-2 hover:bg-primary/10 rounded-full">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+</div>
+</header>
+<main class="max-w-4xl mx-auto p-4 space-y-6">
+<!-- Customer Card -->
+<section class="bg-white dark:bg-primary/5 rounded-xl p-4 border border-primary/10 shadow-sm">
+<div class="flex items-start justify-between">
+<div class="flex gap-4">
+<div class="relative">
+<div class="size-16 rounded-full bg-primary/10 flex items-center justify-center border-2 border-primary/20 overflow-hidden">
+<img alt="Customer Logo" class="w-full h-full object-cover" data-alt="Corporate headquarters building silhouette icon" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCXZM0-GKPbvY_nN7E0FKUDx9gVjrmhES1wYXue5AtR-XQ2OhQqgWWc42bhl9SUGqZ3sXCpPUP2oXj5kNk-HDRt328EgLStCqcrqMKMyFNhLCyjGedtfF4CndLo6CGe1PTb-GZrmlDOdei0XqHsGrKwDVpumID9Zb3VNXYxskkuxPhpswT4--U2ai7oQVbn3uSbsu81tfG5WonA1YkBt3KFOi_kWIMtBvDd-svsBBP-x_DA3e6Q6zxTn7XJOmTd3j4Jr3RoqW5bOINR"/>
+</div>
+<div class="absolute -bottom-1 -right-1 bg-green-500 size-5 rounded-full border-2 border-white dark:border-background-dark flex items-center justify-center" title="High Reliability">
+<span class="material-symbols-outlined text-[12px] text-white font-bold">verified</span>
+</div>
+</div>
+<div>
+<h2 class="text-xl font-bold">Stop B Organization</h2>
+<p class="text-slate-500 dark:text-primary/60 text-sm">Customer ID: #99284 • Tier 1 Partner</p>
+<div class="mt-2 inline-flex items-center gap-1.5 px-2 py-1 bg-primary/10 text-primary rounded text-xs font-semibold uppercase tracking-wider">
+<span class="material-symbols-outlined text-sm">verified_user</span>
+                            98% Reliability Score
+                        </div>
+</div>
+</div>
+<div class="hidden sm:block text-right">
+<p class="text-xs font-semibold text-slate-400 uppercase">Contact</p>
+<p class="text-sm">Alex Rivera</p>
+<p class="text-sm text-primary">a.rivera@stopb.org</p>
+</div>
+</div>
+</section>
+<!-- Order Status Timeline -->
+<section class="bg-white dark:bg-primary/5 rounded-xl p-6 border border-primary/10 shadow-sm">
+<h3 class="text-sm font-bold uppercase tracking-widest text-slate-400 mb-6">Fulfillment Lifecycle</h3>
+<div class="relative">
+<div class="grid grid-cols-[40px_1fr] gap-x-4">
+<!-- Step 1 -->
+<div class="flex flex-col items-center">
+<div class="z-10 flex size-8 items-center justify-center rounded-full bg-primary text-white">
+<span class="material-symbols-outlined text-sm">inventory</span>
+</div>
+<div class="w-0.5 bg-primary h-12"></div>
+</div>
+<div class="pb-8">
+<p class="font-bold">Order Received</p>
+<p class="text-sm text-slate-500 dark:text-primary/60">Oct 12, 10:00 AM • Auto-logged by System</p>
+</div>
+<!-- Step 2 -->
+<div class="flex flex-col items-center">
+<div class="z-10 flex size-8 items-center justify-center rounded-full bg-primary text-white">
+<span class="material-symbols-outlined text-sm">check_circle</span>
+</div>
+<div class="w-0.5 bg-primary h-12"></div>
+</div>
+<div class="pb-8">
+<p class="font-bold">Confirmed &amp; Validated</p>
+<p class="text-sm text-slate-500 dark:text-primary/60">Oct 12, 02:15 PM • Approved by Logistics</p>
+</div>
+<!-- Step 3 (Current) -->
+<div class="flex flex-col items-center">
+<div class="z-10 flex size-8 items-center justify-center rounded-full border-2 border-primary bg-background-light dark:bg-background-dark text-primary">
+<span class="material-symbols-outlined text-sm">calendar_today</span>
+</div>
+<div class="w-0.5 bg-slate-200 dark:bg-primary/20 h-12"></div>
+</div>
+<div class="pb-8">
+<p class="font-bold text-primary">Scheduled for Production</p>
+<p class="text-sm text-slate-500 dark:text-primary/60">Target Date: Oct 15 • Awaiting Batching</p>
+</div>
+<!-- Step 4 (Future) -->
+<div class="flex flex-col items-center">
+<div class="z-10 flex size-8 items-center justify-center rounded-full bg-slate-100 dark:bg-primary/10 text-slate-400">
+<span class="material-symbols-outlined text-sm">local_shipping</span>
+</div>
+</div>
+<div class="">
+<p class="font-bold text-slate-400">Dispatched</p>
+<p class="text-sm text-slate-400">Estimated Delivery: Oct 16</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Product Breakdown -->
+<section class="bg-white dark:bg-primary/5 rounded-xl border border-primary/10 shadow-sm overflow-hidden">
+<div class="p-4 border-b border-primary/10 flex justify-between items-center bg-slate-50/50 dark:bg-primary/5">
+<h3 class="font-bold">Product Breakdown</h3>
+<span class="text-xs font-bold px-2 py-1 bg-slate-200 dark:bg-primary/20 rounded">3 ITEMS TOTAL</span>
+</div>
+<div class="divide-y divide-primary/10">
+<!-- Item 1 -->
+<div class="p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+<div class="flex items-center gap-4">
+<div class="size-12 rounded bg-slate-100 dark:bg-primary/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">precision_manufacturing</span>
+</div>
+<div>
+<p class="font-semibold text-sm">Heavy Duty Turbine Blade</p>
+<p class="text-xs text-slate-500 dark:text-primary/60">SKU: TB-X900-M</p>
+</div>
+</div>
+<div class="flex items-center justify-between sm:justify-end gap-8">
+<div class="text-right">
+<p class="text-xs text-slate-400 uppercase">Quantity</p>
+<p class="font-bold">12 units</p>
+</div>
+<div class="text-right">
+<p class="text-xs text-slate-400 uppercase">Price</p>
+<p class="font-bold">$4,200.00</p>
+</div>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+<div class="flex items-center gap-4">
+<div class="size-12 rounded bg-slate-100 dark:bg-primary/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">settings_input_component</span>
+</div>
+<div>
+<p class="font-semibold text-sm">Control Assembly V4</p>
+<p class="text-xs text-slate-500 dark:text-primary/60">SKU: CTRL-ASSEM-V4</p>
+</div>
+</div>
+<div class="flex items-center justify-between sm:justify-end gap-8">
+<div class="text-right">
+<p class="text-xs text-slate-400 uppercase">Quantity</p>
+<p class="font-bold">2 units</p>
+</div>
+<div class="text-right">
+<p class="text-xs text-slate-400 uppercase">Price</p>
+<p class="font-bold">$1,150.00</p>
+</div>
+</div>
+</div>
+</div>
+<div class="p-4 bg-primary text-white flex justify-between items-center">
+<span class="font-bold">Total Order Value</span>
+<span class="text-xl font-bold">$5,350.00</span>
+</div>
+</section>
+<!-- Delivery Logic -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<section class="bg-white dark:bg-primary/5 rounded-xl p-4 border border-primary/10 shadow-sm">
+<h3 class="text-xs font-bold text-slate-400 uppercase mb-3">Scheduling Data</h3>
+<div class="space-y-4">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-slate-400 text-sm">request_quote</span>
+<span class="text-sm">Requested Delivery</span>
+</div>
+<span class="text-sm font-semibold">Oct 14, 2023</span>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-sm">schedule</span>
+<span class="text-sm font-bold">Scheduled Delivery</span>
+</div>
+<span class="text-sm font-bold text-primary">Oct 15, 2023</span>
+</div>
+<div class="pt-2 border-t border-primary/10">
+<p class="text-[11px] text-slate-500 dark:text-primary/40 italic">Note: 1-day variance approved per SLA-442 agreement for regional shipping optimizations.</p>
+</div>
+</div>
+</section>
+<section class="bg-white dark:bg-primary/5 rounded-xl p-4 border border-primary/10 shadow-sm">
+<h3 class="text-xs font-bold text-slate-400 uppercase mb-3">Shipping Address</h3>
+<div class="flex gap-3">
+<span class="material-symbols-outlined text-primary">location_on</span>
+<div>
+<p class="text-sm font-bold">Bay Area Logistics Hub</p>
+<p class="text-sm text-slate-600 dark:text-primary/70">452 Industrial Way, Dock 12<br/>South San Francisco, CA 94080</p>
+</div>
+</div>
+</section>
+</div>
+<!-- Action Bar -->
+<div class="pt-4 flex flex-col sm:flex-row gap-3">
+<button class="flex-1 bg-primary text-white font-bold py-3 px-6 rounded-xl shadow-lg shadow-primary/20 hover:opacity-90 transition-opacity flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">task_alt</span>
+                Accept Order
+            </button>
+<button class="flex-1 bg-slate-200 dark:bg-primary/10 text-slate-800 dark:text-slate-100 font-bold py-3 px-6 rounded-xl hover:bg-slate-300 dark:hover:bg-primary/20 transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">edit_calendar</span>
+                Modify Schedule
+            </button>
+<button class="flex-1 border-2 border-slate-200 dark:border-primary/20 text-slate-600 dark:text-slate-400 font-bold py-3 px-6 rounded-xl hover:bg-slate-50 dark:hover:bg-primary/5 transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">sticky_note_2</span>
+                Production Notes
+            </button>
+</div>
+<!-- Map Placeholder -->
+<div class="rounded-xl overflow-hidden h-48 border border-primary/10 grayscale contrast-125 opacity-70">
+<img alt="Logistics Map" class="w-full h-full object-cover" data-alt="Monochrome simplified map of an industrial area" data-location="San Francisco" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBjkBlMXhQLXOxOH0x96QP8EpNJEpQ6gQw3Bylx2-W8nic9YGTgjcDpG6dDA_cFfjkqSkOtK8Z-v069vxBrvltqVkYKYfTFc-PADe-3jMDElPdQv8gLY9IVg5Db3akCKKborbRoQ51hi_vjLMMXyQikcEa7D9YqyibRR2brHWqq1nt-pFCLmi7OVN4T7fYzRIHcwsx_apMCbFPh_dtnEfKa6MZyd6geJNGVA9nJfpVjI_y5aYsjWeJ4Ge09SYKljqrniXdHv80xdGRE"/>
+</div>
+</main>
+<footer class="mt-12 pb-8 text-center text-slate-400 text-xs">
+<p>N-SCRRA Order Management System v2.4.0 • S10 Terminal</p>
+</footer>
+</body></html>

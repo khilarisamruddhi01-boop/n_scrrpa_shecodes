@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1E3A5F",
+                        "secondary": "#2E7D32",
+                        "background-light": "#f8f6f6",
+                        "background-dark": "#221610",
+                    },
+                    fontFamily: {
+                        "display": ["Public Sans"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen">
+<!-- Top Navigation Bar -->
+<header class="sticky top-0 z-50 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 px-4 h-16 flex items-center justify-between">
+<div class="flex items-center gap-4">
+<button class="flex items-center justify-center p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800">
+<span class="material-symbols-outlined text-primary dark:text-slate-100">arrow_back</span>
+</button>
+<h1 class="text-xl font-bold tracking-tight text-primary dark:text-slate-100">Supplier Analytics</h1>
+</div>
+<div class="flex items-center gap-2">
+<div class="relative group">
+<button class="flex items-center gap-2 px-4 py-2 bg-slate-100 dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 text-sm font-semibold">
+<span>Global Logistics Inc.</span>
+<span class="material-symbols-outlined text-[20px]">expand_more</span>
+</button>
+</div>
+<button class="flex items-center justify-center p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800">
+<span class="material-symbols-outlined text-primary dark:text-slate-100">notifications</span>
+</button>
+</div>
+</header>
+<main class="p-4 lg:p-6 max-w-7xl mx-auto space-y-6">
+<!-- Selection & Context -->
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+<div>
+<p class="text-slate-500 dark:text-slate-400 text-sm">Performance Analysis for Stop A</p>
+<h2 class="text-2xl font-bold">Supplier: Global Logistics Inc.</h2>
+</div>
+<div class="flex gap-2">
+<button class="flex items-center gap-2 px-4 py-2 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-sm font-medium hover:bg-slate-50">
+<span class="material-symbols-outlined text-sm">calendar_today</span>
+                    Last 12 Months
+                </button>
+<button class="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-lg text-sm font-medium hover:bg-primary/90">
+<span class="material-symbols-outlined text-sm">download</span>
+                    Export Report
+                </button>
+</div>
+</div>
+<!-- Overall Metrics Stat Cards -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+<div class="bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
+<div class="flex justify-between items-start mb-2">
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium">Avg Lead Time</p>
+<span class="bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400 px-2 py-0.5 rounded text-xs font-bold">-0.5d</span>
+</div>
+<p class="text-3xl font-bold text-slate-900 dark:text-slate-100">4.2 Days</p>
+<p class="text-xs text-slate-400 mt-2">Target: 3.5 Days</p>
+</div>
+<div class="bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
+<div class="flex justify-between items-start mb-2">
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium">On-Time Rate %</p>
+<span class="bg-secondary/20 text-secondary px-2 py-0.5 rounded text-xs font-bold">+2.1%</span>
+</div>
+<p class="text-3xl font-bold text-slate-900 dark:text-slate-100">92.5%</p>
+<p class="text-xs text-slate-400 mt-2">Benchmark: 88.0%</p>
+</div>
+<div class="bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
+<div class="flex justify-between items-start mb-2">
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium">Total Orders</p>
+<span class="bg-secondary/20 text-secondary px-2 py-0.5 rounded text-xs font-bold">+12%</span>
+</div>
+<p class="text-3xl font-bold text-slate-900 dark:text-slate-100">1,240</p>
+<p class="text-xs text-slate-400 mt-2">Year to Date</p>
+</div>
+<div class="bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
+<div class="flex justify-between items-start mb-2">
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium">Risk Score</p>
+<span class="bg-yellow-100 text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-400 px-2 py-0.5 rounded text-xs font-bold">Stable</span>
+</div>
+<p class="text-3xl font-bold text-slate-900 dark:text-slate-100">Low</p>
+<p class="text-xs text-slate-400 mt-2">Based on current events</p>
+</div>
+</div>
+<!-- Visual Analytics Row 1 -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+<!-- Reliability Score Trend -->
+<div class="bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
+<div class="flex items-center justify-between mb-6">
+<h3 class="text-lg font-bold">Reliability Score Trend</h3>
+<div class="text-primary dark:text-slate-300">
+<span class="text-2xl font-bold">88</span><span class="text-sm">/100</span>
+</div>
+</div>
+<div class="h-64 w-full relative">
+<svg class="w-full h-full" preserveaspectratio="none" viewbox="0 0 400 150">
+<path d="M0,100 Q50,90 80,110 T160,80 T240,60 T320,70 T400,40" fill="none" stroke="#1E3A5F" stroke-width="3"></path>
+<path d="M0,100 Q50,90 80,110 T160,80 T240,60 T320,70 T400,40 V150 H0 Z" fill="url(#grad1)" opacity="0.1"></path>
+<defs>
+<lineargradient id="grad1" x1="0%" x2="0%" y1="0%" y2="100%">
+<stop offset="0%" style="stop-color:#1E3A5F;stop-opacity:1"></stop>
+<stop offset="100%" style="stop-color:#1E3A5F;stop-opacity:0"></stop>
+</lineargradient>
+</defs>
+</svg>
+<div class="flex justify-between mt-4 text-[10px] uppercase font-bold text-slate-400">
+<span>Jan</span><span>Mar</span><span>May</span><span>Jul</span><span>Sep</span><span>Nov</span>
+</div>
+</div>
+</div>
+<!-- Delivery Delay Distribution -->
+<div class="bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
+<h3 class="text-lg font-bold mb-6">Delivery Delay Distribution</h3>
+<div class="flex items-end justify-between h-64 gap-2 pt-4">
+<div class="flex-1 flex flex-col items-center gap-2">
+<div class="w-full bg-secondary/80 rounded-t-lg" style="height: 85%;"></div>
+<span class="text-[10px] font-bold text-slate-500">On-Time</span>
+</div>
+<div class="flex-1 flex flex-col items-center gap-2">
+<div class="w-full bg-yellow-400/80 rounded-t-lg" style="height: 12%;"></div>
+<span class="text-[10px] font-bold text-slate-500">1 Day</span>
+</div>
+<div class="flex-1 flex flex-col items-center gap-2">
+<div class="w-full bg-orange-400/80 rounded-t-lg" style="height: 8%;"></div>
+<span class="text-[10px] font-bold text-slate-500">2 Days</span>
+</div>
+<div class="flex-1 flex flex-col items-center gap-2">
+<div class="w-full bg-red-400/80 rounded-t-lg" style="height: 4%;"></div>
+<span class="text-[10px] font-bold text-slate-500">3+ Days</span>
+</div>
+</div>
+<div class="mt-4 pt-4 border-t border-slate-100 dark:border-slate-800 flex justify-center">
+<p class="text-xs text-slate-500">Most delays occur on <span class="font-bold text-slate-900 dark:text-slate-200">Wednesdays</span> due to customs backlog.</p>
+</div>
+</div>
+</div>
+<!-- Visual Analytics Row 2 -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+<!-- Multi-Supplier Comparison -->
+<div class="lg:col-span-2 bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
+<h3 class="text-lg font-bold mb-6">On-Time Delivery: Top Supplier Comparison</h3>
+<div class="space-y-6">
+<div class="space-y-2">
+<div class="flex justify-between text-sm">
+<span class="font-medium">Global Logistics (Selected)</span>
+<span class="font-bold">92.5%</span>
+</div>
+<div class="w-full h-3 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full" style="width: 92.5%;"></div>
+</div>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between text-sm">
+<span class="font-medium text-slate-500">SwiftShip Partners</span>
+<span class="font-bold">89.1%</span>
+</div>
+<div class="w-full h-3 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
+<div class="h-full bg-slate-300 dark:bg-slate-600 rounded-full" style="width: 89.1%;"></div>
+</div>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between text-sm">
+<span class="font-medium text-slate-500">Oceanic Freight Ltd.</span>
+<span class="font-bold">84.5%</span>
+</div>
+<div class="w-full h-3 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
+<div class="h-full bg-slate-300 dark:bg-slate-600 rounded-full" style="width: 84.5%;"></div>
+</div>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between text-sm">
+<span class="font-medium text-slate-500">Prime Express</span>
+<span class="font-bold">94.8%</span>
+</div>
+<div class="w-full h-3 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
+<div class="h-full bg-secondary/60 rounded-full" style="width: 94.8%;"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Risk Events Timeline -->
+<div class="bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
+<h3 class="text-lg font-bold mb-6">Risk Events Timeline</h3>
+<div class="relative space-y-8 before:absolute before:left-[11px] before:top-2 before:bottom-2 before:w-[2px] before:bg-slate-100 dark:before:bg-slate-800">
+<div class="relative pl-8">
+<div class="absolute left-0 top-1 w-6 h-6 rounded-full bg-red-100 dark:bg-red-900/40 flex items-center justify-center">
+<div class="w-2 h-2 rounded-full bg-red-600"></div>
+</div>
+<p class="text-xs text-slate-400 font-bold uppercase">Oct 14, 2023</p>
+<h4 class="text-sm font-bold text-slate-900 dark:text-slate-100">Port Strike - East Coast</h4>
+<p class="text-xs text-slate-500">Major delays across 12 shipments. Resolved after 4 days.</p>
+</div>
+<div class="relative pl-8">
+<div class="absolute left-0 top-1 w-6 h-6 rounded-full bg-yellow-100 dark:bg-yellow-900/40 flex items-center justify-center">
+<div class="w-2 h-2 rounded-full bg-yellow-600"></div>
+</div>
+<p class="text-xs text-slate-400 font-bold uppercase">Aug 22, 2023</p>
+<h4 class="text-sm font-bold text-slate-900 dark:text-slate-100">Severe Weather (Typhoon)</h4>
+<p class="text-xs text-slate-500">Vessel re-routing required. 2 shipments delayed by 48h.</p>
+</div>
+<div class="relative pl-8">
+<div class="absolute left-0 top-1 w-6 h-6 rounded-full bg-blue-100 dark:bg-blue-900/40 flex items-center justify-center">
+<div class="w-2 h-2 rounded-full bg-blue-600"></div>
+</div>
+<p class="text-xs text-slate-400 font-bold uppercase">Jun 05, 2023</p>
+<h4 class="text-sm font-bold text-slate-900 dark:text-slate-100">Customs Regulatory Update</h4>
+<p class="text-xs text-slate-500">Administrative delays due to new documentation requirements.</p>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 left-0 right-0 bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 px-4 py-2 flex items-center justify-around z-50">
+<a class="flex flex-col items-center gap-1 p-2 text-slate-400 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="text-[10px] font-bold">Dashboard</span>
+</a>
+<a class="flex flex-col items-center gap-1 p-2 text-slate-400 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+<span class="text-[10px] font-bold">Inventory</span>
+</a>
+<a class="flex flex-col items-center gap-1 p-2 text-primary dark:text-secondary transition-colors" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1">analytics</span>
+<span class="text-[10px] font-bold">Analytics</span>
+</a>
+<a class="flex flex-col items-center gap-1 p-2 text-slate-400 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">hub</span>
+<span class="text-[10px] font-bold">Suppliers</span>
+</a>
+<a class="flex flex-col items-center gap-1 p-2 text-slate-400 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-[10px] font-bold">Settings</span>
+</a>
+</nav>
+<!-- Spacer for bottom nav -->
+<div class="h-20"></div>
+</body></html>

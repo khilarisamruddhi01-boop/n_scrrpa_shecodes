@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Customer Shipment Tracking - N-SCRRA</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ec5b13",
+                        "background-light": "#f8f6f6",
+                        "background-dark": "#221610",
+                        "navy-custom": "#0f172a",
+                        "accent-green": "#22c55e"
+                    },
+                    fontFamily: {
+                        "display": ["Public Sans"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Public Sans', sans-serif; }
+        .map-gradient {
+            background: linear-gradient(to bottom, rgba(15, 23, 42, 0.4) 0%, rgba(15, 23, 42, 0) 20%, rgba(15, 23, 42, 0) 80%, rgba(15, 23, 42, 0.6) 100%);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100">
+<div class="relative flex h-screen w-full flex-col overflow-hidden bg-navy-custom">
+<!-- Header Overlay -->
+<div class="absolute top-0 left-0 right-0 z-20 flex items-center justify-between p-4 bg-gradient-to-b from-navy-custom/80 to-transparent">
+<button class="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 backdrop-blur-md text-white hover:bg-white/20 transition-colors">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<div class="flex flex-col items-center">
+<h2 class="text-white text-sm font-bold tracking-wide uppercase">Live Tracking</h2>
+<p class="text-white/70 text-xs">#SHP-4429</p>
+</div>
+<button class="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 backdrop-blur-md text-white hover:bg-white/20 transition-colors">
+<span class="material-symbols-outlined">help</span>
+</button>
+</div>
+<!-- Main Map Area -->
+<div class="relative flex-1 w-full bg-slate-800">
+<!-- Simulated Mapbox Background -->
+<div class="absolute inset-0 z-0 bg-cover bg-center" data-alt="Detailed dark mode city map with logistics route lines" data-location="Metropolitan Area Route" style="background-image: url('https://placeholder.pics/svg/300');">
+</div>
+<!-- Map Overlay UI Elements -->
+<div class="absolute inset-0 z-10 map-gradient pointer-events-none"></div>
+<!-- Route Markers & Line (Simulated) -->
+<div class="absolute inset-0 z-10 p-12 flex items-center justify-center pointer-events-none">
+<svg class="w-full h-full" fill="none" viewbox="0 0 400 600" xmlns="http://www.w3.org/2000/svg">
+<!-- Path from A to B -->
+<path d="M100 500 C 150 450, 300 350, 320 150" opacity="0.8" stroke="#ec5b13" stroke-dasharray="8 4" stroke-width="4"></path>
+<!-- Stop A: Factory -->
+<circle cx="100" cy="500" fill="#ec5b13" r="8"></circle>
+<text fill="white" font-size="12" font-weight="bold" x="80" y="530">Factory (Stop A)</text>
+<!-- Stop B: Warehouse -->
+<circle cx="320" cy="150" fill="#22c55e" r="10" stroke="white" stroke-width="2"></circle>
+<text fill="white" font-size="12" font-weight="bold" x="280" y="130">Warehouse (Stop B)</text>
+<!-- Moving Truck Icon Container -->
+<g transform="translate(240, 300)">
+<circle class="animate-pulse" fill="#ec5b13" r="18"></circle>
+<foreignobject height="24" width="24" x="-12" y="-12">
+<span class="material-symbols-outlined text-white text-[20px]">local_shipping</span>
+</foreignobject>
+</g>
+</svg>
+</div>
+<!-- Map Controls -->
+<div class="absolute right-4 top-1/2 -translate-y-1/2 z-20 flex flex-col gap-2">
+<button class="flex h-10 w-10 items-center justify-center rounded-xl bg-navy-custom/90 text-white shadow-lg backdrop-blur-sm">
+<span class="material-symbols-outlined">add</span>
+</button>
+<button class="flex h-10 w-10 items-center justify-center rounded-xl bg-navy-custom/90 text-white shadow-lg backdrop-blur-sm">
+<span class="material-symbols-outlined">remove</span>
+</button>
+<button class="flex h-10 w-10 items-center justify-center rounded-xl bg-primary text-white shadow-lg mt-2">
+<span class="material-symbols-outlined">my_location</span>
+</button>
+</div>
+</div>
+<!-- Floating Bottom Sheet -->
+<div class="relative z-30 bg-background-light dark:bg-background-dark rounded-t-[2.5rem] shadow-[0_-10px_40px_rgba(0,0,0,0.3)] px-6 pb-8 pt-4 transition-all duration-300 border-t border-slate-200 dark:border-slate-800">
+<!-- Handle -->
+<div class="flex justify-center mb-6">
+<div class="h-1.5 w-12 rounded-full bg-slate-300 dark:bg-slate-700"></div>
+</div>
+<!-- Main Info Grid -->
+<div class="grid grid-cols-2 gap-4 mb-8">
+<div class="flex flex-col gap-1">
+<span class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Est. Arrival</span>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-xl">schedule</span>
+<span class="text-2xl font-bold text-navy-custom dark:text-white">2h 45m</span>
+</div>
+</div>
+<div class="flex flex-col gap-1 items-end text-right">
+<span class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Current Status</span>
+<span class="inline-flex items-center rounded-full bg-primary/10 px-3 py-1 text-sm font-bold text-primary">
+                        In-Transit
+                    </span>
+</div>
+</div>
+<!-- Details List -->
+<div class="space-y-4 mb-8">
+<div class="flex items-center justify-between p-4 rounded-2xl bg-slate-100 dark:bg-slate-800/50">
+<div class="flex items-center gap-3">
+<div class="flex h-10 w-10 items-center justify-center rounded-full bg-white dark:bg-navy-custom shadow-sm">
+<span class="material-symbols-outlined text-slate-600 dark:text-slate-300">local_shipping</span>
+</div>
+<div>
+<p class="text-xs text-slate-500 font-medium">Transport Mode</p>
+<p class="font-bold">Road Freight</p>
+</div>
+</div>
+<div class="text-right">
+<div class="flex items-center gap-1 text-accent-green">
+<span class="material-symbols-outlined text-sm">check_circle</span>
+<span class="text-xs font-bold">On Schedule</span>
+</div>
+<p class="text-[10px] text-slate-400">Low Risk Indicator</p>
+</div>
+</div>
+<div class="flex items-center gap-4 px-2">
+<div class="flex flex-col items-center">
+<div class="h-2 w-2 rounded-full bg-primary"></div>
+<div class="h-8 w-0.5 bg-slate-300 dark:bg-slate-700"></div>
+<div class="h-2 w-2 rounded-full bg-slate-300"></div>
+</div>
+<div class="flex-1 space-y-4">
+<div class="flex justify-between items-start">
+<div>
+<p class="text-xs font-bold text-slate-400">Origin</p>
+<p class="text-sm font-semibold">Stark Factory - Berlin</p>
+</div>
+<span class="text-xs text-slate-400">08:30 AM</span>
+</div>
+<div class="flex justify-between items-start">
+<div>
+<p class="text-xs font-bold text-slate-400">Destination</p>
+<p class="text-sm font-semibold text-slate-400">North Warehouse - Munich</p>
+</div>
+<span class="text-xs text-slate-400">--:--</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Primary Action -->
+<div class="flex flex-col gap-3">
+<button class="flex w-full items-center justify-center gap-2 rounded-xl bg-slate-200 dark:bg-slate-800 py-4 text-slate-400 font-bold transition-all cursor-not-allowed border border-dashed border-slate-300 dark:border-slate-700" disabled="">
+<span class="material-symbols-outlined">verified</span>
+                    Confirm Delivery
+                </button>
+<p class="text-center text-[10px] text-slate-400 px-8 italic">
+                    Button will activate when the vehicle is within 500m of Stop B.
+                </p>
+</div>
+</div>
+<!-- Navigation Bar -->
+<nav class="flex border-t border-slate-200 dark:border-slate-800 bg-background-light dark:bg-background-dark px-4 pb-6 pt-2 z-40">
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-400" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<p class="text-[10px] font-bold uppercase tracking-tighter">Dashboard</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-primary" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1">location_on</span>
+<p class="text-[10px] font-bold uppercase tracking-tighter">Track</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-400" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+<p class="text-[10px] font-bold uppercase tracking-tighter">Orders</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-400" href="#">
+<span class="material-symbols-outlined">person</span>
+<p class="text-[10px] font-bold uppercase tracking-tighter">Profile</p>
+</a>
+</nav>
+</div>
+</body></html>

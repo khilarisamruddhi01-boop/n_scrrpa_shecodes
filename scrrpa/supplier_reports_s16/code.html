@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Supplier Reports</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ec5b13",
+                        "background-light": "#f8f6f6",
+                        "background-dark": "#221610",
+                    },
+                    fontFamily: {
+                        "display": ["Public Sans"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen">
+<div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
+<!-- Header Section -->
+<div class="flex items-center bg-background-light dark:bg-background-dark p-4 pb-2 justify-between border-b border-slate-200 dark:border-slate-800">
+<div class="flex items-center gap-3">
+<div class="text-slate-900 dark:text-slate-100 flex size-10 shrink-0 items-center justify-center rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 cursor-pointer">
+<span class="material-symbols-outlined">arrow_back</span>
+</div>
+<h2 class="text-slate-900 dark:text-slate-100 text-lg font-bold leading-tight tracking-tight">Supplier Reports</h2>
+</div>
+<div class="flex items-center gap-2">
+<button class="flex size-10 items-center justify-center rounded-full hover:bg-slate-100 dark:hover:bg-slate-800">
+<span class="material-symbols-outlined">search</span>
+</button>
+<button class="flex size-10 items-center justify-center rounded-full hover:bg-slate-100 dark:hover:bg-slate-800">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+</div>
+<main class="flex-1 pb-24">
+<!-- New Report Section -->
+<div class="px-4 py-6">
+<h2 class="text-slate-900 dark:text-slate-100 text-xl font-bold leading-tight mb-4">Create New Report</h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+<!-- Shipment Report Card -->
+<div class="flex flex-col gap-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-background-dark/50 p-5 hover:border-primary transition-colors cursor-pointer group">
+<div class="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+<span class="material-symbols-outlined">local_shipping</span>
+</div>
+<div class="flex flex-col gap-1">
+<h3 class="text-slate-900 dark:text-slate-100 text-base font-bold">Shipment Report</h3>
+<p class="text-slate-500 dark:text-slate-400 text-sm leading-normal">Track logistics performance and delivery timelines.</p>
+</div>
+</div>
+<!-- Customer Report Card -->
+<div class="flex flex-col gap-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-background-dark/50 p-5 hover:border-primary transition-colors cursor-pointer group">
+<div class="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+<span class="material-symbols-outlined">group</span>
+</div>
+<div class="flex flex-col gap-1">
+<h3 class="text-slate-900 dark:text-slate-100 text-base font-bold">Customer Report</h3>
+<p class="text-slate-500 dark:text-slate-400 text-sm leading-normal">Analyze client orders and engagement metrics.</p>
+</div>
+</div>
+<!-- Risk Analysis Card -->
+<div class="flex flex-col gap-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-background-dark/50 p-5 hover:border-primary transition-colors cursor-pointer group">
+<div class="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+<span class="material-symbols-outlined">warning</span>
+</div>
+<div class="flex flex-col gap-1">
+<h3 class="text-slate-900 dark:text-slate-100 text-base font-bold">Risk Analysis</h3>
+<p class="text-slate-500 dark:text-slate-400 text-sm leading-normal">Evaluate supply chain vulnerabilities and health.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Export Options -->
+<div class="px-4 py-4">
+<h3 class="text-slate-900 dark:text-slate-100 text-lg font-bold leading-tight mb-3">Export Format</h3>
+<div class="flex gap-3">
+<label class="flex-1 flex items-center justify-center gap-2 p-3 rounded-lg border-2 border-primary bg-primary/5 cursor-pointer">
+<input checked="" class="hidden" name="format" type="radio"/>
+<span class="material-symbols-outlined text-primary">picture_as_pdf</span>
+<span class="font-semibold text-primary">PDF Document</span>
+</label>
+<label class="flex-1 flex items-center justify-center gap-2 p-3 rounded-lg border-2 border-slate-200 dark:border-slate-800 bg-white dark:bg-background-dark/30 cursor-pointer hover:border-slate-300">
+<input class="hidden" name="format" type="radio"/>
+<span class="material-symbols-outlined text-slate-600 dark:text-slate-400">table_view</span>
+<span class="font-semibold text-slate-700 dark:text-slate-300">Excel Sheet</span>
+</label>
+</div>
+<button class="w-full mt-4 bg-primary text-white font-bold py-3 rounded-xl hover:opacity-90 transition-opacity">
+                    Generate Selected Report
+                </button>
+</div>
+<!-- History Section -->
+<div class="px-4 py-6">
+<div class="flex items-center justify-between mb-4">
+<h3 class="text-slate-900 dark:text-slate-100 text-lg font-bold leading-tight">Recent Reports</h3>
+<button class="text-primary text-sm font-semibold">View All</button>
+</div>
+<div class="space-y-3">
+<!-- History Item 1 -->
+<div class="flex items-center justify-between p-4 rounded-xl bg-white dark:bg-background-dark/50 border border-slate-200 dark:border-slate-800">
+<div class="flex items-center gap-3">
+<div class="flex h-10 w-10 items-center justify-center rounded-full bg-slate-100 dark:bg-slate-800">
+<span class="material-symbols-outlined text-slate-600 dark:text-slate-400">description</span>
+</div>
+<div>
+<h4 class="text-slate-900 dark:text-slate-100 font-semibold text-sm">Q3_Shipment_Logistics.pdf</h4>
+<p class="text-slate-500 dark:text-slate-400 text-xs">Generated Oct 24, 2023 • 2.4 MB</p>
+</div>
+</div>
+<button class="flex size-9 items-center justify-center rounded-full bg-primary/10 text-primary hover:bg-primary hover:text-white transition-colors">
+<span class="material-symbols-outlined text-[20px]">download</span>
+</button>
+</div>
+<!-- History Item 2 -->
+<div class="flex items-center justify-between p-4 rounded-xl bg-white dark:bg-background-dark/50 border border-slate-200 dark:border-slate-800">
+<div class="flex items-center gap-3">
+<div class="flex h-10 w-10 items-center justify-center rounded-full bg-slate-100 dark:bg-slate-800">
+<span class="material-symbols-outlined text-slate-600 dark:text-slate-400">table_chart</span>
+</div>
+<div>
+<h4 class="text-slate-900 dark:text-slate-100 font-semibold text-sm">Annual_Risk_Audit_2023.xlsx</h4>
+<p class="text-slate-500 dark:text-slate-400 text-xs">Generated Oct 21, 2023 • 1.1 MB</p>
+</div>
+</div>
+<button class="flex size-9 items-center justify-center rounded-full bg-primary/10 text-primary hover:bg-primary hover:text-white transition-colors">
+<span class="material-symbols-outlined text-[20px]">download</span>
+</button>
+</div>
+<!-- History Item 3 -->
+<div class="flex items-center justify-between p-4 rounded-xl bg-white dark:bg-background-dark/50 border border-slate-200 dark:border-slate-800">
+<div class="flex items-center gap-3">
+<div class="flex h-10 w-10 items-center justify-center rounded-full bg-slate-100 dark:bg-slate-800">
+<span class="material-symbols-outlined text-slate-600 dark:text-slate-400">description</span>
+</div>
+<div>
+<h4 class="text-slate-900 dark:text-slate-100 font-semibold text-sm">Top_Customers_Summary.pdf</h4>
+<p class="text-slate-500 dark:text-slate-400 text-xs">Generated Oct 18, 2023 • 850 KB</p>
+</div>
+</div>
+<button class="flex size-9 items-center justify-center rounded-full bg-primary/10 text-primary hover:bg-primary hover:text-white transition-colors">
+<span class="material-symbols-outlined text-[20px]">download</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation Bar -->
+<div class="fixed bottom-0 left-0 right-0 border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-background-dark px-4 pb-6 pt-2 z-50">
+<div class="flex items-center justify-between max-w-md mx-auto">
+<a class="flex flex-1 flex-col items-center gap-1 text-slate-500 dark:text-slate-400" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<p class="text-[10px] font-medium uppercase tracking-wider">Dashboard</p>
+</a>
+<a class="flex flex-1 flex-col items-center gap-1 text-slate-500 dark:text-slate-400" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+<p class="text-[10px] font-medium uppercase tracking-wider">Inventory</p>
+</a>
+<a class="flex flex-1 flex-col items-center gap-1 text-primary" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1">bar_chart</span>
+<p class="text-[10px] font-bold uppercase tracking-wider">Reports</p>
+</a>
+<a class="flex flex-1 flex-col items-center gap-1 text-slate-500 dark:text-slate-400" href="#">
+<span class="material-symbols-outlined">settings</span>
+<p class="text-[10px] font-medium uppercase tracking-wider">Settings</p>
+</a>
+</div>
+</div>
+</div>
+</body></html>

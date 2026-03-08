@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>N-SCRRA | National Supply Chain Risk Analytics</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ec5b13",
+                        "background-light": "#f8f6f6",
+                        "background-dark": "#221610",
+                    },
+                    fontFamily: {
+                        "display": ["Public Sans"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Public Sans', sans-serif; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display">
+<div class="relative flex min-h-screen flex-col overflow-x-hidden">
+<!-- Header Section -->
+<header class="sticky top-0 z-50 flex items-center justify-between bg-slate-900 px-4 py-3 text-white shadow-md">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-3xl">analytics</span>
+<h1 class="text-xl font-bold tracking-tight">N-SCRRA <span class="text-xs font-light text-slate-400">v2.5</span></h1>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative">
+<button class="flex items-center justify-center rounded-full p-2 hover:bg-slate-800 transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<!-- Critical Alerts Counter -->
+<span class="absolute top-1 right-1 flex h-5 w-5 items-center justify-center rounded-full bg-primary text-[10px] font-bold ring-2 ring-slate-900">14</span>
+</div>
+<button class="flex items-center justify-center rounded-full p-1 bg-slate-700">
+<img alt="User Profile" class="h-8 w-8 rounded-full" data-alt="Corporate user profile avatar silhouette" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCUbxM8VW1-VfevMDH-w0_8gDVVY9Cn1dJF-_ysuWJpliwHGnXKcKN09gHXa7Pc-upe7KX5Znb4BTd08CVq4ShnAPvXl92bkYZ2YoMUNAPetKjDAz8RrztKik3_pnQR8rA4eLw2NYqVot4tDksJzO5rYiH4a6DARVjFUQtdLgtNOMzB1BA1BcqSJpLLVU31CGNaiOhkpU6gZOT0OCMX5HWVqOGcmBIdv6L1KEXQS8F0oOxX3nneWJo6tgVwgaynANx3FtjhLNJITFmG"/>
+</button>
+</div>
+</header>
+<main class="flex-1 space-y-6 pb-24 pt-4 px-4">
+<!-- National Risk Index Gauge -->
+<section class="rounded-xl bg-white dark:bg-slate-800 p-6 shadow-sm border border-slate-200 dark:border-slate-700">
+<div class="flex items-center justify-between mb-4">
+<h2 class="text-sm font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">National Risk Index</h2>
+<span class="flex items-center gap-1 text-xs font-medium text-red-500 bg-red-50 dark:bg-red-900/20 px-2 py-1 rounded-full">
+<span class="material-symbols-outlined text-sm">trending_up</span> +5.2%
+                    </span>
+</div>
+<div class="flex flex-col items-center justify-center py-4">
+<div class="relative flex items-center justify-center">
+<!-- Custom Gauge SVG representation -->
+<svg class="h-40 w-40 transform -rotate-90">
+<circle class="text-slate-100 dark:text-slate-700" cx="80" cy="80" fill="transparent" r="70" stroke="currentColor" stroke-width="12"></circle>
+<circle class="text-primary" cx="80" cy="80" fill="transparent" r="70" stroke="currentColor" stroke-dasharray="440" stroke-dashoffset="140" stroke-width="12"></circle>
+</svg>
+<div class="absolute inset-0 flex flex-col items-center justify-center rotate-90">
+<span class="text-4xl font-black text-slate-900 dark:text-white">68<span class="text-lg text-slate-400 font-normal">/100</span></span>
+<span class="text-xs font-bold text-slate-500 dark:text-slate-400 mt-1 uppercase">Elevated Risk</span>
+</div>
+</div>
+</div>
+<div class="mt-4 grid grid-cols-3 gap-2 text-center text-[10px] font-bold uppercase tracking-tighter text-slate-400">
+<div class="border-r border-slate-200 dark:border-slate-700">Geopolitical: 42</div>
+<div class="border-r border-slate-200 dark:border-slate-700">Logistics: 84</div>
+<div>Resource: 51</div>
+</div>
+</section>
+<!-- Sector Risk Cards (Horizontal Scroll) -->
+<section>
+<div class="flex items-center justify-between mb-3 px-1">
+<h3 class="text-lg font-bold">Sector Risk Analysis</h3>
+<button class="text-xs font-semibold text-primary">View All</button>
+</div>
+<div class="no-scrollbar flex gap-4 overflow-x-auto pb-2">
+<!-- Pharma -->
+<div class="min-w-[160px] flex-shrink-0 rounded-xl bg-slate-900 p-4 text-white shadow-lg">
+<div class="flex items-center justify-between mb-6">
+<span class="material-symbols-outlined text-blue-400">medication</span>
+<span class="text-[10px] font-bold text-red-400">+12%</span>
+</div>
+<p class="text-xs font-medium text-slate-400">Pharma</p>
+<p class="text-2xl font-bold">74</p>
+</div>
+<!-- Auto -->
+<div class="min-w-[160px] flex-shrink-0 rounded-xl bg-white dark:bg-slate-800 p-4 shadow-sm border border-slate-200 dark:border-slate-700">
+<div class="flex items-center justify-between mb-6">
+<span class="material-symbols-outlined text-primary">directions_car</span>
+<span class="text-[10px] font-bold text-green-500">-2%</span>
+</div>
+<p class="text-xs font-medium text-slate-500 dark:text-slate-400">Automotive</p>
+<p class="text-2xl font-bold">45</p>
+</div>
+<!-- Electronics -->
+<div class="min-w-[160px] flex-shrink-0 rounded-xl bg-white dark:bg-slate-800 p-4 shadow-sm border border-slate-200 dark:border-slate-700">
+<div class="flex items-center justify-between mb-6">
+<span class="material-symbols-outlined text-primary">memory</span>
+<span class="text-[10px] font-bold text-yellow-500">+1%</span>
+</div>
+<p class="text-xs font-medium text-slate-500 dark:text-slate-400">Electronics</p>
+<p class="text-2xl font-bold">59</p>
+</div>
+<!-- FMCG -->
+<div class="min-w-[160px] flex-shrink-0 rounded-xl bg-white dark:bg-slate-800 p-4 shadow-sm border border-slate-200 dark:border-slate-700">
+<div class="flex items-center justify-between mb-6">
+<span class="material-symbols-outlined text-primary">shopping_basket</span>
+<span class="text-[10px] font-bold text-green-500">-5%</span>
+</div>
+<p class="text-xs font-medium text-slate-500 dark:text-slate-400">FMCG</p>
+<p class="text-2xl font-bold">32</p>
+</div>
+</div>
+</section>
+<!-- National Risk Heatmap (FlutterMap replacement) -->
+<section class="space-y-3">
+<h3 class="text-lg font-bold px-1">Geographic Risk Intensity</h3>
+<div class="relative h-48 overflow-hidden rounded-xl bg-slate-200 dark:bg-slate-900">
+<img class="h-full w-full object-cover opacity-60 grayscale dark:invert" data-alt="World map with glowing orange risk hotspots over North America and Asia" data-location="United States" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAdZk30POKkqKSyv-SEg_JcSx7yn6hMncccE3uk156G6GGGkz2t6cH7dKaaMmpIi3qGdqSBY8KXJHzCdgcovnk_pZ3cVLcle6OUSHpI7MtgEdnO50hmHrD7O5IZEZTPBoCbOpwUhJnhCnDonGtNVnqYQx-q7AGVZBYqu3ZGgcoAYUSAD-WWWP4aE2PaVBSHAomjMI8Spqoc-TWuos3cBta2wJTzvowK3n5LqjvxvDUi916B884cs219JbHdVeQqfL7nC03pWEafFDIK"/>
+<div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent"></div>
+<div class="absolute bottom-3 left-3 flex items-center gap-2">
+<div class="flex h-2 w-2 rounded-full bg-red-500 animate-pulse"></div>
+<span class="text-xs font-semibold text-white">Live Data: East Coast Port Congestion</span>
+</div>
+<button class="absolute top-3 right-3 rounded-lg bg-white/20 backdrop-blur-md p-2 text-white">
+<span class="material-symbols-outlined text-sm">fullscreen</span>
+</button>
+</div>
+</section>
+<!-- Active Disruptions List -->
+<section class="space-y-3">
+<h3 class="text-lg font-bold px-1">Active Disruptions</h3>
+<div class="space-y-3">
+<!-- Disruption 1 -->
+<div class="flex items-center gap-4 rounded-xl bg-white dark:bg-slate-800 p-4 shadow-sm border-l-4 border-red-500">
+<div class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-red-100 dark:bg-red-900/30 text-red-600">
+<span class="material-symbols-outlined">anchor</span>
+</div>
+<div class="flex-1">
+<h4 class="text-sm font-bold">Major Port Strike</h4>
+<p class="text-xs text-slate-500 dark:text-slate-400">East Coast Hubs • 48h duration</p>
+</div>
+<div class="text-right">
+<span class="inline-block rounded bg-red-100 dark:bg-red-900 px-2 py-0.5 text-[10px] font-bold text-red-700 dark:text-red-200">CRITICAL</span>
+</div>
+</div>
+<!-- Disruption 2 -->
+<div class="flex items-center gap-4 rounded-xl bg-white dark:bg-slate-800 p-4 shadow-sm border-l-4 border-yellow-500">
+<div class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-yellow-100 dark:bg-yellow-900/30 text-yellow-600">
+<span class="material-symbols-outlined">thunderstorm</span>
+</div>
+<div class="flex-1">
+<h4 class="text-sm font-bold">Severe Weather</h4>
+<p class="text-xs text-slate-500 dark:text-slate-400">Midwest Logistics Route • Expected 12h</p>
+</div>
+<div class="text-right">
+<span class="inline-block rounded bg-yellow-100 dark:bg-yellow-900 px-2 py-0.5 text-[10px] font-bold text-yellow-700 dark:text-yellow-200">MODERATE</span>
+</div>
+</div>
+<!-- Disruption 3 -->
+<div class="flex items-center gap-4 rounded-xl bg-white dark:bg-slate-800 p-4 shadow-sm border-l-4 border-blue-500">
+<div class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-blue-100 dark:bg-blue-900/30 text-blue-600">
+<span class="material-symbols-outlined">factory</span>
+</div>
+<div class="flex-1">
+<h4 class="text-sm font-bold">Tier 2 Supplier Delay</h4>
+<p class="text-xs text-slate-500 dark:text-slate-400">Semiconductor Shortage • Ongoing</p>
+</div>
+<div class="text-right">
+<span class="inline-block rounded bg-blue-100 dark:bg-blue-900 px-2 py-0.5 text-[10px] font-bold text-blue-700 dark:text-blue-200">MINOR</span>
+</div>
+</div>
+</div>
+</section>
+<!-- System Status Bar -->
+<div class="flex items-center justify-between border-t border-slate-200 dark:border-slate-800 pt-4 pb-2">
+<div class="flex items-center gap-4 text-[10px] font-semibold text-slate-500">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-green-500">check_circle</span>
+<span>API ONLINE</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-green-500">update</span>
+<span>REFRESHED 2M AGO</span>
+</div>
+</div>
+<div class="text-[10px] font-bold text-slate-400">
+                    SECURE ENCRYPTED
+                </div>
+</div>
+</main>
+<!-- Navigation Bar -->
+<nav class="fixed bottom-0 left-0 right-0 z-50 border-t border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl">
+<div class="flex h-16 items-center justify-around px-2">
+<a class="flex flex-col items-center gap-1 text-primary" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1">dashboard</span>
+<span class="text-[10px] font-bold">Dashboard</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">hub</span>
+<span class="text-[10px] font-medium">Network</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">warning</span>
+<span class="text-[10px] font-medium">Risk</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">monitoring</span>
+<span class="text-[10px] font-medium">Prediction</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">model_training</span>
+<span class="text-[10px] font-medium">Simulation</span>
+</a>
+</div>
+<!-- Bottom Indicator for Mobile -->
+<div class="mx-auto h-1.5 w-32 rounded-full bg-slate-300 dark:bg-slate-700 mb-1"></div>
+</nav>
+</div>
+</body></html>

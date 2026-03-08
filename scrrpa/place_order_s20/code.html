@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Place Order - N-SCRRA</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ec5b13",
+                        "background-light": "#f8f6f6",
+                        "background-dark": "#221610",
+                    },
+                    fontFamily: {
+                        "display": ["Public Sans"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Public Sans', sans-serif; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen font-display">
+<!-- Header Navigation -->
+<header class="sticky top-0 z-50 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-primary/10">
+<div class="flex items-center justify-between p-4 max-w-lg mx-auto">
+<button class="p-2 hover:bg-primary/10 rounded-full transition-colors">
+<span class="material-symbols-outlined align-middle">arrow_back</span>
+</button>
+<h1 class="text-lg font-bold tracking-tight">Place Order</h1>
+<button class="p-2 hover:bg-primary/10 rounded-full transition-colors">
+<span class="material-symbols-outlined align-middle">info</span>
+</button>
+</div>
+</header>
+<main class="max-w-lg mx-auto pb-40">
+<!-- Supplier Header Card -->
+<section class="p-4">
+<div class="bg-white dark:bg-slate-800 rounded-xl p-4 shadow-sm border border-primary/10">
+<div class="flex items-center gap-4">
+<div class="size-16 rounded-xl bg-primary/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-3xl">factory</span>
+</div>
+<div>
+<h2 class="text-xl font-bold">Stop A Factory</h2>
+<div class="flex items-center gap-2 mt-1">
+<span class="text-xs font-semibold px-2 py-0.5 bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400 rounded-full">98% Reliability</span>
+<span class="text-xs text-slate-500 dark:text-slate-400">Priority Partner</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Product Selection -->
+<section class="p-4 space-y-4">
+<h3 class="text-sm font-bold uppercase tracking-wider text-slate-500">Select Products</h3>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">search</span>
+<input class="w-full pl-10 pr-4 py-3 bg-white dark:bg-slate-800 border border-primary/10 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all" placeholder="Search products (e.g., Reagent X, Bio-Vials)" type="text"/>
+</div>
+<!-- Product Items -->
+<div class="space-y-3">
+<!-- Product 1 -->
+<div class="bg-white dark:bg-slate-800 p-4 rounded-xl border border-primary/10 flex flex-col gap-3">
+<div class="flex justify-between items-start">
+<div>
+<p class="font-bold">Reagent X-450</p>
+<p class="text-xs text-slate-500">SKU: RX-0992 | $120.00 / Unit</p>
+</div>
+<div class="flex items-center bg-background-light dark:bg-slate-700 rounded-lg p-1 border border-primary/10">
+<button class="p-1 text-primary"><span class="material-symbols-outlined text-sm">remove</span></button>
+<input class="w-12 text-center bg-transparent border-none focus:ring-0 font-bold text-sm" type="number" value="12"/>
+<button class="p-1 text-primary"><span class="material-symbols-outlined text-sm">add</span></button>
+</div>
+</div>
+<div class="flex justify-between items-center pt-2 border-t border-slate-100 dark:border-slate-700">
+<span class="text-xs text-slate-500 uppercase font-medium">Subtotal</span>
+<span class="font-bold text-primary">$1,440.00</span>
+</div>
+</div>
+<!-- Product 2 -->
+<div class="bg-white dark:bg-slate-800 p-4 rounded-xl border border-primary/10 flex flex-col gap-3 opacity-60">
+<div class="flex justify-between items-start">
+<div>
+<p class="font-bold">Bio-Vials (Pack 50)</p>
+<p class="text-xs text-slate-500">SKU: BV-112 | $45.00 / Unit</p>
+</div>
+<button class="px-3 py-1.5 bg-primary/10 text-primary text-xs font-bold rounded-lg">Add to Order</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Order Logistics -->
+<section class="p-4 space-y-4">
+<h3 class="text-sm font-bold uppercase tracking-wider text-slate-500">Logistics &amp; Delivery</h3>
+<div class="grid grid-cols-1 gap-4">
+<!-- Delivery Date -->
+<div class="space-y-2">
+<label class="text-xs font-semibold ml-1">Expected Delivery Date</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">calendar_today</span>
+<input class="w-full pl-10 pr-4 py-3 bg-white dark:bg-slate-800 border border-primary/10 rounded-xl focus:ring-2 focus:ring-primary outline-none" min="2024-05-20" type="date" value="2024-05-24"/>
+</div>
+<p class="text-[10px] text-slate-400 ml-1 italic">* Earliest delivery based on 4-day lead time</p>
+</div>
+<!-- Delivery Location -->
+<div class="space-y-2">
+<label class="text-xs font-semibold ml-1">Delivery Warehouse</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">location_on</span>
+<select class="w-full pl-10 pr-4 py-3 bg-white dark:bg-slate-800 border border-primary/10 rounded-xl focus:ring-2 focus:ring-primary outline-none appearance-none">
+<option>Plant 4 - Singapore</option>
+<option>Warehouse B - Johor</option>
+<option>Distribution Center - Batam</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none">expand_more</span>
+</div>
+</div>
+</div>
+<!-- Priority Selector -->
+<div class="space-y-2">
+<label class="text-xs font-semibold ml-1">Order Priority</label>
+<div class="flex p-1 bg-slate-200 dark:bg-slate-800 rounded-xl border border-primary/10">
+<button class="flex-1 py-2 text-sm font-bold rounded-lg transition-all bg-white dark:bg-slate-700 shadow-sm text-primary">Standard</button>
+<button class="flex-1 py-2 text-sm font-bold rounded-lg transition-all text-slate-500 dark:text-slate-400 hover:text-primary">Express</button>
+<button class="flex-1 py-2 text-sm font-bold rounded-lg transition-all text-slate-500 dark:text-slate-400 hover:text-primary">Emergency</button>
+</div>
+</div>
+</section>
+<!-- Static Map Placeholder -->
+<section class="p-4">
+<div class="w-full h-32 rounded-xl bg-slate-200 dark:bg-slate-800 relative overflow-hidden group">
+<img alt="Map of delivery route" class="w-full h-full object-cover opacity-50 dark:opacity-30" data-alt="Minimalist map showing delivery route from supplier to customer warehouse" data-location="Singapore" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA4OXbJkgUQflGH7G9gXBPpIynMV6kwsuNvjdJgsvrnJlhn14CIhhQ26WyOEKwOFNyxsp4FLjT0VO6mwZ14nvMFnm_YZGGFyNuGF0wp7WN3pfw3KxJ-JYKfG3PMoPDQAyUf_gOyff0CQtKTNxxCNAuIqfL-AYARRh-pNeyhFb0OGNW3KB3aCUysErLBSI2fV5C8YNe4JnM9CQ5lhCZrfzE6RiwftcrzkoplSDwV0ZrouNZmcG9Xv-ERguK3VooLxzbmaDIqH7MM-E3Y"/>
+<div class="absolute inset-0 flex items-center justify-center">
+<div class="bg-white/90 dark:bg-slate-900/90 px-3 py-1.5 rounded-full shadow-lg border border-primary/20 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-sm">route</span>
+<span class="text-xs font-bold">Calculate optimal route</span>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Fixed Bottom Summary & Action -->
+<div class="fixed bottom-0 left-0 right-0 z-50">
+<!-- Summary Card -->
+<div class="max-w-lg mx-auto bg-white dark:bg-slate-900 border-t border-primary/20 shadow-[0_-8px_30px_rgb(0,0,0,0.12)] rounded-t-3xl p-6">
+<div class="space-y-2 mb-6">
+<div class="flex justify-between text-sm text-slate-500">
+<span>Subtotal Cost</span>
+<span>$1,440.00</span>
+</div>
+<div class="flex justify-between text-sm text-slate-500">
+<span>Estimated Tax (7%)</span>
+<span>$100.80</span>
+</div>
+<div class="flex justify-between text-sm text-slate-500">
+<span>Shipping Fee</span>
+<span class="text-green-600 font-medium">FREE</span>
+</div>
+<div class="pt-2 border-t border-slate-100 dark:border-slate-800 flex justify-between items-center">
+<span class="text-lg font-bold">Grand Total</span>
+<span class="text-2xl font-black text-primary">$1,540.80</span>
+</div>
+</div>
+<button class="w-full bg-primary hover:bg-primary/90 text-white py-4 rounded-xl font-bold text-lg shadow-lg shadow-primary/30 active:scale-[0.98] transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">shopping_cart_checkout</span>
+                Place Order
+            </button>
+</div>
+<!-- Bottom Navigation (Visual Component only) -->
+<nav class="max-w-lg mx-auto flex justify-around items-center bg-white dark:bg-slate-900 pb-2 pt-2 border-t border-slate-100 dark:border-slate-800">
+<a class="flex flex-col items-center gap-0.5 text-slate-400" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="text-[10px]">Home</span>
+</a>
+<a class="flex flex-col items-center gap-0.5 text-primary" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1">shopping_bag</span>
+<span class="text-[10px] font-bold">Orders</span>
+</a>
+<a class="flex flex-col items-center gap-0.5 text-slate-400" href="#">
+<span class="material-symbols-outlined">local_shipping</span>
+<span class="text-[10px]">Tracking</span>
+</a>
+<a class="flex flex-col items-center gap-0.5 text-slate-400" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="text-[10px]">Profile</span>
+</a>
+</nav>
+</div>
+</body></html>

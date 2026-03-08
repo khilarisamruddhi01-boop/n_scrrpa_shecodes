@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>N-SCRRA Onboarding</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ec5b13",
+                        "navy-custom": "#1E3A5F",
+                        "background-light": "#f8f6f6",
+                        "background-dark": "#221610",
+                    },
+                    fontFamily: {
+                        "display": ["Public Sans", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100">
+<div class="relative mx-auto flex h-screen max-w-md flex-col overflow-hidden bg-white dark:bg-background-dark shadow-xl">
+<!-- Gradient Accent Top-Right -->
+<div class="absolute top-0 right-0 h-40 w-40 bg-gradient-to-bl from-navy-custom/10 to-transparent pointer-events-none"></div>
+<!-- Top Navigation -->
+<div class="z-10 flex items-center justify-end p-6">
+<button class="text-sm font-semibold text-slate-500 hover:text-navy-custom dark:text-slate-400">Skip</button>
+</div>
+<!-- Carousel Container -->
+<div class="no-scrollbar relative flex flex-1 overflow-x-auto snap-x snap-mandatory">
+<!-- Slide 1: Supply Visibility -->
+<div class="flex min-w-full snap-center flex-col items-center px-8 pt-4">
+<div class="relative flex aspect-square w-full items-center justify-center rounded-3xl bg-slate-50 dark:bg-slate-800/50 mb-10">
+<div class="flex flex-col items-center">
+<span class="material-symbols-outlined text-primary text-8xl" style="font-variation-settings: 'FILL' 1">hub</span>
+<div class="mt-4 h-1 w-24 rounded-full bg-primary/20"></div>
+</div>
+<div class="absolute inset-0 bg-center bg-no-repeat opacity-10" data-alt="Abstract supply chain network nodes and connections" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAZoBW_PnFZxqmu0OcQWXnd7yBWcng5_ge2BG0YHUowhk5tBeOLk5Wu-72FEnWTO9cx7lYkvkxj1KgkaoWgdUNiv3tiqhrlE6IG3H17djYx-0cMGz_Y7Q2UHA_ihxyrwgiiuveGD28WDVjRiCEmbfItdqz1spmbaDrNslpbFgNQv41MUpgUXuIiiSPgA4O9kJytaSMk2kRdz9BO8ExHvc84mzW45jBqTkKHwyUl_1bFm5ClrVhwPPZHfa5Sk5Fsnj8Pngf3F59UPL-I');"></div>
+</div>
+<div class="text-center">
+<h2 class="mb-4 text-2xl font-bold text-navy-custom dark:text-white">Supply Visibility</h2>
+<p class="text-slate-500 dark:text-slate-400 leading-relaxed">Gain total oversight with real-time supply network maps and comprehensive logistics tracking across all tiers.</p>
+</div>
+</div>
+<!-- Slide 2: AI Prediction -->
+<div class="flex min-w-full snap-center flex-col items-center px-8 pt-4">
+<div class="relative flex aspect-square w-full items-center justify-center rounded-3xl bg-slate-50 dark:bg-slate-800/50 mb-10">
+<div class="flex flex-col items-center">
+<span class="material-symbols-outlined text-primary text-8xl" style="font-variation-settings: 'FILL' 1">psychology</span>
+<div class="mt-4 h-1 w-24 rounded-full bg-primary/20"></div>
+</div>
+<div class="absolute inset-0 bg-center bg-no-repeat opacity-10" data-alt="Artificial intelligence data visualization pattern" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDn0QmoMKIeuwNE3PRAVI4HPRyQNwraxsb4o9l40zWAfFmUxSJ6lqFGx-0lwR-9O6-W56ybnqgTaoDKZdCplAhsEexlKPDCpgSYHe-10VgI34oDCBl2aXi5Fi5wGCtyS7QfPpcYcjQEGn4DmONSGqcIWHiwmKAznZNKtsnejKdeum08izVAFeNxMO8yilEC-2uUKKFZiOdouyINtcIYkEtRhKHoE2F7vbtEBT06k5xe6kDYPrWVo98BQpTTnAxHPm2NdnRf84btmRUP');"></div>
+</div>
+<div class="text-center">
+<h2 class="mb-4 text-2xl font-bold text-navy-custom dark:text-white">AI Prediction</h2>
+<p class="text-slate-500 dark:text-slate-400 leading-relaxed">Leverage ML-powered forecasting to anticipate demand shifts and supply disruptions before they impact your operations.</p>
+</div>
+</div>
+<!-- Slide 3: Simulation Engine -->
+<div class="flex min-w-full snap-center flex-col items-center px-8 pt-4">
+<div class="relative flex aspect-square w-full items-center justify-center rounded-3xl bg-slate-50 dark:bg-slate-800/50 mb-10">
+<div class="flex flex-col items-center">
+<span class="material-symbols-outlined text-primary text-8xl" style="font-variation-settings: 'FILL' 1">analytics</span>
+<div class="mt-4 h-1 w-24 rounded-full bg-primary/20"></div>
+</div>
+<div class="absolute inset-0 bg-center bg-no-repeat opacity-10" data-alt="Cascade failure risk simulation graph" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBaQ5Pmbr2lZES9hdehJ951CzqPHYyjIKm7e1YWxcstKH6f_1iMCZ6IkffojB8KhLUrqDYrxaggonv1-v3uzqFRw6-FnKjV5uTii2rs9xs4n7Yem0LqbIAKOXHqmhsz_rbIm5THqR1DpCoIi8erNC1lx5DkTTQcfBKSIj4tdTKOZhiWvE-E9VpyxXTqBymB4MELNFRbpgLrNmB5cASfWa3Wk6Cx8yQ51WI_aLuQuXeyt3zw2sGZLLOHYuJ2EFbpTgd1x7wKD-Ly8FWm');"></div>
+</div>
+<div class="text-center">
+<h2 class="mb-4 text-2xl font-bold text-navy-custom dark:text-white">Simulation Engine</h2>
+<p class="text-slate-500 dark:text-slate-400 leading-relaxed">Run complex stress tests to simulate cascade failures and identify critical vulnerabilities in your supply chain network.</p>
+</div>
+</div>
+<!-- Slide 4: Smart Recommendations -->
+<div class="flex min-w-full snap-center flex-col items-center px-8 pt-4">
+<div class="relative flex aspect-square w-full items-center justify-center rounded-3xl bg-slate-50 dark:bg-slate-800/50 mb-10">
+<div class="flex flex-col items-center">
+<span class="material-symbols-outlined text-primary text-8xl" style="font-variation-settings: 'FILL' 1">recommend</span>
+<div class="mt-4 h-1 w-24 rounded-full bg-primary/20"></div>
+</div>
+<div class="absolute inset-0 bg-center bg-no-repeat opacity-10" data-alt="Intelligent optimization and strategy icons" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCgSsT_LY8MrWiadSK4GwIcbnw23boMqg96XkI1wU2ZXeT0PxKWvPzl3uIq3x3JkpVeWgZ9D9E93HFpgYqsu-bjHVbc5U4i5QXaMI76AQCoGqQJmRoKI3yzvUNB6xF057huI6HMEddOKxWNWJDXsTezbfCd9zopTjdAOOVRxV0-U-QdKam5KtFl-FE89X1XG1k4zaejGdEIQ4lOzAUInJVGXpuSZbnKlU8ACXNVqmwLxuN2Zll8tNIEsdDJaSg0lGbkgHwiWV93whwr');"></div>
+</div>
+<div class="text-center">
+<h2 class="mb-4 text-2xl font-bold text-navy-custom dark:text-white">Smart Recommendations</h2>
+<p class="text-slate-500 dark:text-slate-400 leading-relaxed">Receive actionable alternatives and real-time optimizations to maintain resilience and business continuity.</p>
+</div>
+</div>
+</div>
+<!-- Footer: Progress & Action -->
+<div class="flex flex-col items-center p-8 pb-12">
+<!-- Progress Dots -->
+<div class="mb-10 flex items-center gap-2">
+<div class="h-2 w-6 rounded-full bg-navy-custom"></div>
+<div class="h-2 w-2 rounded-full bg-slate-200 dark:bg-slate-700"></div>
+<div class="h-2 w-2 rounded-full bg-slate-200 dark:bg-slate-700"></div>
+<div class="h-2 w-2 rounded-full bg-slate-200 dark:bg-slate-700"></div>
+</div>
+<!-- Action Button -->
+<button class="flex w-full items-center justify-center rounded-xl bg-primary py-4 text-lg font-bold text-white shadow-lg shadow-primary/25 transition-all active:scale-95">
+                Next
+            </button>
+</div>
+</div>
+</body></html>

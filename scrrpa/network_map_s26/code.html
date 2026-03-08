@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ec5b13",
+                        "background-light": "#f8f6f6",
+                        "background-dark": "#221610",
+                    },
+                    fontFamily: {
+                        "display": ["Public Sans"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Public Sans', sans-serif;
+        }
+        .network-grid {
+            background-image: radial-gradient(circle, #ec5b1322 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+        .spof-pulse {
+            box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7);
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(239, 68, 68, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100">
+<div class="relative flex h-screen w-full flex-col overflow-hidden">
+<!-- Header -->
+<header class="flex items-center justify-between border-b border-slate-200 dark:border-primary/20 bg-background-light/80 dark:bg-background-dark/80 px-6 py-4 backdrop-blur-md z-30">
+<div class="flex items-center gap-4">
+<button class="flex items-center justify-center rounded-lg p-2 hover:bg-slate-100 dark:hover:bg-primary/10">
+<span class="material-symbols-outlined text-slate-600 dark:text-slate-400">menu</span>
+</button>
+<h1 class="text-xl font-bold tracking-tight text-slate-900 dark:text-slate-100">Supply Network Map</h1>
+</div>
+<div class="flex items-center gap-3">
+<div class="hidden md:flex items-center bg-slate-100 dark:bg-primary/10 rounded-xl px-3 py-1.5 border border-slate-200 dark:border-primary/20">
+<span class="material-symbols-outlined text-sm text-red-500 mr-2">error</span>
+<span class="text-xs font-semibold uppercase tracking-wider text-red-500">3 Critical SPOF Detected</span>
+</div>
+<button class="flex items-center gap-2 rounded-xl bg-primary px-4 py-2 text-white font-semibold shadow-lg shadow-primary/20 transition-all hover:bg-primary/90">
+<span class="material-symbols-outlined text-lg">filter_list</span>
+<span>Filters</span>
+</button>
+</div>
+</header>
+<!-- Main Map Area -->
+<main class="relative flex-1 bg-slate-50 dark:bg-background-dark overflow-hidden network-grid">
+<!-- Map Controls -->
+<div class="absolute right-6 top-6 z-20 flex flex-col gap-2">
+<div class="flex flex-col overflow-hidden rounded-xl border border-slate-200 dark:border-primary/20 bg-white/90 dark:bg-background-dark/90 shadow-xl backdrop-blur-sm">
+<button class="p-3 hover:bg-slate-100 dark:hover:bg-primary/10 border-b border-slate-100 dark:border-primary/10 text-slate-600 dark:text-slate-400">
+<span class="material-symbols-outlined">add</span>
+</button>
+<button class="p-3 hover:bg-slate-100 dark:hover:bg-primary/10 text-slate-600 dark:text-slate-400">
+<span class="material-symbols-outlined">remove</span>
+</button>
+</div>
+<button class="rounded-xl border border-slate-200 dark:border-primary/20 bg-white/90 dark:bg-background-dark/90 p-3 shadow-xl backdrop-blur-sm hover:bg-slate-100 dark:hover:bg-primary/10 text-slate-600 dark:text-slate-400">
+<span class="material-symbols-outlined">near_me</span>
+</button>
+<button class="rounded-xl border border-slate-200 dark:border-primary/20 bg-white/90 dark:bg-background-dark/90 p-3 shadow-xl backdrop-blur-sm hover:bg-slate-100 dark:hover:bg-primary/10 text-slate-600 dark:text-slate-400">
+<span class="material-symbols-outlined">layers</span>
+</button>
+</div>
+<!-- Graph Content Simulation -->
+<div class="relative w-full h-full p-20">
+<!-- SVG Connections (Arrows/Edges) -->
+<svg class="absolute inset-0 w-full h-full pointer-events-none" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<marker id="arrowhead" markerheight="7" markerwidth="10" orient="auto" refx="9" refy="3.5">
+<polygon fill="#ec5b13" fill-opacity="0.4" points="0 0, 10 3.5, 0 7"></polygon>
+</marker>
+</defs>
+<!-- Simulated flows -->
+<path d="M 150 200 L 400 150" fill="none" marker-end="url(#arrowhead)" stroke="#ec5b13" stroke-dasharray="5,5" stroke-opacity="0.4" stroke-width="2"></path>
+<path d="M 400 150 L 650 300" fill="none" marker-end="url(#arrowhead)" stroke="#ec5b13" stroke-dasharray="5,5" stroke-opacity="0.4" stroke-width="2"></path>
+<path d="M 150 450 L 400 400" fill="none" marker-end="url(#arrowhead)" stroke="#ec5b13" stroke-dasharray="5,5" stroke-opacity="0.4" stroke-width="2"></path>
+<path d="M 400 400 L 650 300" fill="none" marker-end="url(#arrowhead)" stroke="#ec5b13" stroke-dasharray="5,5" stroke-opacity="0.4" stroke-width="2"></path>
+<path d="M 400 150 L 400 400" fill="none" stroke="#ef4444" stroke-opacity="0.6" stroke-width="2"></path>
+</svg>
+<!-- Supplier Nodes -->
+<div class="absolute left-[10%] top-[25%] flex flex-col items-center gap-2 group cursor-pointer">
+<div class="flex h-16 w-16 items-center justify-center rounded-2xl bg-white dark:bg-slate-800 shadow-xl border-2 border-primary group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-primary text-3xl">factory</span>
+</div>
+<span class="text-xs font-bold uppercase tracking-tighter text-slate-500">North Factory A</span>
+</div>
+<div class="absolute left-[10%] top-[60%] flex flex-col items-center gap-2 group cursor-pointer">
+<div class="flex h-16 w-16 items-center justify-center rounded-2xl bg-white dark:bg-slate-800 shadow-xl border-2 border-primary group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-primary text-3xl">factory</span>
+</div>
+<span class="text-xs font-bold uppercase tracking-tighter text-slate-500">East Supply Hub</span>
+</div>
+<!-- SPOF Logistics Hub (Highlighted) -->
+<div class="absolute left-[35%] top-[45%] flex flex-col items-center gap-2 group cursor-pointer">
+<div class="relative flex h-20 w-20 items-center justify-center rounded-full bg-red-500 shadow-2xl spof-pulse group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-white text-4xl">local_shipping</span>
+<div class="absolute -top-1 -right-1 bg-white rounded-full p-1 border border-red-500">
+<span class="material-symbols-outlined text-red-500 text-sm font-bold">priority_high</span>
+</div>
+</div>
+<span class="text-sm font-bold uppercase tracking-wider text-red-600 dark:text-red-400">Central SPOF Hub</span>
+<div class="mt-1 flex items-center gap-1 rounded-full bg-red-100 dark:bg-red-900/30 px-2 py-0.5">
+<span class="text-[10px] font-bold text-red-600">RISK: 9.8</span>
+</div>
+</div>
+<!-- Customer Nodes -->
+<div class="absolute right-[15%] top-[40%] flex flex-col items-center gap-2 group cursor-pointer">
+<div class="flex h-16 w-16 items-center justify-center rounded-2xl bg-white dark:bg-slate-800 shadow-xl border-2 border-slate-300 dark:border-primary/40 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-slate-600 dark:text-slate-300 text-3xl">corporate_fare</span>
+</div>
+<span class="text-xs font-bold uppercase tracking-tighter text-slate-500">Global Retail HQ</span>
+</div>
+</div>
+<!-- Legend Overlay -->
+<div class="absolute bottom-6 left-6 z-20 flex items-center gap-4 rounded-2xl border border-slate-200 dark:border-primary/20 bg-white/90 dark:bg-background-dark/90 p-4 shadow-2xl backdrop-blur-sm">
+<div class="flex items-center gap-2">
+<div class="h-3 w-3 rounded-full bg-primary"></div>
+<span class="text-xs font-medium text-slate-600 dark:text-slate-400">Suppliers</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="h-3 w-3 rounded-full bg-red-500"></div>
+<span class="text-xs font-medium text-slate-600 dark:text-slate-400">SPOF Risks</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="h-3 w-3 rounded-full bg-slate-400"></div>
+<span class="text-xs font-medium text-slate-600 dark:text-slate-400">Customers</span>
+</div>
+</div>
+</main>
+<!-- Sidebar / Filter Drawer (Visible on Desktop) -->
+<aside class="absolute left-0 top-[80px] bottom-0 w-80 translate-x-[-100%] md:translate-x-0 bg-white/95 dark:bg-background-dark/95 border-r border-slate-200 dark:border-primary/20 p-6 z-20 backdrop-blur-sm shadow-2xl transition-transform">
+<div class="flex flex-col h-full gap-8">
+<div>
+<h3 class="text-sm font-bold uppercase tracking-widest text-slate-400 mb-4">Search Nodes</h3>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">search</span>
+<input class="w-full rounded-xl border border-slate-200 dark:border-primary/20 bg-slate-50 dark:bg-primary/5 py-2 pl-10 pr-4 text-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none" placeholder="ID, Location, Owner..." type="text"/>
+</div>
+</div>
+<div>
+<h3 class="text-sm font-bold uppercase tracking-widest text-slate-400 mb-4">Node Types</h3>
+<div class="space-y-3">
+<label class="flex items-center justify-between cursor-pointer group">
+<div class="flex items-center gap-3">
+<div class="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 text-primary">
+<span class="material-symbols-outlined text-xl">factory</span>
+</div>
+<span class="text-sm font-medium">Suppliers</span>
+</div>
+<input checked="" class="rounded border-slate-300 text-primary focus:ring-primary h-5 w-5" type="checkbox"/>
+</label>
+<label class="flex items-center justify-between cursor-pointer group">
+<div class="flex items-center gap-3">
+<div class="flex h-8 w-8 items-center justify-center rounded-lg bg-slate-100 dark:bg-primary/10 text-slate-600 dark:text-primary">
+<span class="material-symbols-outlined text-xl">local_shipping</span>
+</div>
+<span class="text-sm font-medium">Logistics Hubs</span>
+</div>
+<input checked="" class="rounded border-slate-300 text-primary focus:ring-primary h-5 w-5" type="checkbox"/>
+</label>
+<label class="flex items-center justify-between cursor-pointer group">
+<div class="flex items-center gap-3">
+<div class="flex h-8 w-8 items-center justify-center rounded-lg bg-slate-100 dark:bg-primary/10 text-slate-600 dark:text-primary">
+<span class="material-symbols-outlined text-xl">corporate_fare</span>
+</div>
+<span class="text-sm font-medium">Customers</span>
+</div>
+<input checked="" class="rounded border-slate-300 text-primary focus:ring-primary h-5 w-5" type="checkbox"/>
+</label>
+</div>
+</div>
+<div class="flex-1">
+<h3 class="text-sm font-bold uppercase tracking-widest text-slate-400 mb-4">Risk Threshold</h3>
+<div class="px-2">
+<input class="w-full h-2 bg-slate-200 dark:bg-primary/20 rounded-lg appearance-none cursor-pointer accent-primary" type="range"/>
+<div class="flex justify-between mt-2 text-[10px] font-bold text-slate-500 uppercase">
+<span>Low</span>
+<span>Medium</span>
+<span>High (SPOF)</span>
+</div>
+</div>
+<div class="mt-8 space-y-3">
+<div class="rounded-xl bg-red-50 dark:bg-red-900/10 border border-red-200 dark:border-red-800/30 p-4">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-red-500 text-sm">warning</span>
+<span class="text-xs font-bold text-red-600">CRITICAL ALERT</span>
+</div>
+<p class="text-xs text-red-500 leading-relaxed">
+<strong>Central Hub 04</strong> accounts for 85% of downstream flow. Disruption risk is at maximum.
+                            </p>
+<button class="mt-3 w-full rounded-lg bg-red-600 py-2 text-xs font-bold text-white uppercase tracking-wider">Simulate Failure</button>
+</div>
+</div>
+</div>
+<div class="pt-6 border-t border-slate-100 dark:border-primary/10">
+<div class="flex items-center justify-between text-xs text-slate-400 font-medium">
+<span>Map Data v4.12</span>
+<span>Auto-refresh in 42s</span>
+</div>
+</div>
+</div>
+</aside>
+<!-- Bottom Navigation Bar (Mobile) -->
+<nav class="flex md:hidden border-t border-slate-200 dark:border-primary/20 bg-white dark:bg-background-dark px-4 pb-3 pt-2 z-30">
+<a class="flex flex-1 flex-col items-center gap-1 text-primary" href="#">
+<span class="material-symbols-outlined">hub</span>
+<p class="text-[10px] font-bold uppercase tracking-widest">Network</p>
+</a>
+<a class="flex flex-1 flex-col items-center gap-1 text-slate-400" href="#">
+<span class="material-symbols-outlined">warehouse</span>
+<p class="text-[10px] font-bold uppercase tracking-widest">Inventory</p>
+</a>
+<a class="flex flex-1 flex-col items-center gap-1 text-slate-400" href="#">
+<span class="material-symbols-outlined">warning</span>
+<p class="text-[10px] font-bold uppercase tracking-widest">Risks</p>
+</a>
+<a class="flex flex-1 flex-col items-center gap-1 text-slate-400" href="#">
+<span class="material-symbols-outlined">settings</span>
+<p class="text-[10px] font-bold uppercase tracking-widest">Settings</p>
+</a>
+</nav>
+</div>
+</body></html>

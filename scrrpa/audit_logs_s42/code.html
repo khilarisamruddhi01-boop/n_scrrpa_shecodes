@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Audit Logs | Admin Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              colors: {
+                "primary": "#ec5b13",
+                "background-light": "#f8f6f6",
+                "background-dark": "#221610",
+              },
+              fontFamily: {
+                "display": ["Public Sans"]
+              },
+              borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+            },
+          },
+        }
+    </script>
+<style>
+        body { font-family: 'Public Sans', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+            text-transform: none;
+            letter-spacing: normal;
+            word-wrap: normal;
+            white-space: nowrap;
+            direction: ltr;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen font-display">
+<!-- Header / Navigation -->
+<header class="sticky top-0 z-30 w-full border-b border-slate-200 dark:border-slate-800 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex items-center justify-between h-16">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary text-3xl">shield_person</span>
+<h1 class="text-xl font-bold tracking-tight">Audit Logs <span class="text-slate-400 font-normal text-sm ml-2">S42</span></h1>
+</div>
+<div class="flex items-center gap-3">
+<button class="flex items-center gap-2 bg-primary text-white px-4 py-2 rounded-lg font-semibold hover:bg-primary/90 transition-colors">
+<span class="material-symbols-outlined text-sm">download</span>
+<span>Export Logs</span>
+</button>
+</div>
+</div>
+</div>
+</header>
+<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+<!-- Filter Bar -->
+<div class="mb-8 bg-white dark:bg-slate-900/50 p-4 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+<!-- Search -->
+<div class="md:col-span-1">
+<label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 mb-1">Search Actions</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-slate-100 dark:bg-slate-800 border-none rounded-lg focus:ring-2 focus:ring-primary/50 text-sm" placeholder="User ID, Action, or IP..." type="text"/>
+</div>
+</div>
+<!-- Action Type Filter -->
+<div>
+<label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 mb-1">Action Type</label>
+<div class="relative">
+<select class="w-full appearance-none bg-slate-100 dark:bg-slate-800 border-none rounded-lg py-2 px-3 text-sm focus:ring-2 focus:ring-primary/50">
+<option>All Actions</option>
+<option>Login/Logout</option>
+<option>User Update</option>
+<option>Security Config</option>
+<option>Data Export</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none">expand_more</span>
+</div>
+</div>
+<!-- Date Range Filter -->
+<div>
+<label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 mb-1">Date Range</label>
+<div class="relative">
+<select class="w-full appearance-none bg-slate-100 dark:bg-slate-800 border-none rounded-lg py-2 px-3 text-sm focus:ring-2 focus:ring-primary/50">
+<option>Last 24 Hours</option>
+<option>Last 7 Days</option>
+<option>Last 30 Days</option>
+<option>Custom Range</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none">calendar_today</span>
+</div>
+</div>
+<!-- Severity Filter -->
+<div>
+<label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 mb-1">Severity</label>
+<div class="flex gap-2">
+<button class="flex-1 py-2 px-3 bg-primary/10 text-primary border border-primary/20 rounded-lg text-sm font-medium">All</button>
+<button class="flex-1 py-2 px-3 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 rounded-lg text-sm font-medium">High</button>
+<button class="flex-1 py-2 px-3 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 rounded-lg text-sm font-medium">Med</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Table Container -->
+<div class="bg-white dark:bg-slate-900/50 rounded-xl border border-slate-200 dark:border-slate-800 overflow-hidden shadow-sm">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-slate-50 dark:bg-slate-800/50 border-b border-slate-200 dark:border-slate-800">
+<th class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-500">Timestamp</th>
+<th class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-500">User ID</th>
+<th class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-500">Action</th>
+<th class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-500">IP Address</th>
+<th class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-500">Status</th>
+<th class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-500 text-right">Details</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-100 dark:divide-slate-800">
+<!-- Entry 1 -->
+<tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors">
+<td class="px-6 py-4 whitespace-nowrap text-sm font-medium">2023-10-24 14:22:01</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm">admin_jane_doe</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<span class="px-2 py-1 rounded bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 text-xs font-semibold uppercase">Security Update</span>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm font-mono text-slate-500">192.168.1.142</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="flex items-center gap-1.5">
+<div class="size-2 rounded-full bg-green-500"></div>
+<span class="text-xs font-medium">Success</span>
+</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-right">
+<button class="text-primary hover:underline text-sm font-semibold">View</button>
+</td>
+</tr>
+<!-- Entry 2 -->
+<tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors bg-red-50/30 dark:bg-red-900/10">
+<td class="px-6 py-4 whitespace-nowrap text-sm font-medium">2023-10-24 13:45:12</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm">sys_robot_04</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<span class="px-2 py-1 rounded bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-300 text-xs font-semibold uppercase">Failed Login</span>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm font-mono text-slate-500">45.22.190.11</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="flex items-center gap-1.5">
+<div class="size-2 rounded-full bg-red-500"></div>
+<span class="text-xs font-medium">Blocked</span>
+</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-right">
+<button class="text-primary hover:underline text-sm font-semibold">View</button>
+</td>
+</tr>
+<!-- Entry 3 -->
+<tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors">
+<td class="px-6 py-4 whitespace-nowrap text-sm font-medium">2023-10-24 12:10:55</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm">mark_admin_99</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<span class="px-2 py-1 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs font-semibold uppercase">User Delete</span>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm font-mono text-slate-500">10.0.4.52</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="flex items-center gap-1.5">
+<div class="size-2 rounded-full bg-green-500"></div>
+<span class="text-xs font-medium">Success</span>
+</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-right">
+<button class="text-primary hover:underline text-sm font-semibold">View</button>
+</td>
+</tr>
+<!-- Entry 4 -->
+<tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors">
+<td class="px-6 py-4 whitespace-nowrap text-sm font-medium">2023-10-24 10:05:30</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm">sarah_ops</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<span class="px-2 py-1 rounded bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300 text-xs font-semibold uppercase">Export Logs</span>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm font-mono text-slate-500">172.16.254.1</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="flex items-center gap-1.5">
+<div class="size-2 rounded-full bg-green-500"></div>
+<span class="text-xs font-medium">Success</span>
+</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-right">
+<button class="text-primary hover:underline text-sm font-semibold">View</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination Footer -->
+<div class="px-6 py-4 border-t border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-800/20 flex items-center justify-between">
+<span class="text-sm text-slate-500">Showing 1 to 4 of 1,248 entries</span>
+<div class="flex gap-1">
+<button class="size-8 flex items-center justify-center rounded border border-slate-200 dark:border-slate-800 text-slate-400">
+<span class="material-symbols-outlined text-lg">chevron_left</span>
+</button>
+<button class="size-8 flex items-center justify-center rounded bg-primary text-white font-bold text-sm">1</button>
+<button class="size-8 flex items-center justify-center rounded border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 text-sm">2</button>
+<button class="size-8 flex items-center justify-center rounded border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 text-sm">3</button>
+<button class="size-8 flex items-center justify-center rounded border border-slate-200 dark:border-slate-800 text-slate-400">
+<span class="material-symbols-outlined text-lg">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Detail Sheet Mockup (Side Panel / Drawer) -->
+<div class="mt-12 lg:grid lg:grid-cols-3 lg:gap-8">
+<div class="lg:col-span-2">
+<h3 class="text-lg font-bold mb-4">Activity Overview</h3>
+<div class="h-64 rounded-xl border border-dashed border-slate-300 dark:border-slate-700 flex items-center justify-center bg-slate-100/50 dark:bg-slate-800/30">
+<div class="text-center">
+<span class="material-symbols-outlined text-slate-300 dark:text-slate-600 text-6xl">bar_chart</span>
+<p class="text-slate-400 text-sm mt-2">Activity timeline visualization would appear here.</p>
+</div>
+</div>
+</div>
+<div class="mt-8 lg:mt-0">
+<div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-lg overflow-hidden">
+<div class="p-4 border-b border-slate-200 dark:border-slate-800 flex justify-between items-center bg-primary/5">
+<h3 class="font-bold">Entry Details</h3>
+<span class="text-xs font-mono text-slate-400">#LOG-88421</span>
+</div>
+<div class="p-6 space-y-6">
+<div>
+<p class="text-xs font-bold uppercase text-slate-400 mb-1">Full Action Metadata</p>
+<div class="bg-slate-50 dark:bg-slate-800 p-3 rounded-lg font-mono text-xs overflow-x-auto text-slate-600 dark:text-slate-300">
+                                {
+                                  "action": "SECURITY_CONFIG_UPDATE",
+                                  "resource": "/api/v1/auth/settings",
+                                  "old_value": "mfa_required: false",
+                                  "new_value": "mfa_required: true",
+                                  "agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)..."
+                                }
+                            </div>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div>
+<p class="text-xs font-bold uppercase text-slate-400 mb-1">Location</p>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-sm">location_on</span>
+<span class="text-sm">San Francisco, US</span>
+</div>
+</div>
+<div>
+<p class="text-xs font-bold uppercase text-slate-400 mb-1">Org Unit</p>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-sm">corporate_fare</span>
+<span class="text-sm">IT Security</span>
+</div>
+</div>
+</div>
+<div class="pt-4">
+<button class="w-full py-2 bg-slate-100 dark:bg-slate-800 rounded-lg text-sm font-semibold hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">
+                                Flag for Review
+                            </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation (Mobile) -->
+<nav class="fixed bottom-0 left-0 right-0 lg:hidden border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-background-dark px-4 pb-4 pt-2 shadow-2xl">
+<div class="flex gap-2 max-w-md mx-auto">
+<a class="flex flex-1 flex-col items-center justify-end gap-1 text-slate-400 dark:text-slate-500" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<p class="text-[10px] font-medium leading-normal tracking-wide">Dashboard</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-end gap-1 text-slate-400 dark:text-slate-500" href="#">
+<span class="material-symbols-outlined">group</span>
+<p class="text-[10px] font-medium leading-normal tracking-wide">Users</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-end gap-1 text-primary" href="#">
+<span class="material-symbols-outlined">list_alt</span>
+<p class="text-[10px] font-medium leading-normal tracking-wide">Logs</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-end gap-1 text-slate-400 dark:text-slate-500" href="#">
+<span class="material-symbols-outlined">settings</span>
+<p class="text-[10px] font-medium leading-normal tracking-wide">Settings</p>
+</a>
+</div>
+</nav>
+<!-- Map Context Decorator -->
+<div class="hidden">
+<img data-alt="Map showing administrative access locations" data-location="San Francisco" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD1npqr0ZRo2HvI6Xw7ChUwbr9c8U0SgJ8ElkDdKZQbeD8yR7qolxGhob3PNmM6y1og1PEXm32HN4tXWAjiJonh8Nht55NDnx7aN7_a5D_VxSb2oBmc1v30Ysw5AQkMckcB52JNl6mkm-I-cNp1OpbtVc_2RYIQM1ypxfMX4I5ojcAlUjLYKLFa-ZkZaepUp8qc0aRkN2A6OuTZWGGF0LFPxlNARTOxHC6ULl361mAJOtsktb7Jg_f7IE32Cefr0UrBKySKqC-HHWCY"/>
+</div>
+</body></html>

@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Report Generator</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ec5b13",
+                        "background-light": "#f8f6f6",
+                        "background-dark": "#221610",
+                    },
+                    fontFamily: {
+                        "display": ["Public Sans"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Public Sans', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen">
+<div class="max-w-4xl mx-auto pb-24">
+<header class="flex items-center p-4 border-b border-slate-200 dark:border-slate-800 bg-background-light dark:bg-background-dark sticky top-0 z-10">
+<button class="p-2 hover:bg-slate-200 dark:hover:bg-slate-800 rounded-full transition-colors">
+<span class="material-symbols-outlined align-middle">arrow_back</span>
+</button>
+<h1 class="text-xl font-bold ml-2">Report Generator</h1>
+</header>
+<main class="p-4 space-y-8">
+<section class="space-y-6 bg-white dark:bg-slate-900/50 p-6 rounded-xl border border-slate-200 dark:border-slate-800">
+<div class="flex items-center gap-2 border-b border-slate-100 dark:border-slate-800 pb-4">
+<span class="material-symbols-outlined text-primary">settings_suggest</span>
+<h2 class="text-lg font-bold">Report Configuration</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="space-y-2">
+<label class="block text-sm font-medium text-slate-700 dark:text-slate-300">Report Type</label>
+<select class="w-full rounded-lg border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 focus:ring-primary focus:border-primary">
+<option>Disruption Analysis</option>
+<option>Risk Assessment</option>
+<option>Supplier Performance</option>
+<option>Sector Insights</option>
+</select>
+</div>
+<div class="space-y-2">
+<label class="block text-sm font-medium text-slate-700 dark:text-slate-300">Export Format</label>
+<div class="flex gap-4">
+<label class="flex-1 flex items-center justify-center gap-2 p-3 rounded-lg border border-slate-200 dark:border-slate-700 cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-800 has-[:checked]:border-primary has-[:checked]:bg-primary/5">
+<input checked="" class="text-primary focus:ring-primary" name="format" type="radio" value="pdf"/>
+<span class="material-symbols-outlined text-red-500">picture_as_pdf</span>
+<span class="font-medium">PDF</span>
+</label>
+<label class="flex-1 flex items-center justify-center gap-2 p-3 rounded-lg border border-slate-200 dark:border-slate-700 cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-800 has-[:checked]:border-primary has-[:checked]:bg-primary/5">
+<input class="text-primary focus:ring-primary" name="format" type="radio" value="excel"/>
+<span class="material-symbols-outlined text-green-600">table_chart</span>
+<span class="font-medium">Excel</span>
+</label>
+</div>
+</div>
+<div class="space-y-2 md:col-span-2">
+<label class="block text-sm font-medium text-slate-700 dark:text-slate-300">Date Range</label>
+<div class="flex flex-wrap items-start justify-center gap-6 bg-slate-50 dark:bg-slate-800/50 p-4 rounded-xl">
+<div class="flex min-w-72 max-w-[336px] flex-1 flex-col gap-0.5">
+<div class="flex items-center p-1 justify-between">
+<button class="p-2 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-full">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<p class="font-bold text-center">October 2023</p>
+<button class="p-2 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-full">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+<div class="grid grid-cols-7 text-center">
+<div class="py-2 text-xs font-bold text-slate-500">S</div>
+<div class="py-2 text-xs font-bold text-slate-500">M</div>
+<div class="py-2 text-xs font-bold text-slate-500">T</div>
+<div class="py-2 text-xs font-bold text-slate-500">W</div>
+<div class="py-2 text-xs font-bold text-slate-500">T</div>
+<div class="py-2 text-xs font-bold text-slate-500">F</div>
+<div class="py-2 text-xs font-bold text-slate-500">S</div>
+<div class="h-10 flex items-center justify-center rounded-full text-slate-300">24</div>
+<div class="h-10 flex items-center justify-center rounded-full text-slate-300">25</div>
+<div class="h-10 flex items-center justify-center rounded-full text-slate-300">26</div>
+<div class="h-10 flex items-center justify-center rounded-full text-slate-300">27</div>
+<div class="h-10 flex items-center justify-center rounded-full text-slate-300">28</div>
+<div class="h-10 flex items-center justify-center rounded-full text-slate-300">29</div>
+<div class="h-10 flex items-center justify-center rounded-full text-slate-300">30</div>
+<button class="h-10 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-full">1</button>
+<button class="h-10 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-full">2</button>
+<button class="h-10 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-full">3</button>
+<button class="h-10 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-full">4</button>
+<button class="h-10 bg-primary text-white rounded-l-full">5</button>
+<button class="h-10 bg-primary/20">6</button>
+<button class="h-10 bg-primary/20">7</button>
+<button class="h-10 bg-primary/20">8</button>
+<button class="h-10 bg-primary/20">9</button>
+<button class="h-10 bg-primary/20">10</button>
+<button class="h-10 bg-primary/20">11</button>
+<button class="h-10 bg-primary/20">12</button>
+<button class="h-10 bg-primary/20">13</button>
+<button class="h-10 bg-primary/20">14</button>
+<button class="h-10 bg-primary/20">15</button>
+<button class="h-10 bg-primary text-white rounded-r-full">16</button>
+<button class="h-10 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-full">17</button>
+<button class="h-10 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-full">18</button>
+<button class="h-10 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-full">19</button>
+<button class="h-10 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-full">20</button>
+<button class="h-10 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-full">21</button>
+<button class="h-10 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-full">22</button>
+<button class="h-10 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-full">23</button>
+<button class="h-10 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-full">24</button>
+<button class="h-10 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-full">25</button>
+<button class="h-10 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-full">26</button>
+<button class="h-10 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-full">27</button>
+<button class="h-10 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-full">28</button>
+<button class="h-10 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-full">29</button>
+<button class="h-10 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-full">30</button>
+</div>
+</div>
+</div>
+</div>
+<div class="space-y-2 md:col-span-2">
+<label class="block text-sm font-medium text-slate-700 dark:text-slate-300">Entity Scope (Suppliers/Sectors)</label>
+<div class="flex flex-wrap gap-2">
+<span class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-primary/10 text-primary border border-primary/20 text-sm">
+                                All Suppliers <button class="hover:text-primary/70"><span class="material-symbols-outlined text-sm">close</span></button>
+</span>
+<span class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-primary/10 text-primary border border-primary/20 text-sm">
+                                Tech Sector <button class="hover:text-primary/70"><span class="material-symbols-outlined text-sm">close</span></button>
+</span>
+<button class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-400 text-sm hover:bg-slate-300 dark:hover:bg-slate-700">
+<span class="material-symbols-outlined text-sm">add</span> Add Scope
+                            </button>
+</div>
+</div>
+</div>
+<div class="pt-4">
+<button class="w-full bg-primary hover:bg-primary/90 text-white font-bold py-4 rounded-xl shadow-lg shadow-primary/20 flex items-center justify-center gap-2 transition-all">
+<span class="material-symbols-outlined">analytics</span>
+                        Generate Report
+                    </button>
+</div>
+</section>
+<section class="space-y-4">
+<div class="flex items-center justify-between">
+<h2 class="text-lg font-bold">Generation History</h2>
+<button class="text-primary text-sm font-medium hover:underline">View All</button>
+</div>
+<div class="space-y-3">
+<!-- History Item 1 -->
+<div class="flex items-center justify-between p-4 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded-lg bg-red-100 dark:bg-red-900/30 flex items-center justify-center text-red-600">
+<span class="material-symbols-outlined">picture_as_pdf</span>
+</div>
+<div>
+<h4 class="font-medium">Risk_Assessment_Q3_2023.pdf</h4>
+<p class="text-xs text-slate-500">Generated 2 hours ago • 4.2 MB</p>
+</div>
+</div>
+<div class="flex gap-2">
+<button class="p-2 text-slate-400 hover:text-primary transition-colors"><span class="material-symbols-outlined">download</span></button>
+<button class="p-2 text-slate-400 hover:text-primary transition-colors"><span class="material-symbols-outlined">share</span></button>
+</div>
+</div>
+<!-- History Item 2 -->
+<div class="flex items-center justify-between p-4 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded-lg bg-green-100 dark:bg-green-900/30 flex items-center justify-center text-green-600">
+<span class="material-symbols-outlined">table_chart</span>
+</div>
+<div>
+<h4 class="font-medium">Disruption_Trends_Global.xlsx</h4>
+<p class="text-xs text-slate-500">Generated yesterday • 1.8 MB</p>
+</div>
+</div>
+<div class="flex gap-2">
+<button class="p-2 text-slate-400 hover:text-primary transition-colors"><span class="material-symbols-outlined">download</span></button>
+<button class="p-2 text-slate-400 hover:text-primary transition-colors"><span class="material-symbols-outlined">share</span></button>
+</div>
+</div>
+<!-- History Item 3 -->
+<div class="flex items-center justify-between p-4 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl opacity-75">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded-lg bg-red-100 dark:bg-red-900/30 flex items-center justify-center text-red-600">
+<span class="material-symbols-outlined">picture_as_pdf</span>
+</div>
+<div>
+<h4 class="font-medium">Supplier_Audit_August.pdf</h4>
+<p class="text-xs text-slate-500">Generated Oct 12, 2023 • 3.5 MB</p>
+</div>
+</div>
+<div class="flex gap-2">
+<button class="p-2 text-slate-400 hover:text-primary transition-colors"><span class="material-symbols-outlined">download</span></button>
+<button class="p-2 text-slate-400 hover:text-primary transition-colors"><span class="material-symbols-outlined">share</span></button>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 left-0 right-0 border-t border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-background-dark/80 backdrop-blur-md px-4 pb-6 pt-2 z-20">
+<div class="flex max-w-lg mx-auto gap-2">
+<a class="flex flex-1 flex-col items-center justify-end gap-1 text-slate-400" href="#">
+<div class="flex h-8 items-center justify-center">
+<span class="material-symbols-outlined">dashboard</span>
+</div>
+<p class="text-[10px] font-medium leading-normal tracking-wide">Dashboard</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-end gap-1 text-primary" href="#">
+<div class="flex h-8 items-center justify-center">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1">description</span>
+</div>
+<p class="text-[10px] font-medium leading-normal tracking-wide">Reports</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-end gap-1 text-slate-400" href="#">
+<div class="flex h-8 items-center justify-center">
+<span class="material-symbols-outlined">history</span>
+</div>
+<p class="text-[10px] font-medium leading-normal tracking-wide">History</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-end gap-1 text-slate-400" href="#">
+<div class="flex h-8 items-center justify-center">
+<span class="material-symbols-outlined">settings</span>
+</div>
+<p class="text-[10px] font-medium leading-normal tracking-wide">Settings</p>
+</a>
+</div>
+</nav>
+</div>
+</body></html>

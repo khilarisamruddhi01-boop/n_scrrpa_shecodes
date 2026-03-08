@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1E3A5F",
+                        "accent": "#ec5b13",
+                        "background-light": "#f8f6f6",
+                        "background-dark": "#221610",
+                    },
+                    fontFamily: {
+                        "display": ["Public Sans"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<title>N-SCRRA | Role Selection</title>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen">
+<div class="relative flex h-auto min-h-screen w-full flex-col overflow-x-hidden">
+<!-- Top Navigation Bar -->
+<nav class="flex items-center bg-white dark:bg-slate-900 p-4 border-b border-slate-200 dark:border-slate-800 justify-between sticky top-0 z-50">
+<div class="text-primary dark:text-accent flex size-12 shrink-0 items-center justify-start cursor-pointer">
+<span class="material-symbols-outlined text-2xl">arrow_back</span>
+</div>
+<h2 class="text-slate-900 dark:text-slate-100 text-lg font-bold leading-tight tracking-tight flex-1 text-center pr-12">Account Setup</h2>
+</nav>
+<!-- Header Section -->
+<header class="max-w-4xl mx-auto w-full px-4 pt-10 pb-6 text-center">
+<div class="mb-4 inline-flex items-center justify-center p-3 rounded-full bg-primary/10 dark:bg-accent/10">
+<span class="material-symbols-outlined text-primary dark:text-accent text-4xl">verified_user</span>
+</div>
+<h1 class="text-slate-900 dark:text-slate-100 tracking-tight text-3xl md:text-4xl font-bold leading-tight mb-3">Welcome to N-SCRRA</h1>
+<p class="text-slate-600 dark:text-slate-400 text-lg font-normal leading-relaxed max-w-2xl mx-auto">
+                Supply Chain Risk Assessment platform. Please select your professional role to personalize your dashboard experience.
+            </p>
+</header>
+<!-- Role Selection Grid -->
+<main class="max-w-5xl mx-auto w-full p-4 grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+<!-- Supplier Card -->
+<div class="group flex flex-col h-full bg-white dark:bg-slate-900 rounded-xl border-2 border-transparent hover:border-primary dark:hover:border-accent transition-all duration-300 shadow-sm hover:shadow-xl overflow-hidden cursor-pointer">
+<div class="h-48 w-full bg-slate-100 dark:bg-slate-800 relative overflow-hidden">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110" data-alt="Modern high-tech manufacturing facility interior" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCsPzg7l9Gn6M-D5EPBGbYtE2DgDTqqp02Kj8tS9-XRKr7qKTlJbVYWQAWFokUxyZxyertoJ4GBI3nOXtHV6oBGeaNCZ7wPD9opnvqlxaGxOnRiAz1Lpulvn6LTZAm_Rfi55mvkeDJ68vqiDZcJx5LeCzZ1DVmfKO5jQR1lnkEclPYmjSW6GHsosdKL0_isNE-gI-wpknbgS8SSpjiwyD1LKnipzDY69WQVrW8TuakyCFzdIvmg-S0Zq6khBl432IaHSYIHbZ0sG2wT')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent"></div>
+<div class="absolute bottom-4 left-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-white text-3xl">factory</span>
+<span class="text-white font-bold text-xl">Supplier</span>
+</div>
+</div>
+<div class="p-6 flex flex-col flex-1">
+<p class="text-slate-500 dark:text-slate-400 text-sm font-semibold uppercase tracking-wider mb-2">Manufacturing &amp; Production</p>
+<p class="text-slate-600 dark:text-slate-300 text-base mb-6 flex-1">
+                        Register as a vendor to undergo risk assessments, manage compliance documents, and showcase your security standards to customers.
+                    </p>
+<button class="w-full py-3 px-4 bg-primary dark:bg-accent text-white rounded-lg font-bold flex items-center justify-center gap-2 group-hover:opacity-90 transition-opacity">
+<span>Select Role</span>
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Customer Card -->
+<div class="group flex flex-col h-full bg-white dark:bg-slate-900 rounded-xl border-2 border-transparent hover:border-primary dark:hover:border-accent transition-all duration-300 shadow-sm hover:shadow-xl overflow-hidden cursor-pointer">
+<div class="h-48 w-full bg-slate-100 dark:bg-slate-800 relative overflow-hidden">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110" data-alt="Modern glass skyscraper corporate office building" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB2mZ1Dgnu-xCfzWn6_EJrBSOUV04_pULzz_WcnbvS8AcMq4T890ziG4ORE6BQyDeRzMLY9wnFNx7xQBNQlepEiUzcFGP97RCeLzorHnH8NCCpjXH605EVv0NKwzAXQO8cNrRhwva7223v9V8WlC6hN9KHZYgfn6Z1oISba-iTZUEzgk7C_1rsdlc6dNR5nbCQWbSf89MC_dTZo6vLFYwOkj6ymTTsIPgQC8LsWm7AfSAGAGlIgOaEiQZr7o3qyfJiDD4PVONiO-9sC')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent"></div>
+<div class="absolute bottom-4 left-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-white text-3xl">corporate_fare</span>
+<span class="text-white font-bold text-xl">Customer</span>
+</div>
+</div>
+<div class="p-6 flex flex-col flex-1">
+<p class="text-slate-500 dark:text-slate-400 text-sm font-semibold uppercase tracking-wider mb-2">Organization &amp; Procurement</p>
+<p class="text-slate-600 dark:text-slate-300 text-base mb-6 flex-1">
+                        Access detailed risk reports for your supply chain partners, track mitigations, and ensure enterprise-wide compliance.
+                    </p>
+<button class="w-full py-3 px-4 bg-primary dark:bg-accent text-white rounded-lg font-bold flex items-center justify-center gap-2 group-hover:opacity-90 transition-opacity">
+<span>Select Role</span>
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Admin Card -->
+<div class="group flex flex-col h-full bg-white dark:bg-slate-900 rounded-xl border-2 border-transparent hover:border-primary dark:hover:border-accent transition-all duration-300 shadow-sm hover:shadow-xl overflow-hidden cursor-pointer">
+<div class="h-48 w-full bg-slate-100 dark:bg-slate-800 relative overflow-hidden">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110" data-alt="Abstract data analytics visualization and screens" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCt427sf5JG5BFmuGG8XTwnM1-HkRa3ptzBYIe73zI_s7-d-pbL9nq8cQBWxgJG6ZxTcf-oxLjId213kw6S5LkFnVEtXFhgHMU-0G39dV1nzP9iVqytAbPQtSxZ6_NJx3HR-kObR6Ir9-WlD8QFmDD5YzGnSAWp1FtGsxV-GvctyNhkPVoJkXxBEqQZkJ1Ymis8_6cULSnA_abeUqgrF9bNkD-wWktNfSKpYy3pxEaU6Y8vSbuf-B4Ug3gBekL4PEn1HRinikG2YQOO')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent"></div>
+<div class="absolute bottom-4 left-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-white text-3xl">admin_panel_settings</span>
+<span class="text-white font-bold text-xl">Admin</span>
+</div>
+</div>
+<div class="p-6 flex flex-col flex-1">
+<p class="text-slate-500 dark:text-slate-400 text-sm font-semibold uppercase tracking-wider mb-2">Platform Management</p>
+<p class="text-slate-600 dark:text-slate-300 text-base mb-6 flex-1">
+                        Monitor platform-wide health, manage user accounts, update assessment criteria, and generate global risk insights.
+                    </p>
+<button class="w-full py-3 px-4 bg-primary dark:bg-accent text-white rounded-lg font-bold flex items-center justify-center gap-2 group-hover:opacity-90 transition-opacity">
+<span>Select Role</span>
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+</main>
+<!-- Footer Help -->
+<footer class="mt-auto p-8 border-t border-slate-200 dark:border-slate-800 text-center">
+<p class="text-slate-500 dark:text-slate-400 text-sm">
+                Unsure which role to choose? <a class="text-primary dark:text-accent font-semibold hover:underline" href="#">Read our documentation</a> or <a class="text-primary dark:text-accent font-semibold hover:underline" href="#">Contact Support</a>.
+            </p>
+</footer>
+</div>
+</body></html>

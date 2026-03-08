@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Report Viewer - S35</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ec5b13",
+                        "background-light": "#f8f6f6",
+                        "background-dark": "#221610",
+                    },
+                    fontFamily: {
+                        "display": ["Public Sans", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 antialiased">
+<!-- Main Container -->
+<div class="relative flex h-screen flex-col overflow-hidden">
+<!-- Header -->
+<header class="flex items-center justify-between px-4 py-3 border-b border-slate-200 dark:border-slate-800 bg-white dark:bg-background-dark/50 backdrop-blur-md sticky top-0 z-10">
+<div class="flex items-center gap-3">
+<button class="flex h-10 w-10 items-center justify-center rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
+<span class="material-symbols-outlined text-slate-600 dark:text-slate-300">arrow_back</span>
+</button>
+<div>
+<h1 class="text-base font-bold leading-tight">Quarterly Growth Report</h1>
+<p class="text-[10px] text-slate-500 dark:text-slate-400 font-medium uppercase tracking-wider">Report ID: #S35-2024</p>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<button class="flex h-10 w-10 items-center justify-center rounded-full text-primary hover:bg-primary/10 transition-colors">
+<span class="material-symbols-outlined">share</span>
+</button>
+<button class="flex h-10 w-10 items-center justify-center rounded-full text-primary hover:bg-primary/10 transition-colors">
+<span class="material-symbols-outlined">download</span>
+</button>
+</div>
+</header>
+<!-- Main Content Area (Scrollable) -->
+<main class="flex-1 overflow-y-auto bg-slate-100 dark:bg-zinc-950 p-4">
+<!-- Document Controls (Zoom/Navigation) -->
+<div class="mx-auto mb-4 flex max-w-2xl items-center justify-between rounded-full bg-white dark:bg-background-dark px-4 py-2 shadow-sm border border-slate-200 dark:border-slate-800">
+<div class="flex items-center gap-1">
+<button class="flex h-8 w-8 items-center justify-center rounded-full hover:bg-slate-50 dark:hover:bg-slate-800">
+<span class="material-symbols-outlined text-xl">zoom_out</span>
+</button>
+<span class="text-xs font-semibold px-2">125%</span>
+<button class="flex h-8 w-8 items-center justify-center rounded-full hover:bg-slate-50 dark:hover:bg-slate-800">
+<span class="material-symbols-outlined text-xl">zoom_in</span>
+</button>
+</div>
+<div class="h-4 w-px bg-slate-200 dark:bg-slate-700"></div>
+<div class="flex items-center gap-2">
+<button class="flex h-8 w-8 items-center justify-center rounded-full hover:bg-slate-50 dark:hover:bg-slate-800">
+<span class="material-symbols-outlined text-xl">chevron_left</span>
+</button>
+<span class="text-xs font-semibold">Page 1 of 12</span>
+<button class="flex h-8 w-8 items-center justify-center rounded-full hover:bg-slate-50 dark:hover:bg-slate-800">
+<span class="material-symbols-outlined text-xl">chevron_right</span>
+</button>
+</div>
+</div>
+<!-- PDF Page Container -->
+<div class="mx-auto max-w-2xl bg-white dark:bg-background-dark shadow-xl rounded-sm p-8 min-h-[800px] border border-slate-200 dark:border-slate-800">
+<!-- Report Header Content -->
+<div class="mb-8 border-b-2 border-primary pb-4">
+<h2 class="text-2xl font-bold tracking-tight text-slate-900 dark:text-white">Annual Strategic Analysis</h2>
+<p class="text-sm text-slate-500 dark:text-slate-400">Published: October 24, 2024</p>
+</div>
+<!-- Text Block -->
+<div class="space-y-4 mb-8">
+<p class="text-sm leading-relaxed text-slate-700 dark:text-slate-300">
+                        Based on the current fiscal trajectory, the organization has demonstrated a resilient growth pattern of <span class="font-bold text-primary">12.4%</span> across all core sectors. This report details the specific performance indicators that led to this result, focusing on operational efficiencies and market expansion.
+                    </p>
+</div>
+<!-- Interactive Chart Embed -->
+<div class="mb-8 p-4 rounded-xl border border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-zinc-900/50">
+<div class="flex items-center justify-between mb-4">
+<h3 class="text-xs font-bold uppercase tracking-widest text-slate-500">Revenue Distribution</h3>
+<div class="flex gap-2">
+<span class="h-2 w-2 rounded-full bg-primary"></span>
+<span class="h-2 w-2 rounded-full bg-primary/40"></span>
+</div>
+</div>
+<div class="relative h-48 w-full flex items-end justify-between gap-2 px-2">
+<!-- Bar chart visualization -->
+<div class="w-full bg-primary/20 rounded-t h-1/2 group relative cursor-pointer hover:bg-primary/40 transition-all">
+<div class="absolute -top-6 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 text-[10px] font-bold bg-primary text-white px-1.5 py-0.5 rounded transition-opacity">42k</div>
+</div>
+<div class="w-full bg-primary/40 rounded-t h-3/4 group relative cursor-pointer hover:bg-primary/50 transition-all"></div>
+<div class="w-full bg-primary rounded-t h-full group relative cursor-pointer hover:bg-primary/80 transition-all"></div>
+<div class="w-full bg-primary/60 rounded-t h-2/3 group relative cursor-pointer hover:bg-primary/70 transition-all"></div>
+<div class="w-full bg-primary/30 rounded-t h-1/2 group relative cursor-pointer hover:bg-primary/40 transition-all"></div>
+<div class="w-full bg-primary/10 rounded-t h-1/4 group relative cursor-pointer hover:bg-primary/20 transition-all"></div>
+</div>
+<div class="flex justify-between mt-2 px-2 text-[10px] text-slate-400 font-medium">
+<span>MAY</span><span>JUN</span><span>JUL</span><span>AUG</span><span>SEP</span><span>OCT</span>
+</div>
+</div>
+<!-- Another Data Viz (Abstract Image/Pattern) -->
+<div class="mb-8">
+<div class="w-full rounded-xl overflow-hidden aspect-video bg-slate-200 dark:bg-slate-800 relative">
+<div class="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-primary/5"></div>
+<img class="w-full h-full object-cover mix-blend-multiply opacity-80 dark:opacity-40" data-alt="Abstract data visualization with orange accents" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBVr532zEDVSkaw965C8nQXZZ95igJgzIIPFUcCBnzc9-SjKYSP6wBxeIgRFTHKHR-HpgCzpbEy5pSIFJh8yBh4Vwi_tP1rcxDf7Ktmtxk3v6YoFjN79aAtlASCkfFxfnNED7OZoMQZDSVZK4Fx6rLCwO0j3fk0swHnd_gOd1LKJYXQGGJ7T8_Qx4QpF0SkDdolrxAYliprA0PtAXo74gxPMqiBAw8DVQYJQLV6qgM8aTwyLRfRXoTyPTY2Mp0TsZNB-h2PJunH2g7L"/>
+<div class="absolute bottom-4 left-4 right-4 bg-white/90 dark:bg-background-dark/90 backdrop-blur p-3 rounded-lg border border-slate-200 dark:border-slate-800 shadow-lg">
+<div class="flex items-center gap-3">
+<div class="bg-primary/10 p-2 rounded-lg">
+<span class="material-symbols-outlined text-primary">analytics</span>
+</div>
+<div>
+<p class="text-xs font-bold">Predictive Market Shift</p>
+<p class="text-[10px] text-slate-500">Confidence Score: 94.2%</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer of the page -->
+<div class="mt-12 pt-4 border-t border-slate-100 dark:border-slate-800 flex justify-between items-center text-[10px] text-slate-400 font-medium">
+<p>© 2024 InsightFlow Analytics Corp.</p>
+<p>Internal Use Only • Confidential</p>
+</div>
+</div>
+<!-- Page Thumbnails Horizontal Scroller -->
+<div class="mx-auto mt-6 max-w-2xl">
+<p class="text-[10px] font-bold uppercase tracking-widest text-slate-500 mb-2 px-2">Page Overview</p>
+<div class="flex gap-3 overflow-x-auto pb-4 no-scrollbar">
+<div class="min-w-[80px] aspect-[3/4] rounded border-2 border-primary bg-white dark:bg-background-dark p-2 flex flex-col gap-1 ring-2 ring-primary/20 ring-offset-2 ring-offset-slate-100 dark:ring-offset-zinc-950">
+<div class="h-1 w-full bg-slate-200 dark:bg-slate-800 rounded"></div>
+<div class="h-1 w-3/4 bg-slate-200 dark:bg-slate-800 rounded"></div>
+<div class="h-8 w-full bg-primary/10 rounded mt-1"></div>
+</div>
+<div class="min-w-[80px] aspect-[3/4] rounded border border-slate-300 dark:border-slate-700 bg-white dark:bg-background-dark p-2 opacity-50 hover:opacity-100 transition-opacity cursor-pointer">
+<div class="h-1 w-full bg-slate-100 dark:bg-slate-800 rounded"></div>
+<div class="h-1 w-1/2 bg-slate-100 dark:bg-slate-800 rounded"></div>
+<div class="h-1 w-full bg-slate-100 dark:bg-slate-800 rounded"></div>
+</div>
+<div class="min-w-[80px] aspect-[3/4] rounded border border-slate-300 dark:border-slate-700 bg-white dark:bg-background-dark p-2 opacity-50 hover:opacity-100 transition-opacity cursor-pointer">
+<div class="h-4 w-full bg-slate-100 dark:bg-slate-800 rounded"></div>
+<div class="h-1 w-full bg-slate-100 dark:bg-slate-800 rounded mt-1"></div>
+</div>
+<div class="min-w-[80px] aspect-[3/4] rounded border border-slate-300 dark:border-slate-700 bg-white dark:bg-background-dark p-2 opacity-50 hover:opacity-100 transition-opacity cursor-pointer">
+<div class="h-1 w-full bg-slate-100 dark:bg-slate-800 rounded"></div>
+<div class="h-1 w-full bg-slate-100 dark:bg-slate-800 rounded"></div>
+<div class="h-4 w-full bg-slate-100 dark:bg-slate-800 rounded mt-1"></div>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation Bar (Based on provided component) -->
+<nav class="flex border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-background-dark px-4 pb-4 pt-2 shadow-lg">
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-primary" href="#">
+<div class="flex h-8 items-center justify-center">
+<span class="material-symbols-outlined fill-1" style="font-variation-settings: 'FILL' 1">description</span>
+</div>
+<p class="text-[10px] font-bold leading-normal tracking-[0.015em]">Reports</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-400 dark:text-slate-500" href="#">
+<div class="flex h-8 items-center justify-center">
+<span class="material-symbols-outlined">bar_chart</span>
+</div>
+<p class="text-[10px] font-bold leading-normal tracking-[0.015em]">Insights</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-400 dark:text-slate-500" href="#">
+<div class="flex h-8 items-center justify-center">
+<span class="material-symbols-outlined">settings</span>
+</div>
+<p class="text-[10px] font-bold leading-normal tracking-[0.015em]">Settings</p>
+</a>
+</nav>
+</div>
+<style>
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</body></html>

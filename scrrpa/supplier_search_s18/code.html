@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ec5b13",
+                        "background-light": "#f8f6f6",
+                        "background-dark": "#221610",
+                        "navy-custom": "#0f172a",
+                    },
+                    fontFamily: {
+                        "display": ["Public Sans"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<title>N-SCRRA Supplier Search</title>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen">
+<div class="max-w-5xl mx-auto flex flex-col min-h-screen shadow-sm bg-white dark:bg-slate-900">
+<header class="sticky top-0 z-30 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800">
+<div class="flex items-center p-4 justify-between gap-4">
+<div class="flex items-center gap-3">
+<button class="flex items-center justify-center p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800">
+<span class="material-symbols-outlined text-slate-600 dark:text-slate-300">arrow_back</span>
+</button>
+<h1 class="text-xl font-bold tracking-tight text-slate-900 dark:text-white">Supplier Search</h1>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-2 rounded-lg text-primary hover:bg-primary/10">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<div class="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center border border-primary/30">
+<span class="text-primary text-xs font-bold">JD</span>
+</div>
+</div>
+</div>
+<div class="px-4 pb-4">
+<div class="flex gap-2">
+<div class="relative flex-1">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">search</span>
+<input class="w-full pl-10 pr-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-none rounded-xl focus:ring-2 focus:ring-primary text-sm transition-all" placeholder="Search by name, industry, or ID..." type="text"/>
+</div>
+<button class="bg-slate-100 dark:bg-slate-800 p-2.5 rounded-xl flex items-center justify-center hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">
+<span class="material-symbols-outlined text-slate-600 dark:text-slate-300">tune</span>
+</button>
+</div>
+<div class="flex gap-2 mt-4 overflow-x-auto pb-1 no-scrollbar">
+<button class="flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-primary text-white text-xs font-medium whitespace-nowrap">
+                        Sector <span class="material-symbols-outlined text-sm">expand_more</span>
+</button>
+<button class="flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-xs font-medium whitespace-nowrap">
+                        Country <span class="material-symbols-outlined text-sm">expand_more</span>
+</button>
+<button class="flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-xs font-medium whitespace-nowrap">
+                        Risk Level <span class="material-symbols-outlined text-sm">expand_more</span>
+</button>
+<button class="flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-xs font-medium whitespace-nowrap">
+                        Rating <span class="material-symbols-outlined text-sm">expand_more</span>
+</button>
+</div>
+</div>
+</header>
+<main class="flex-1 p-4 bg-slate-50 dark:bg-slate-950">
+<div class="flex items-center justify-between mb-4">
+<p class="text-sm text-slate-500 dark:text-slate-400 font-medium">142 Suppliers found</p>
+<div class="bg-slate-200 dark:bg-slate-800 p-1 rounded-lg flex">
+<button class="px-3 py-1 rounded-md bg-white dark:bg-slate-700 shadow-sm text-xs font-bold text-primary flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">list</span> List
+                    </button>
+<button class="px-3 py-1 rounded-md text-slate-500 dark:text-slate-400 text-xs font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">map</span> Map
+                    </button>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<!-- Supplier Card 1 -->
+<div class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 overflow-hidden hover:shadow-md transition-shadow">
+<div class="p-4">
+<div class="flex justify-between items-start mb-3">
+<div class="flex gap-3">
+<div class="w-12 h-12 rounded-lg bg-slate-100 dark:bg-slate-800 flex items-center justify-center border border-slate-200 dark:border-slate-700 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Corporate abstract technology logo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD7Y9-WXYGj_3S1SBS3LKzBtx90YZGL2a3EpBNGK4M6wv88_ibg-1cEZ2d5HAj2aSZpDR02IRGNcuBobiWcQW1diWscmZOGUWMvalyX4XXSKyuLQaNHu1X3x2dx7CRtaKc70GOtBVpEW18JGc_rDjD9K8DagjOB4l71HDA5SCYV-2p4Zdl5wY-7Ix31S72avSO8eb8lbFUh3WxMGdJg5jKAa_bZ2h69wrK74IvwE98sRKG9QJDz4XsqpIkYY9HiUhf6sgTRrpFueCiK"/>
+</div>
+<div>
+<h3 class="font-bold text-slate-900 dark:text-white">Aether Bio-Pharma</h3>
+<p class="text-xs text-slate-500 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">category</span> Pharmaceuticals
+                                    </p>
+<p class="text-xs text-slate-500 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">location_on</span> Germany
+                                    </p>
+</div>
+</div>
+<div class="flex flex-col items-end gap-1">
+<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 border border-green-200 dark:border-green-800">LOW RISK</span>
+<div class="flex text-amber-400">
+<span class="material-symbols-outlined text-sm fill-current">star</span>
+<span class="material-symbols-outlined text-sm fill-current">star</span>
+<span class="material-symbols-outlined text-sm fill-current">star</span>
+<span class="material-symbols-outlined text-sm fill-current">star</span>
+<span class="material-symbols-outlined text-sm">star_half</span>
+</div>
+</div>
+</div>
+<div class="flex gap-2 mt-4">
+<button class="flex-1 bg-primary text-white py-2 rounded-lg text-xs font-bold hover:bg-primary/90 transition-colors">Connect</button>
+<button class="px-3 py-2 border border-slate-200 dark:border-slate-700 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800">
+<span class="material-symbols-outlined text-sm">add</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Supplier Card 2 -->
+<div class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 overflow-hidden hover:shadow-md transition-shadow">
+<div class="p-4">
+<div class="flex justify-between items-start mb-3">
+<div class="flex gap-3">
+<div class="w-12 h-12 rounded-lg bg-slate-100 dark:bg-slate-800 flex items-center justify-center border border-slate-200 dark:border-slate-700 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Industrial automotive manufacturing logo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCylXHynqM5Qabzw3LlhuMzptAafSbwmgYrY2PzEdVSsjExu68TPHd_41JqCPRIO0qsEBWNCHWdJ-sKf4oHs0CpSCQ0U9QA-qzw9BFbhNDati6sCxiq_XU5iV7sRMXfFeWyBtuVEXMBQOklghygn178Bs6j_JtGu3z4bBkUEs-zLpgcF55kG-ktElTv1LJgoBjwFwMGHSQqlyfzxD-aoeC2z0Er01558LwxDLDAewa3JzYxaEuzTkUA_ULtDKeBFmua4_EscifREBZv"/>
+</div>
+<div>
+<h3 class="font-bold text-slate-900 dark:text-white">VoltDrive Systems</h3>
+<p class="text-xs text-slate-500 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">category</span> Automotive
+                                    </p>
+<p class="text-xs text-slate-500 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">location_on</span> South Korea
+                                    </p>
+</div>
+</div>
+<div class="flex flex-col items-end gap-1">
+<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400 border border-amber-200 dark:border-amber-800">MED RISK</span>
+<div class="flex text-amber-400">
+<span class="material-symbols-outlined text-sm fill-current">star</span>
+<span class="material-symbols-outlined text-sm fill-current">star</span>
+<span class="material-symbols-outlined text-sm fill-current">star</span>
+<span class="material-symbols-outlined text-sm fill-current">star</span>
+<span class="material-symbols-outlined text-sm">star</span>
+</div>
+</div>
+</div>
+<div class="flex gap-2 mt-4">
+<button class="flex-1 bg-primary text-white py-2 rounded-lg text-xs font-bold hover:bg-primary/90 transition-colors">Connect</button>
+<button class="px-3 py-2 border border-slate-200 dark:border-slate-700 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800">
+<span class="material-symbols-outlined text-sm">add</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Supplier Card 3 -->
+<div class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 overflow-hidden hover:shadow-md transition-shadow">
+<div class="p-4">
+<div class="flex justify-between items-start mb-3">
+<div class="flex gap-3">
+<div class="w-12 h-12 rounded-lg bg-slate-100 dark:bg-slate-800 flex items-center justify-center border border-slate-200 dark:border-slate-700 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Modern tech corporation logo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAwg97QrpY9pSXk3iIKMdHZx0CTr2sqqIQ50GqiO4Gb-Duh6IJbhSIJp2ER_uC7yPtJMCs6A0xrba06QAN3kqvkrUKjJFGiT9LCsJU3uB0P9aVsHWn_LyC1QEOV-oEn8O0b1lJz9IQp2UtIl59DLmkA7mEON8gD1yUHrzPu2o7COI77rYgrmo6heMNRyHgtfYfj5W-VvfYWeBJKGx17lkNOK6XMaJI8KOM72adWoN5pzEsP00i5cTgR9MF0J1qvIFrKqxYIJ7cVxA_8"/>
+</div>
+<div>
+<h3 class="font-bold text-slate-900 dark:text-white">Titan Logistics Co.</h3>
+<p class="text-xs text-slate-500 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">category</span> Transportation
+                                    </p>
+<p class="text-xs text-slate-500 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">location_on</span> USA
+                                    </p>
+</div>
+</div>
+<div class="flex flex-col items-end gap-1">
+<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-400 border border-red-200 dark:border-red-800">HIGH RISK</span>
+<div class="flex text-amber-400">
+<span class="material-symbols-outlined text-sm fill-current">star</span>
+<span class="material-symbols-outlined text-sm fill-current">star</span>
+<span class="material-symbols-outlined text-sm fill-current">star</span>
+<span class="material-symbols-outlined text-sm">star</span>
+<span class="material-symbols-outlined text-sm">star</span>
+</div>
+</div>
+</div>
+<div class="flex gap-2 mt-4">
+<button class="flex-1 bg-primary text-white py-2 rounded-lg text-xs font-bold hover:bg-primary/90 transition-colors">Connect</button>
+<button class="px-3 py-2 border border-slate-200 dark:border-slate-700 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800">
+<span class="material-symbols-outlined text-sm">add</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Supplier Card 4 -->
+<div class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 overflow-hidden hover:shadow-md transition-shadow">
+<div class="p-4">
+<div class="flex justify-between items-start mb-3">
+<div class="flex gap-3">
+<div class="w-12 h-12 rounded-lg bg-slate-100 dark:bg-slate-800 flex items-center justify-center border border-slate-200 dark:border-slate-700 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Green sustainable energy logo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC4puI1fit_7P2dyS-hY2tn12BrLNLJrFlVnyOznh4OeulnIWDd1xlGr3TBTWrAgmvPgR_be9BrDp6Ip5tJvK4v1d2BkblvhA7o9ENOMWOBsUVPlyLU0rRmZJOdG0aoehBe_V6ilb8R5-7xwEC8HkU5Ml1ydEKo3jkt3fM-VvzGmzzj9-MwBLsk-PDqM90GEgaSlmU3MI5qbfCPYpTXy27eU5INEII9w1mVNHygE9fxRvbIbqibr8G5WOYEDfXS_7Y8P4q4m-WqwvhA"/>
+</div>
+<div>
+<h3 class="font-bold text-slate-900 dark:text-white">EcoNexus Energy</h3>
+<p class="text-xs text-slate-500 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">category</span> Renewables
+                                    </p>
+<p class="text-xs text-slate-500 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">location_on</span> Denmark
+                                    </p>
+</div>
+</div>
+<div class="flex flex-col items-end gap-1">
+<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 border border-green-200 dark:border-green-800">LOW RISK</span>
+<div class="flex text-amber-400">
+<span class="material-symbols-outlined text-sm fill-current">star</span>
+<span class="material-symbols-outlined text-sm fill-current">star</span>
+<span class="material-symbols-outlined text-sm fill-current">star</span>
+<span class="material-symbols-outlined text-sm fill-current">star</span>
+<span class="material-symbols-outlined text-sm fill-current">star</span>
+</div>
+</div>
+</div>
+<div class="flex gap-2 mt-4">
+<button class="flex-1 bg-primary text-white py-2 rounded-lg text-xs font-bold hover:bg-primary/90 transition-colors">Connect</button>
+<button class="px-3 py-2 border border-slate-200 dark:border-slate-700 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800">
+<span class="material-symbols-outlined text-sm">add</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<button class="fixed bottom-24 right-6 w-14 h-14 bg-navy-custom dark:bg-primary rounded-full shadow-lg flex items-center justify-center text-white hover:scale-105 transition-transform z-40">
+<span class="material-symbols-outlined">compare_arrows</span>
+<span class="absolute -top-1 -right-1 bg-primary dark:bg-white dark:text-primary w-6 h-6 rounded-full text-[10px] font-bold flex items-center justify-center border-2 border-white dark:border-primary">3</span>
+</button>
+<nav class="sticky bottom-0 bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 z-50">
+<div class="flex justify-around items-center py-3">
+<a class="flex flex-col items-center gap-1 text-slate-400" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="text-[10px] font-medium">Dashboard</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-primary" href="#">
+<span class="material-symbols-outlined font-variation-fill">search</span>
+<span class="text-[10px] font-medium">Explore</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400" href="#">
+<span class="material-symbols-outlined">hub</span>
+<span class="text-[10px] font-medium">Network</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="text-[10px] font-medium">Risk Map</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="text-[10px] font-medium">Account</span>
+</a>
+</div>
+</nav>
+</div>
+<style>
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .font-variation-fill {
+            font-variation-settings: 'FILL' 1;
+        }
+    </style>
+</body></html>

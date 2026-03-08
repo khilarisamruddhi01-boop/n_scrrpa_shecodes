@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Risk Model Settings</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ec5b13",
+                        "background-light": "#f8f6f6",
+                        "background-dark": "#221610",
+                    },
+                    fontFamily: {
+                        "display": ["Public Sans"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Public Sans', sans-serif; }
+        .slider-thumb::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 18px;
+            height: 18px;
+            background: #ec5b13;
+            cursor: pointer;
+            border-radius: 50%;
+            border: 2px solid white;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen font-display">
+<!-- Header Navigation -->
+<header class="sticky top-0 z-50 bg-white/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-primary/10">
+<div class="flex items-center justify-between px-4 py-3 max-w-4xl mx-auto">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">arrow_back</span>
+<h1 class="text-lg font-bold tracking-tight">Risk Model Settings (S40)</h1>
+</div>
+<div class="flex gap-2">
+<button class="p-2 rounded-full hover:bg-primary/10 transition-colors">
+<span class="material-symbols-outlined text-slate-600 dark:text-slate-400">help_outline</span>
+</button>
+</div>
+</div>
+</header>
+<main class="max-w-4xl mx-auto pb-32">
+<!-- Hero Section -->
+<section class="p-4 pt-6">
+<div class="flex flex-col gap-1">
+<h2 class="text-3xl font-bold text-slate-900 dark:text-slate-50">Tune Risk Factor Weights</h2>
+<p class="text-slate-600 dark:text-slate-400 mt-2">
+                    Adjust the relative importance of each factor. The total model weight must sum to <strong>1.00</strong> to ensure statistical validity.
+                </p>
+</div>
+<!-- Total Weight Indicator Card -->
+<div class="mt-6 p-4 rounded-xl bg-primary/5 border border-primary/20 flex items-center justify-between">
+<div>
+<p class="text-sm font-semibold uppercase tracking-wider text-primary/80">Total Weight Status</p>
+<div class="flex items-center gap-2 mt-1">
+<span class="text-3xl font-bold text-slate-900 dark:text-slate-100">1.00</span>
+<span class="material-symbols-outlined text-green-500" title="Valid Configuration">check_circle</span>
+</div>
+</div>
+<div class="text-right">
+<p class="text-xs text-slate-500 dark:text-slate-400">Current Distribution</p>
+<div class="flex gap-1 mt-2">
+<div class="h-2 w-8 bg-primary rounded-full"></div>
+<div class="h-2 w-6 bg-primary/60 rounded-full"></div>
+<div class="h-2 w-12 bg-primary/40 rounded-full"></div>
+<div class="h-2 w-4 bg-primary/20 rounded-full"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- Configuration Sliders Section -->
+<section class="px-4 mt-4 space-y-6">
+<!-- Factor 1: Supply Risk -->
+<div class="group">
+<div class="flex justify-between items-center mb-2">
+<label class="font-semibold text-slate-800 dark:text-slate-200">Supply Chain Risk</label>
+<span class="px-3 py-1 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-sm font-mono font-bold">0.30</span>
+</div>
+<div class="relative flex items-center h-6">
+<input class="w-full h-1.5 bg-slate-200 dark:bg-slate-700 rounded-lg appearance-none cursor-pointer slider-thumb accent-primary" max="1" min="0" step="0.01" type="range" value="0.30"/>
+</div>
+<p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Vendor reliability, inventory volatility, and lead time exceptions.</p>
+</div>
+<!-- Factor 2: Logistics Risk -->
+<div class="group">
+<div class="flex justify-between items-center mb-2">
+<label class="font-semibold text-slate-800 dark:text-slate-200">Logistics &amp; Freight</label>
+<span class="px-3 py-1 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-sm font-mono font-bold">0.25</span>
+</div>
+<div class="relative flex items-center h-6">
+<input class="w-full h-1.5 bg-slate-200 dark:bg-slate-700 rounded-lg appearance-none cursor-pointer slider-thumb accent-primary" max="1" min="0" step="0.01" type="range" value="0.25"/>
+</div>
+<p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Port congestion, fuel price fluctuations, and carrier capacity.</p>
+</div>
+<!-- Factor 3: Geopolitical Risk -->
+<div class="group">
+<div class="flex justify-between items-center mb-2">
+<label class="font-semibold text-slate-800 dark:text-slate-200">Geopolitical Stability</label>
+<span class="px-3 py-1 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-sm font-mono font-bold">0.20</span>
+</div>
+<div class="relative flex items-center h-6">
+<input class="w-full h-1.5 bg-slate-200 dark:bg-slate-700 rounded-lg appearance-none cursor-pointer slider-thumb accent-primary" max="1" min="0" step="0.01" type="range" value="0.20"/>
+</div>
+<p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Trade tariffs, regional conflicts, and regulatory changes.</p>
+</div>
+<!-- Factor 4: Financial Risk -->
+<div class="group">
+<div class="flex justify-between items-center mb-2">
+<label class="font-semibold text-slate-800 dark:text-slate-200">Economic &amp; Financial</label>
+<span class="px-3 py-1 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-sm font-mono font-bold">0.15</span>
+</div>
+<div class="relative flex items-center h-6">
+<input class="w-full h-1.5 bg-slate-200 dark:bg-slate-700 rounded-lg appearance-none cursor-pointer slider-thumb accent-primary" max="1" min="0" step="0.01" type="range" value="0.15"/>
+</div>
+<p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Currency fluctuations, interest rates, and inflation impact.</p>
+</div>
+<!-- Factor 5: Environmental Risk -->
+<div class="group">
+<div class="flex justify-between items-center mb-2">
+<label class="font-semibold text-slate-800 dark:text-slate-200">Environmental (ESG)</label>
+<span class="px-3 py-1 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-sm font-mono font-bold">0.10</span>
+</div>
+<div class="relative flex items-center h-6">
+<input class="w-full h-1.5 bg-slate-200 dark:bg-slate-700 rounded-lg appearance-none cursor-pointer slider-thumb accent-primary" max="1" min="0" step="0.01" type="range" value="0.10"/>
+</div>
+<p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Climate events, sustainability compliance, and carbon footprint.</p>
+</div>
+</section>
+<!-- Actions -->
+<section class="px-4 mt-12 grid grid-cols-1 sm:grid-cols-2 gap-4">
+<button class="flex items-center justify-center gap-2 px-6 py-4 rounded-xl border-2 border-primary text-primary font-bold hover:bg-primary/5 transition-all">
+<span class="material-symbols-outlined">visibility</span>
+                Preview Impact
+            </button>
+<button class="flex items-center justify-center gap-2 px-6 py-4 rounded-xl bg-primary text-white font-bold shadow-lg shadow-primary/20 hover:brightness-110 transition-all">
+<span class="material-symbols-outlined">psychology</span>
+                Retrain Model
+            </button>
+</section>
+<!-- History/Audit Log Brief -->
+<section class="mt-12 px-4">
+<h3 class="text-sm font-bold uppercase tracking-widest text-slate-500 mb-4">Last Modified</h3>
+<div class="flex items-center gap-3 p-4 rounded-xl bg-white dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700">
+<div class="size-10 rounded-full bg-primary/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-xl">history</span>
+</div>
+<div>
+<p class="text-sm font-medium">Model v4.2.1 Active</p>
+<p class="text-xs text-slate-500">Updated by Sarah Jenkins • Oct 24, 2023</p>
+</div>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation Bar (Modified from Component) -->
+<nav class="fixed bottom-0 w-full bg-white dark:bg-background-dark border-t border-slate-200 dark:border-slate-800 px-4 pb-6 pt-2 z-50">
+<div class="max-w-4xl mx-auto flex justify-around">
+<a class="flex flex-col items-center gap-1 text-slate-400 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="text-[10px] font-medium uppercase tracking-tighter">Dashboard</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-primary" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1">settings_suggest</span>
+<span class="text-[10px] font-medium uppercase tracking-tighter">Models</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+<span class="text-[10px] font-medium uppercase tracking-tighter">Assets</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">account_circle</span>
+<span class="text-[10px] font-medium uppercase tracking-tighter">Profile</span>
+</a>
+</div>
+</nav>
+</body></html>
